@@ -1,0 +1,1225 @@
+/* craft — section-scoped styles. Owned by one design agent; prefix every class.
+   prc- : ProcessRail (assembly rail + station instruments)
+   wrk- : WorkShowcase (editorial gallery)
+--------------------------------------------------------------------------- */
+
+/* ============================ prc — assembly rail ========================= */
+
+/* Rail cell: node + hairline + cyan progress segment. The segment for each
+   station draws downward (scaleY) the moment that station enters view. */
+
+.prc-num {
+  font-family: var(--font-mono);
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--color-faint);
+  transition: color 0.6s ease;
+}
+
+@supports (-webkit-text-stroke: 1px black) {
+  .prc-num {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(244, 243, 239, 0.3);
+    transition: -webkit-text-stroke-color 0.6s ease;
+  }
+
+  .prc-step.is-on .prc-num {
+    -webkit-text-stroke-color: rgba(244, 243, 239, 0.55);
+  }
+}
+
+/* ------------------------- station instrument bay ------------------------ */
+
+/* Every station carries a real artefact, not an outline. The housing is a
+   fixed-height instrument bay so the artefact fills it edge to edge. */
+.prc-inst {
+  display: flex;
+  flex-direction: column;
+  min-height: 306px;
+  border: 1px solid var(--color-line2);
+  background: linear-gradient(180deg, var(--color-surface), #101215);
+  border-radius: 0.75rem;
+  padding: 0.85rem 0.9rem 0.9rem;
+  position: relative;
+  box-shadow: 0 22px 46px -34px rgba(0, 0, 0, 0.95);
+}
+
+/* Registration corner marks — engineering-drawing language from the hero */
+.prc-inst::before,
+.prc-inst::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-color: rgba(244, 243, 239, 0.3);
+  border-style: solid;
+  border-width: 0;
+  pointer-events: none;
+}
+
+.prc-inst::before {
+  top: 7px;
+  right: 7px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+
+.prc-inst::after {
+  bottom: 7px;
+  left: 7px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+
+.prc-inst-cap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  border-bottom: 1px dashed var(--color-line2);
+  padding: 0 0.15rem 0.55rem;
+}
+
+.prc-inst-meta {
+  color: var(--color-accent);
+  letter-spacing: 0.1em;
+}
+
+.prc-inst-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  margin-top: 0.7rem;
+}
+
+/* Generic staggered arrival for instrument elements (rows, ticks, tags) */
+.js .prc-in {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity 0.55s var(--ease-out-expo) calc(0.35s + var(--d, 0ms)),
+    transform 0.55s var(--ease-out-expo) calc(0.35s + var(--d, 0ms));
+}
+
+.js .prc-step.is-on .prc-in,
+.js [data-reveal].is-visible .prc-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Station tag row in the copy column — the accessible copy of the checklist */
+.prc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1.1rem;
+}
+
+.prc-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--color-line2);
+  background: rgba(26, 29, 34, 0.75);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+.prc-tag::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  flex: none;
+  opacity: 0.55;
+  transition: opacity 0.5s ease;
+}
+
+.prc-step.is-on .prc-tag::before {
+  opacity: 1;
+}
+
+/* ---------------- 01 — the signed brief (real checklist) ----------------- */
+
+.prc-doc {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.prc-doc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding-bottom: 0.55rem;
+}
+
+.prc-doc-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+
+.prc-stamp {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  border: 1px solid rgba(0, 230, 255, 0.45);
+  background: rgba(0, 230, 255, 0.1);
+  border-radius: 3px;
+  padding: 0.15rem 0.4rem;
+  transform: rotate(-3deg);
+  white-space: nowrap;
+}
+
+.prc-check {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.prc-check > li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.3rem 0.15rem;
+  border-bottom: 1px solid rgba(244, 243, 239, 0.08);
+}
+
+.prc-check-t {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.75rem;
+  color: var(--color-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prc-check-d {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+}
+
+.prc-tickbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  flex: none;
+  border: 1px solid rgba(0, 230, 255, 0.5);
+  background: rgba(0, 230, 255, 0.14);
+  border-radius: 3px;
+  color: var(--color-accent);
+}
+
+.prc-tickbox svg {
+  opacity: 0;
+  transform: scale(0.5);
+  transition:
+    opacity 0.4s var(--ease-out-expo) calc(0.55s + var(--d, 0ms)),
+    transform 0.4s var(--ease-out-expo) calc(0.55s + var(--d, 0ms));
+}
+
+.prc-step.is-on .prc-tickbox svg,
+.js [data-reveal].is-visible .prc-tickbox svg,
+html:not(.js) .prc-tickbox svg {
+  opacity: 1;
+  transform: none;
+}
+
+.prc-doc-foot {
+  margin-top: 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* -------------- 02 — drafting pad: grid, marks, real wireframe ----------- */
+
+.prc-pad {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  border: 1px solid var(--color-line2);
+  border-radius: 0.5rem;
+  padding: 0.7rem 0.7rem 1.5rem;
+  background-color: rgba(10, 11, 13, 0.6);
+  background-image:
+    linear-gradient(to right, rgba(244, 243, 239, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244, 243, 239, 0.06) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.prc-pad-mark {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-color: rgba(240, 180, 41, 0.6);
+  border-style: solid;
+  border-width: 0;
+}
+
+.prc-pad-mark--tl { top: -1px; left: -1px; border-top-width: 1px; border-left-width: 1px; }
+.prc-pad-mark--tr { top: -1px; right: -1px; border-top-width: 1px; border-right-width: 1px; }
+.prc-pad-mark--bl { bottom: -1px; left: -1px; border-bottom-width: 1px; border-left-width: 1px; }
+.prc-pad-mark--br { bottom: -1px; right: -1px; border-bottom-width: 1px; border-right-width: 1px; }
+
+.prc-wire {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.prc-wire-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--color-line2);
+  padding-bottom: 0.4rem;
+}
+
+.prc-wire-logo {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--color-ink);
+}
+
+.prc-wire-links {
+  display: flex;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.4375rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.prc-wire-links i {
+  font-style: normal;
+}
+
+.prc-wire-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 72px;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.prc-wire-h1 {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.prc-wire-h1 em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-accent2);
+}
+
+.prc-wire-sub {
+  margin-top: 0.2rem;
+  font-size: 0.5rem;
+  line-height: 1.4;
+  color: var(--color-muted);
+}
+
+.prc-wire-cta {
+  display: inline-block;
+  margin-top: 0.4rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  font-family: var(--font-mono);
+  font-size: 0.4375rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* A drawn photograph — pure CSS, stands in for the hero image on the pad. */
+.prc-wire-img {
+  position: relative;
+  height: 46px;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid var(--color-line2);
+  background:
+    radial-gradient(circle at 74% 26%, rgba(240, 180, 41, 0.9) 0 4px, transparent 5px),
+    linear-gradient(180deg, #123a4a 0%, #0d2c3a 52%, #0a1c26 100%);
+}
+
+.prc-wire-img::before,
+.prc-wire-img::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  border-bottom: 18px solid rgba(0, 230, 255, 0.34);
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+}
+
+.prc-wire-img::before {
+  left: 2px;
+}
+
+.prc-wire-img::after {
+  right: 0;
+  border-bottom-width: 24px;
+  border-bottom-color: rgba(0, 230, 255, 0.2);
+  border-left-width: 20px;
+  border-right-width: 20px;
+}
+
+/* A second real band on the pad: a section rule + a 3-up gallery strip */
+.prc-wire-band {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.prc-wire-band-t {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  border-top: 1px solid var(--color-line2);
+  padding-top: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.4375rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.prc-wire-band-t em {
+  font-style: normal;
+  color: var(--color-accent);
+}
+
+.prc-wire-thumbs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.3rem;
+}
+
+.prc-wire-thumbs i {
+  display: block;
+  height: 26px;
+  border-radius: 2px;
+  border: 1px solid var(--color-line2);
+}
+
+.prc-wire-thumbs i:nth-child(1) {
+  background: linear-gradient(150deg, rgba(0, 230, 255, 0.45), rgba(0, 230, 255, 0.1) 62%, rgba(10, 11, 13, 0.9));
+}
+
+.prc-wire-thumbs i:nth-child(2) {
+  background: linear-gradient(150deg, rgba(102, 238, 255, 0.32), rgba(20, 22, 26, 0.95) 70%);
+}
+
+.prc-wire-thumbs i:nth-child(3) {
+  background: linear-gradient(150deg, rgba(240, 180, 41, 0.4), rgba(20, 22, 26, 0.95) 70%);
+}
+
+.prc-wire-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.35rem;
+  margin-top: auto;
+}
+
+.prc-wire-card {
+  border: 1px solid var(--color-line2);
+  background: rgba(26, 29, 34, 0.92);
+  border-radius: 3px;
+  padding: 0.35rem 0.25rem;
+  text-align: center;
+}
+
+.prc-wire-card b {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--color-ink);
+}
+
+.prc-wire-card span {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: 0.4375rem;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+}
+
+/* Amber dimension line across the foot of the pad */
+.prc-dim {
+  position: absolute;
+  left: 0.7rem;
+  right: 0.7rem;
+  bottom: 0.45rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-amber);
+  font-family: var(--font-mono);
+  font-size: 0.4375rem;
+  letter-spacing: 0.14em;
+}
+
+.prc-dim i {
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+  position: relative;
+}
+
+.prc-dim i::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 1px;
+  background: currentColor;
+}
+
+.prc-dim i:first-of-type::before {
+  left: 0;
+}
+
+.prc-dim i:last-of-type::before {
+  right: 0;
+}
+
+/* ------------------- 03 / 04 — the editor (real source) ------------------ */
+
+.prc-editor {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid var(--color-line2);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: rgba(10, 11, 13, 0.75);
+}
+
+.prc-tabs {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--color-line2);
+  background: rgba(26, 29, 34, 0.75);
+}
+
+.prc-tab {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+  padding: 0.35rem 0.55rem;
+  border-right: 1px solid var(--color-line);
+  white-space: nowrap;
+}
+
+.prc-tab.is-on {
+  color: var(--color-ink);
+  background: rgba(10, 11, 13, 0.9);
+  box-shadow: inset 0 -2px 0 0 var(--color-accent);
+}
+
+.prc-code {
+  flex: 1;
+  margin: 0;
+  padding: 0.5rem 0 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  line-height: 1.85;
+  overflow: hidden;
+}
+
+.prc-code li {
+  display: flex;
+  gap: 0.4rem;
+  padding-inline: 0.45rem 0.3rem;
+  white-space: pre;
+}
+
+.prc-code li.is-hit {
+  background: rgba(0, 230, 255, 0.07);
+  box-shadow: inset 2px 0 0 0 var(--color-accent);
+}
+
+.prc-ln {
+  flex: none;
+  width: 0.85rem;
+  text-align: right;
+  color: rgba(244, 243, 239, 0.34);
+  user-select: none;
+}
+
+.prc-code code {
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Syntax palette — every token reads as content, never as a grey bar. */
+.prc-p { color: rgba(244, 243, 239, 0.48); }
+.prc-t { color: var(--color-accent2); }
+.prc-a { color: var(--color-muted); }
+.prc-s { color: var(--color-ink); }
+.prc-f { color: var(--color-accent); font-weight: 500; }
+.prc-k { color: var(--color-amber); }
+
+.prc-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-top: 1px solid var(--color-line);
+  background: rgba(26, 29, 34, 0.75);
+  padding: 0.3rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.4375rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.prc-status-end {
+  margin-left: auto;
+  color: var(--color-accent);
+}
+
+/* 04 — validator strip under the head snippet */
+.prc-verify {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  border-top: 1px solid var(--color-line);
+  background: rgba(26, 29, 34, 0.75);
+  padding: 0.4rem;
+}
+
+.prc-vchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.22rem;
+  border: 1px solid rgba(0, 230, 255, 0.42);
+  background: rgba(0, 230, 255, 0.12);
+  border-radius: 999px;
+  padding: 0.14rem 0.42rem;
+  font-family: var(--font-mono);
+  font-size: 0.4375rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent2);
+  white-space: nowrap;
+}
+
+.prc-vchip svg {
+  color: var(--color-accent);
+  flex: none;
+}
+
+/* ------------------- 05 — deploy terminal + live strip ------------------- */
+
+.prc-term {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid var(--color-line2);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: rgba(10, 11, 13, 0.75);
+}
+
+.prc-term-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-bottom: 1px solid var(--color-line2);
+  background: rgba(26, 29, 34, 0.75);
+  padding: 0.32rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.4375rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.prc-term-head b {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(244, 243, 239, 0.3);
+  flex: none;
+}
+
+.prc-term-body {
+  flex: 1;
+  padding: 0.45rem 0.5rem 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  line-height: 1.85;
+  overflow: hidden;
+}
+
+.prc-term-body li {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: pre;
+}
+
+.prc-term-body li > span {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.prc-cmd { color: var(--color-ink); }
+.prc-ok { color: var(--color-muted); }
+.prc-caret { color: var(--color-accent); font-weight: 500; flex: none; }
+
+.prc-tick {
+  flex: none;
+  color: var(--color-accent);
+}
+
+.prc-live {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-top: 1px solid var(--color-line);
+  background: linear-gradient(90deg, rgba(0, 230, 255, 0.18), rgba(0, 230, 255, 0.03));
+  padding: 0.4rem 0.5rem;
+}
+
+.prc-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 8px rgba(0, 230, 255, 0.8);
+  flex: none;
+}
+
+.prc-live-t {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent2);
+}
+
+.prc-live-url {
+  margin-left: auto;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.04em;
+  color: var(--color-ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.prc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.55rem;
+}
+
+.prc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  border: 1px solid var(--color-line2);
+  background: rgba(26, 29, 34, 0.92);
+  border-radius: 999px;
+  padding: 0.18rem 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.4375rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+.prc-chip i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  flex: none;
+}
+
+/* ========================= wrk — editorial gallery ======================== */
+
+/* A plate: minimal browser frame holding a real screenshot. */
+.wrk-frame {
+  border: 1px solid var(--color-line2);
+  background: var(--color-surface);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 18px 50px -30px rgba(0, 0, 0, 0.8);
+  transition:
+    transform 0.45s var(--ease-out-expo),
+    border-color 0.35s ease,
+    box-shadow 0.45s var(--ease-out-expo);
+}
+
+.wrk-chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  border-bottom: 1px solid var(--color-line);
+  background: linear-gradient(180deg, var(--color-surface2), var(--color-surface));
+  padding: 0.55rem 0.85rem;
+}
+
+.wrk-dots {
+  display: flex;
+  gap: 0.3rem;
+  flex: none;
+}
+
+.wrk-dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(244, 243, 239, 0.26);
+}
+
+.wrk-dots span:first-child {
+  background: rgba(244, 243, 239, 0.38);
+}
+
+/* Chrome bar address */
+.wrk-url {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 0;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  background: rgba(10, 11, 13, 0.6);
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+}
+
+.wrk-url span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wrk-url b {
+  font-weight: 400;
+  color: var(--color-ink);
+}
+
+.wrk-url svg {
+  flex: none;
+  color: var(--color-accent);
+}
+
+/* The window: exactly half the 880x1320 crop is visible at rest. */
+.wrk-view {
+  position: relative;
+  aspect-ratio: 880 / 660;
+  overflow: hidden;
+  background: var(--color-bg2);
+}
+
+.wrk-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: translateY(0);
+}
+
+/* Hover pan + lift — fine pointers only; touch stays static. */
+@media (hover: hover) and (pointer: fine) {
+  .wrk-shot {
+    transition: transform 2.5s cubic-bezier(0.45, 0.05, 0.2, 1);
+  }
+
+  .wrk-plate:hover .wrk-frame,
+  .wrk-plate:focus-visible .wrk-frame {
+    transform: translateY(-4px);
+    border-color: rgba(0, 230, 255, 0.4);
+    box-shadow:
+      0 34px 80px -34px rgba(0, 0, 0, 0.95),
+      0 10px 30px -18px rgba(0, 230, 255, 0.22);
+  }
+
+  .wrk-plate:hover .wrk-shot,
+  .wrk-plate:focus-visible .wrk-shot {
+    transform: translateY(-50%);
+  }
+
+  .wrk-plate:hover ~ .wrk-meta .wrk-idx,
+  .wrk-plate:focus-visible ~ .wrk-meta .wrk-idx {
+    color: var(--color-accent2);
+  }
+}
+
+/* ------------------------ printed-portfolio caption ---------------------- */
+
+.wrk-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem 0.9rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--color-line2);
+}
+
+.wrk-idx {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-accent);
+  flex: none;
+  transition: color 0.3s ease;
+}
+
+.wrk-meta-txt {
+  min-width: 0;
+  flex: 1 1 11rem;
+}
+
+.wrk-name {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--color-ink);
+}
+
+.wrk-industry {
+  margin-top: 0.15rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* Two classes deep so it beats the unlayered global `.chip` rule. */
+.wrk-meta .wrk-chip {
+  border-color: var(--color-line2);
+  background: rgba(26, 29, 34, 0.8);
+  color: var(--color-ink);
+  margin-left: auto;
+  flex: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrk-shot {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .wrk-plate:hover .wrk-frame {
+    transform: none;
+  }
+
+  .prc-seg,
+  .prc-in,
+  .prc-tickbox svg {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}
+
+
+/* ------------------------------- the deck -------------------------------- */
+
+.prc-deck {
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.prc-hold {
+  margin-bottom: 1.5rem;
+}
+
+.prc-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+  border: 1px solid var(--color-line2);
+  background:
+    radial-gradient(90% 70% at 12% 0%, rgba(0, 230, 255, 0.06) 0%, transparent 55%),
+    radial-gradient(60% 55% at 88% 100%, rgba(0, 230, 255, 0.035) 0%, transparent 60%),
+    linear-gradient(rgba(244, 243, 239, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 243, 239, 0.028) 1px, transparent 1px),
+    linear-gradient(180deg, var(--color-surface) 0%, var(--color-bg2) 100%);
+  background-size:
+    auto,
+    auto,
+    46px 46px,
+    46px 46px,
+    auto;
+  box-shadow: 0 40px 90px -48px rgba(0, 0, 0, 0.95);
+  padding: clamp(1.5rem, 3vw, 3rem) clamp(1.5rem, 3.2vw, 3.25rem);
+}
+
+/* ---- status strip along the top of the card ---- */
+
+.prc-card-top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.4rem;
+  padding-bottom: clamp(0.8rem, 1.4vw, 1.15rem);
+  border-bottom: 1px solid var(--color-line);
+}
+
+/* five-segment phase meter — segments up to this card are lit */
+.prc-meter {
+  display: flex;
+  gap: 5px;
+}
+
+.prc-meter i {
+  display: block;
+  width: clamp(18px, 2.4vw, 30px);
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(244, 243, 239, 0.13);
+}
+
+.prc-meter i.is-lit {
+  background: var(--color-accent);
+  box-shadow: 0 0 9px rgba(0, 230, 255, 0.55);
+}
+
+.prc-out {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+  white-space: nowrap;
+}
+
+.prc-out b {
+  font-weight: 400;
+  color: var(--color-accent2);
+}
+
+@media (max-width: 767px) {
+  .prc-out {
+    display: none;
+  }
+}
+
+/* ---- hand-off strip along the bottom ---- */
+
+.prc-card-foot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1.4rem;
+  padding-top: clamp(0.8rem, 1.4vw, 1.15rem);
+  border-top: 1px solid var(--color-line);
+}
+
+.prc-tools {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+}
+
+.prc-next {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.prc-next svg {
+  color: var(--color-accent);
+  flex: none;
+}
+
+.prc-next b {
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+/* the active rim — a thin lit edge along the card's top */
+.prc-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 4%,
+    color-mix(in srgb, var(--color-accent) 55%, transparent) 22%,
+    transparent 60%
+  );
+}
+
+/* the huge ghost numeral behind the copy */
+.prc-ghostnum {
+  position: absolute;
+  right: clamp(0.5rem, 3vw, 3rem);
+  bottom: -0.16em;
+  z-index: 0;
+  font-weight: 700;
+  font-size: clamp(7rem, 17vw, 15rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: transparent;
+  background: linear-gradient(180deg, rgba(0, 230, 255, 0.09), rgba(244, 243, 239, 0.02) 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 1px rgba(244, 243, 239, 0.14);
+  user-select: none;
+  pointer-events: none;
+}
+
+.prc-card-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 2rem;
+  flex: 1 1 auto;
+  min-height: 0;
+  align-content: center;
+  padding-block: clamp(1.25rem, 2.4vw, 2.25rem);
+}
+
+@media (min-width: 1024px) {
+  .prc-card-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+    align-items: center;
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+}
+
+.prc-card-inst {
+  max-width: 26rem;
+}
+
+/* --- pinned mode: wide, motion-safe, JS-confirmed ------------------------ */
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  /* The holds dissolve so every card shares the deck as its sticky
+     containing block — that is what lets a covered card STAY pinned
+     beneath the next one instead of sliding away with its own wrapper. */
+  .js .prc-hold {
+    display: contents;
+  }
+
+  /* Dwell for the finished stack. Padding would not work here — sticky
+     containment ends at the content box — so the room is a real block. */
+  .js .prc-deck::after {
+    content: "";
+    display: block;
+    height: 14vh;
+  }
+
+  .js .prc-deck .prc-card {
+    --prc-h: min(660px, calc(100vh - 150px));
+    position: sticky;
+    /* each card rests a little lower, so covered rims stack like sheets */
+    top: calc(88px + var(--i, 0) * 14px);
+    height: var(--prc-h);
+    transform: scale(calc(1 - 0.045 * var(--cov, 0)));
+    transform-origin: top center;
+    will-change: transform;
+  }
+
+  /* Travel between arrivals is card height + this margin. Deriving the
+     margin from the viewport keeps each step at ~0.94 screens of scroll:
+     the moment one card pins, the next is already at the fold — continuous
+     motion, no dead screen between arrivals. */
+  .js .prc-hold:not(:first-child) .prc-card {
+    margin-top: max(6rem, calc(94vh - var(--prc-h)));
+  }
+
+  .js .prc-deck .prc-card-grid {
+    width: 100%;
+  }
+
+  /* a covered card dims under a wash of the page ground */
+  .js .prc-deck .prc-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    background: var(--color-bg2);
+    opacity: calc(0.55 * var(--cov, 0));
+    pointer-events: none;
+    border-radius: inherit;
+  }
+}

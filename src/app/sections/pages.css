@@ -1,0 +1,587 @@
+/* pages — the sub-page kit. Shared hero treatment plus the set pieces for
+   work, process, about, insights and contact. Prefixes:
+   ph-  : page hero (all sub-pages)
+   pp-  : process page phase cards
+   ab-  : about identity board
+   ins- : insights index
+   art- : article template (reading progress)
+   ct-  : contact channels
+--------------------------------------------------------------------------- */
+
+/* ------------------------------ page hero -------------------------------- */
+
+/* Staggered entrance for above-the-fold hero elements. Pure CSS, js-gated:
+   without JS everything simply renders. */
+.js .ph-rise {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: ph-rise 0.85s var(--ease-out-expo) forwards;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes ph-rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The huge outlined word behind a page hero — the page's name, as set
+   dressing. Clipped by the hero's overflow-hidden. */
+.ph-ghost {
+  position: absolute;
+  right: clamp(-1rem, 1vw, 3rem);
+  bottom: -0.22em;
+  z-index: 0;
+  font-weight: 700;
+  font-size: clamp(5.5rem, 15vw, 13rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: transparent;
+  background: linear-gradient(180deg, rgba(0, 230, 255, 0.07), rgba(244, 243, 239, 0.015) 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 1px rgba(244, 243, 239, 0.11);
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Soft corner light behind hero copy */
+.ph-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(60% 70% at 14% 20%, rgba(0, 230, 255, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Mono spec strip — key facts in one machined row */
+.ph-spec {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2.2rem;
+  margin-top: 2.2rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.ph-spec > div {
+  min-width: 0;
+}
+
+.ph-spec dt {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+}
+
+.ph-spec dd {
+  margin-top: 0.35rem;
+  font-size: 0.9375rem;
+  color: var(--color-ink);
+}
+
+/* Fanned stack of real screenshots — the work page hero's set piece */
+.ph-fan {
+  position: relative;
+  height: clamp(240px, 26vw, 340px);
+}
+
+.ph-fan-card {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--color-line2);
+  background: var(--color-surface);
+  box-shadow: 0 34px 80px -34px rgba(0, 0, 0, 0.92);
+  transform-origin: 50% 120%;
+}
+
+.ph-fan-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.ph-fan-card:nth-child(1) {
+  transform: rotate(-7deg) translateX(-9%);
+  z-index: 1;
+}
+
+.ph-fan-card:nth-child(2) {
+  transform: rotate(5.5deg) translateX(9%) translateY(3%);
+  z-index: 2;
+}
+
+.ph-fan-card:nth-child(3) {
+  transform: rotate(-1deg) translateY(-2%);
+  z-index: 3;
+}
+
+.ph-fan-cap {
+  position: absolute;
+  left: 0.9rem;
+  bottom: 0.75rem;
+  z-index: 1;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-line2);
+  background: color-mix(in srgb, var(--color-bg) 82%, transparent);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ph-fan-card {
+    transition: transform 0.6s var(--ease-out-expo);
+  }
+
+  .ph-fan:hover .ph-fan-card:nth-child(1) {
+    transform: rotate(-9.5deg) translateX(-13%);
+  }
+
+  .ph-fan:hover .ph-fan-card:nth-child(2) {
+    transform: rotate(8deg) translateX(13%) translateY(4%);
+  }
+
+  .ph-fan:hover .ph-fan-card:nth-child(3) {
+    transform: rotate(0deg) translateY(-5%);
+  }
+}
+
+/* ----------------------- services hero: the index board ------------------ */
+
+.ph-board {
+  border: 1px solid var(--color-line2);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: 0 34px 80px -38px rgba(0, 0, 0, 0.92);
+}
+
+.ph-board-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0.95rem;
+  border-bottom: 1px solid var(--color-line);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.ph-board-head b {
+  font-weight: 400;
+  color: var(--color-accent2);
+}
+
+.ph-board ol {
+  padding: 0.5rem 0;
+}
+
+.ph-board li a {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  padding: 0.44rem 0.95rem;
+  font-size: 0.875rem;
+  color: var(--color-ink);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.ph-board li a:hover,
+.ph-board li a:focus-visible {
+  background: rgba(0, 230, 255, 0.06);
+  color: var(--color-accent2);
+}
+
+.ph-board li a > i {
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  color: var(--color-faint);
+}
+
+.ph-board li a > span {
+  flex: 1;
+  min-width: 0;
+}
+
+.ph-board li a > b {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  opacity: 0.6;
+  align-self: center;
+  flex: none;
+}
+
+/* ------------------------- process phase cards --------------------------- */
+
+.pp-rail {
+  position: relative;
+}
+
+/* the spine connecting phases */
+@media (min-width: 768px) {
+  .pp-rail::before {
+    content: "";
+    position: absolute;
+    left: 27px;
+    top: 2.5rem;
+    bottom: 2.5rem;
+    width: 1px;
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-accent) 70%, transparent),
+      var(--color-line2) 30%,
+      var(--color-line) 90%
+    );
+  }
+}
+
+.pp-node {
+  position: relative;
+  z-index: 1;
+  display: none;
+  height: 56px;
+  width: 56px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--color-line2);
+  background: var(--color-bg);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--color-accent2);
+}
+
+@media (min-width: 768px) {
+  .pp-node {
+    display: flex;
+  }
+}
+
+.pp-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid var(--color-line2);
+  background:
+    radial-gradient(80% 60% at 10% 0%, rgba(0, 230, 255, 0.05) 0%, transparent 55%),
+    linear-gradient(rgba(244, 243, 239, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 243, 239, 0.025) 1px, transparent 1px),
+    linear-gradient(180deg, var(--color-surface) 0%, var(--color-bg2) 100%);
+  background-size: auto, 44px 44px, 44px 44px, auto;
+  box-shadow: 0 34px 80px -44px rgba(0, 0, 0, 0.95);
+  padding: clamp(1.5rem, 3vw, 2.75rem);
+}
+
+.pp-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 4%,
+    color-mix(in srgb, var(--color-accent) 50%, transparent) 22%,
+    transparent 60%
+  );
+}
+
+.pp-ghost {
+  position: absolute;
+  right: clamp(0.25rem, 2vw, 2rem);
+  bottom: -0.16em;
+  z-index: 0;
+  font-weight: 700;
+  font-size: clamp(6rem, 13vw, 11rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: transparent;
+  background: linear-gradient(180deg, rgba(0, 230, 255, 0.08), rgba(244, 243, 239, 0.02) 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 1px rgba(244, 243, 239, 0.12);
+  user-select: none;
+  pointer-events: none;
+}
+
+.pp-out {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(244, 243, 239, 0.07);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.pp-out:last-child {
+  border-bottom: 0;
+}
+
+.pp-out svg {
+  color: var(--color-accent);
+  flex: none;
+}
+
+/* -------------------------- about identity board ------------------------- */
+
+.ab-id {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--color-line2);
+  background:
+    linear-gradient(rgba(244, 243, 239, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 243, 239, 0.03) 1px, transparent 1px),
+    linear-gradient(180deg, var(--color-surface) 0%, #101215 100%);
+  background-size: 22px 22px, 22px 22px, auto;
+  box-shadow: 0 34px 80px -38px rgba(0, 0, 0, 0.92);
+}
+
+.ab-id-head {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.ab-id-head b {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-ink);
+}
+
+.ab-id-head span {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent2);
+}
+
+/* The portrait — a real photograph, framed like a badge photo. */
+.ab-id-photo {
+  position: relative;
+  border-bottom: 1px solid var(--color-line);
+  overflow: hidden;
+}
+
+.ab-id-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1000 / 625;
+  object-fit: cover;
+}
+
+/* a soft fade into the card so the photo sits IN the board, not on it */
+.ab-id-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(16, 18, 21, 0.22) 0%, transparent 26%, transparent 62%, rgba(16, 18, 21, 0.55) 100%);
+  pointer-events: none;
+}
+
+.ab-id-photo-cap {
+  position: absolute;
+  left: 0.9rem;
+  bottom: 0.7rem;
+  z-index: 1;
+  padding: 0.26rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 243, 239, 0.22);
+  background: color-mix(in srgb, var(--color-bg) 72%, transparent);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.ab-id-rows {
+  padding: 0.4rem 1.1rem 0.6rem;
+}
+
+.ab-id-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed rgba(244, 243, 239, 0.08);
+}
+
+.ab-id-row:last-child {
+  border-bottom: 0;
+}
+
+.ab-id-row dt {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+  flex: none;
+}
+
+.ab-id-row dd {
+  text-align: right;
+  font-size: 0.9375rem;
+  color: var(--color-ink);
+}
+
+.ab-id-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.8rem 1.1rem 1rem;
+  border-top: 1px solid var(--color-line);
+}
+
+/* --------------------------- insights index ------------------------------ */
+
+.ins-lead {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  border-radius: 20px;
+  border: 1px solid var(--color-line2);
+  background:
+    radial-gradient(70% 80% at 85% 0%, rgba(0, 230, 255, 0.07) 0%, transparent 55%),
+    linear-gradient(180deg, var(--color-surface) 0%, var(--color-bg2) 100%);
+  padding: clamp(1.75rem, 4vw, 3.25rem);
+  transition: border-color 0.3s ease, transform 0.45s var(--ease-out-expo);
+}
+
+.ins-lead:hover {
+  border-color: rgba(0, 230, 255, 0.4);
+  transform: translateY(-3px);
+}
+
+.ins-lead-ghost {
+  position: absolute;
+  right: 0.5rem;
+  bottom: -0.2em;
+  font-weight: 700;
+  font-size: clamp(5rem, 11vw, 9rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(244, 243, 239, 0.09);
+  user-select: none;
+  pointer-events: none;
+}
+
+.ins-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+}
+
+.ins-meta i {
+  font-style: normal;
+  color: var(--color-accent2);
+}
+
+/* ------------------------ article reading progress ------------------------ */
+
+.art-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.art-progress b {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent2));
+  box-shadow: 0 0 12px rgba(0, 230, 255, 0.55);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+/* ------------------------------ contact ---------------------------------- */
+
+.ct-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.3rem 1.4rem;
+  border-radius: 16px;
+  border: 1px solid var(--color-line);
+  background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-bg2) 100%);
+  transition: border-color 0.3s ease, transform 0.45s var(--ease-out-expo);
+}
+
+.ct-card:hover {
+  border-color: rgba(0, 230, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.ct-glyph {
+  display: flex;
+  height: 44px;
+  width: 44px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 1px solid var(--color-line2);
+  background: rgba(0, 230, 255, 0.07);
+  color: var(--color-accent2);
+}
+
+/* --------------------------- reduced motion ------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .js .ph-rise {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .ph-fan-card,
+  .ins-lead,
+  .ct-card {
+    transition: none;
+  }
+}

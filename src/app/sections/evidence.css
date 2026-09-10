@@ -1,0 +1,948 @@
+/* evidence — section-scoped styles. Owned by one design agent; prefix every class.
+   Covers: 08 SeoAdvantage (serp-), 09 PerformancePillar (perf-), 10 AiSearch (ai-). */
+
+/* ==================== 08 · anatomy of a search result ==================== */
+
+.serp-plate {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
+  box-shadow: 0 34px 70px -44px rgba(0, 0, 0, 0.9);
+}
+
+.serp-row {
+  position: relative;
+}
+
+/* The query line both results below are answering */
+.serp-query {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--color-line2);
+  border-radius: 999px;
+  background: rgba(244, 243, 239, 0.05);
+}
+
+.serp-query-text {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
+  color: var(--color-ink);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.serp-caret {
+  width: 1px;
+  height: 1.05em;
+  flex: none;
+  background: var(--color-accent);
+  animation: serp-blink 1.1s steps(2, jump-none) infinite;
+}
+
+@keyframes serp-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* Result 01 — the structured one. It reads as the winner because of the
+   accent spine and the warm wash, not because of any invented ranking. */
+.serp-win {
+  position: relative;
+  padding: 0.85rem 0 1rem 1.05rem;
+  border-left: 2px solid var(--color-accent);
+  border-radius: 0 0.5rem 0.5rem 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 230, 255, 0.075),
+    rgba(0, 230, 255, 0) 62%
+  );
+}
+
+.serp-rank {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  color: var(--color-accent);
+}
+
+.serp-rank--dim {
+  color: var(--color-muted);
+}
+
+.serp-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid rgba(0, 230, 255, 0.42);
+  border-radius: 3px;
+  background: rgba(0, 230, 255, 0.13);
+  color: var(--color-accent2);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Result 02 — schematic page with none of the structure. */
+.serp-alt {
+  position: relative;
+  padding-top: 1.3rem;
+  border-top: 1px dashed var(--color-line2);
+}
+
+.serp-alt-url {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(244, 243, 239, 0.6);
+  word-break: break-word;
+}
+
+.serp-alt-url span {
+  color: var(--color-faint);
+}
+
+.serp-alt-title {
+  font-size: 1rem;
+  line-height: 1.35;
+  color: rgba(244, 243, 239, 0.62);
+}
+
+.serp-alt-desc {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: rgba(169, 174, 184, 0.78);
+  max-width: 56ch;
+}
+
+.serp-flag {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.6875rem;
+  line-height: 1.5;
+}
+
+.serp-slash {
+  color: rgba(244, 243, 239, 0.38);
+}
+
+.serp-flag-name {
+  font-family: var(--font-mono);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(244, 243, 239, 0.78);
+}
+
+.serp-flag-note {
+  color: var(--color-muted);
+}
+
+/* Annotation pin — lives inside its target row so it always lines up with it,
+   extending into the margin the device reserves on desktop. */
+.serp-pin {
+  position: absolute;
+  left: calc(100% + 3.4rem);
+  top: 50%;
+  transform: translate(0, -50%);
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+/* Leader line running back into the drawing — accent at the part end so the
+   annotation reads as drawn, not as a stray hairline. */
+.serp-pin::before {
+  content: "";
+  position: absolute;
+  right: calc(100% + 0.5rem);
+  top: 50%;
+  width: 2.6rem;
+  height: 1px;
+  background: linear-gradient(
+    to left,
+    rgba(244, 243, 239, 0.42),
+    rgba(0, 230, 255, 0.75)
+  );
+  transform-origin: right center;
+}
+
+/* Endpoint tick where the leader meets the part */
+.serp-pin::after {
+  content: "";
+  position: absolute;
+  right: calc(100% + 2.9rem);
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  margin-top: -2.5px;
+  border: 1px solid var(--color-accent);
+  background: var(--color-bg2);
+  box-shadow: 0 0 0 3px rgba(0, 230, 255, 0.12);
+  transform: rotate(45deg);
+}
+
+/* Staggered entrance, keyed to the section's own Reveal wrapper */
+.js [data-reveal] .serp-pin {
+  opacity: 0;
+  transform: translate(10px, -50%);
+  transition:
+    opacity 0.6s var(--ease-out-expo),
+    transform 0.6s var(--ease-out-expo);
+  transition-delay: var(--pin-d, 0ms);
+}
+
+.js [data-reveal] .serp-pin::before {
+  transform: scaleX(0);
+  transition: transform 0.55s var(--ease-out-expo);
+  transition-delay: calc(var(--pin-d, 0ms) + 180ms);
+}
+
+.js [data-reveal].is-visible .serp-pin {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+.js [data-reveal].is-visible .serp-pin::before {
+  transform: scaleX(1);
+}
+
+/* Rating mark — the rich-result stars schema unlocks */
+.serp-star {
+  width: 11px;
+  height: 11px;
+  background: var(--color-amber);
+  clip-path: polygon(
+    50% 0%, 63% 35%, 98% 35%, 70% 57%, 79% 91%,
+    50% 70%, 21% 91%, 30% 57%, 2% 35%, 37% 35%
+  );
+}
+
+/* --- the search result, set as a real result rather than grey bars ------- */
+.serp-title {
+  font-size: 1.15rem;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--color-accent2);
+  max-width: 30ch;
+}
+
+.serp-desc {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+  max-width: 58ch;
+}
+
+.serp-sitelink {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-accent2);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.serp-plate:hover .serp-sitelink {
+  border-bottom-color: color-mix(in srgb, var(--color-accent) 45%, transparent);
+}
+
+/* ===================== 09 · the instrument cluster ======================= */
+
+/* Gauge sweep — same stroke-dashoffset language as the hero's vitals ring */
+.perf-arc {
+  transition: stroke-dashoffset 1.9s var(--ease-out-expo) 0.3s;
+}
+
+.js [data-reveal]:not(.is-visible) .perf-arc {
+  stroke-dashoffset: 100 !important;
+  transition: none;
+}
+
+/* Build-note tick in the gauge column */
+.perf-tick {
+  width: 6px;
+  height: 6px;
+  flex: none;
+  border: 1px solid var(--color-accent);
+  background: rgba(0, 230, 255, 0.28);
+  transform: rotate(45deg);
+}
+
+/* Threshold meter — Google's published good / needs-work / poor bands */
+.perf-meter {
+  position: relative;
+}
+
+.perf-track {
+  display: flex;
+  height: 7px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(244, 243, 239, 0.08);
+}
+
+.perf-zone {
+  display: block;
+  height: 100%;
+}
+
+.perf-zone--good {
+  background: rgba(0, 230, 255, 0.62);
+}
+
+.perf-zone--warn {
+  background: rgba(240, 180, 41, 0.4);
+}
+
+.perf-zone--poor {
+  background: rgba(244, 243, 239, 0.16);
+}
+
+/* The needle is a full-width sled: translateX(%) moves it by a share of the
+   track, so the value marker travels without animating any layout property. */
+.perf-needle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 7px;
+  pointer-events: none;
+  transform: translateX(var(--x, 0%));
+  transition: transform 1.2s var(--ease-out-expo) var(--d, 0ms);
+}
+
+.js [data-reveal]:not(.is-visible) .perf-needle {
+  transform: translateX(0%);
+  transition: none;
+}
+
+.perf-mark {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  margin: -5.5px 0 0 -5.5px;
+  border-radius: 999px;
+  background: var(--color-ink);
+  box-shadow:
+    0 0 0 2px var(--color-surface),
+    0 0 0 3.5px var(--color-accent);
+}
+
+.perf-scale {
+  position: relative;
+  height: 1rem;
+  margin-top: 0.4rem;
+}
+
+.perf-scale-t {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+}
+
+.perf-scale-t::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -0.35rem;
+  width: 1px;
+  height: 0.25rem;
+  background: var(--color-line2);
+}
+
+.perf-scale-t--end {
+  left: auto;
+  right: 0;
+  transform: none;
+  color: var(--color-faint);
+}
+
+.perf-scale-t--end::before {
+  display: none;
+}
+
+/* --------------------------- request waterfall --------------------------- */
+
+.perf-wbar {
+  position: absolute;
+  top: 0.8rem;
+  height: 0.6rem;
+  border-radius: 999px;
+  transform-origin: left center;
+  transition:
+    transform 0.9s var(--ease-out-expo) var(--d, 0ms),
+    opacity 0.4s ease var(--d, 0ms);
+}
+
+.js [data-reveal]:not(.is-visible) .perf-wbar {
+  transform: scaleX(0);
+  opacity: 0;
+  transition: none;
+}
+
+.perf-wbar--doc {
+  background: var(--color-accent);
+}
+
+.perf-wbar--css {
+  background: rgba(102, 238, 255, 0.62);
+}
+
+.perf-wbar--font {
+  background: rgba(240, 180, 41, 0.6);
+}
+
+.perf-wbar--img {
+  background: rgba(244, 243, 239, 0.42);
+}
+
+/* Deferred JS reads as hatched rather than solid — it is real, just later. */
+.perf-wbar--js {
+  border: 1px solid rgba(0, 230, 255, 0.4);
+  background: repeating-linear-gradient(
+    115deg,
+    rgba(0, 230, 255, 0.34) 0 4px,
+    rgba(0, 230, 255, 0.08) 4px 9px
+  );
+}
+
+.perf-wnote {
+  position: absolute;
+  top: 0.8rem;
+  display: none;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.04em;
+  line-height: 0.6rem;
+  color: var(--color-muted);
+}
+
+@media (min-width: 900px) {
+  .perf-wnote {
+    display: block;
+  }
+}
+
+.perf-key {
+  display: block;
+  width: 26px;
+  height: 7px;
+  flex: none;
+  border-radius: 999px;
+}
+
+/* First-paint marker */
+.perf-fp {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+.perf-fp-line {
+  position: absolute;
+  top: 1.55rem;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 230, 255, 0.8),
+    rgba(0, 230, 255, 0.16)
+  );
+}
+
+.perf-fp-flag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-50%);
+  padding: 0.15rem 0.4rem;
+  border: 1px solid rgba(0, 230, 255, 0.45);
+  border-radius: 3px;
+  background: rgba(0, 230, 255, 0.14);
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent2);
+}
+
+/* Late-arriving readouts (score number, notes, markers) */
+.perf-late {
+  transition: opacity 0.7s ease var(--d, 0ms);
+}
+
+.js [data-reveal]:not(.is-visible) .perf-late {
+  opacity: 0;
+  transition: none;
+}
+
+/* ======================== 10 · the answer engine ========================= */
+
+/* Without JS the full answer simply renders; the typewriter overlay only
+   engages once the html.js hook confirms the client is running. */
+.ai-live {
+  display: none;
+}
+
+.js .ai-ghost {
+  color: transparent;
+  user-select: none;
+}
+
+.js .ai-live {
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  white-space: pre-wrap;
+}
+
+.ai-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -0.125em;
+  background: var(--color-accent);
+  animation: ai-blink 0.9s steps(2, jump-none) infinite;
+}
+
+@keyframes ai-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* Citation row surfaces once the answer finishes typing */
+.js .ai-src {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.6s var(--ease-out-expo),
+    transform 0.6s var(--ease-out-expo);
+}
+
+.js .ai-src--on {
+  opacity: 1;
+  transform: none;
+}
+
+/* The citation itself is the one filled, saturated object on the panel. */
+.ai-cite {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+}
+
+.ai-cite-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--color-accent-ink);
+}
+
+/* ---------------- what the engine actually read ------------------------- */
+
+.ai-row {
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--color-line);
+  border-radius: 0.6rem;
+  background: rgba(244, 243, 239, 0.035);
+}
+
+.ai-kind {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid rgba(0, 230, 255, 0.36);
+  border-radius: 3px;
+  background: rgba(0, 230, 255, 0.11);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  color: var(--color-accent2);
+}
+
+.ai-row-note {
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  color: var(--color-muted);
+}
+
+.ai-code {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-line);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.7;
+  white-space: pre;
+  overflow-x: auto;
+  color: var(--color-muted);
+}
+
+.ai-tag {
+  color: var(--color-accent2);
+}
+
+.ai-key {
+  color: var(--color-accent);
+}
+
+.ai-str {
+  color: var(--color-ink);
+}
+
+.ai-punc {
+  color: var(--color-faint);
+}
+
+/* Source rows arrive once the console is in view */
+.js .ai-rise {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.55s var(--ease-out-expo) var(--d, 0ms),
+    transform 0.55s var(--ease-out-expo) var(--d, 0ms);
+}
+
+.js .ai-console--cited .ai-rise {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------------- the console: one page, two readers --------------------- */
+
+.ai-console {
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid var(--color-line);
+  background:
+    radial-gradient(70% 50% at 50% 0%, rgba(0, 230, 255, 0.045) 0%, transparent 60%),
+    var(--color-surface);
+  box-shadow: 0 40px 90px -48px rgba(0, 0, 0, 0.95);
+}
+
+.ai-lanes {
+  display: grid;
+}
+
+.ai-lane {
+  padding: 1.25rem 1.25rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .ai-lane {
+    padding: 1.4rem 1.75rem 1.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ai-lanes {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ai-lane + .ai-lane {
+    border-left: 1px dashed var(--color-line2);
+  }
+}
+
+@media (max-width: 1023px) {
+  .ai-lane + .ai-lane {
+    border-top: 1px dashed var(--color-line2);
+  }
+}
+
+.ai-lane-cap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 1rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.ai-lane-note {
+  letter-spacing: 0.1em;
+  color: var(--color-faint);
+}
+
+/* ---- the designed page, in miniature ---- */
+
+.ai-mini {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--color-line2);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.ai-mini-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.55rem 0.9rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.ai-mini-logo {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-ink);
+}
+
+.ai-mini-logo b {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent2);
+  margin-left: 2px;
+}
+
+.ai-mini-links {
+  display: flex;
+  gap: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.ai-mini-links i {
+  font-style: normal;
+}
+
+.ai-mini-hero {
+  flex: 1;
+  padding: 1rem 0.9rem 0.9rem;
+  background:
+    radial-gradient(80% 90% at 85% 0%, rgba(0, 230, 255, 0.07) 0%, transparent 55%),
+    transparent;
+}
+
+.ai-mini-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent2);
+}
+
+.ai-mini-h1 {
+  margin-top: 0.45rem;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--color-ink);
+}
+
+.ai-mini-h1 em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-accent2);
+}
+
+.ai-mini-sub {
+  margin-top: 0.4rem;
+  max-width: 26ch;
+  font-size: 0.625rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+
+.ai-mini-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.7rem;
+}
+
+/* the CTA matches the real buttons — dark machined pill, light ring */
+.ai-mini-btn {
+  display: inline-block;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 243, 239, 0.28);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-ink) 8%, var(--color-surface)) 0%,
+    var(--color-bg2) 100%
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  font-size: 0.5625rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+.ai-mini-ghost {
+  display: inline-block;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-line2);
+  font-size: 0.5625rem;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.ai-mini-band {
+  padding: 0.6rem 0.9rem 0.8rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.ai-mini-band-t {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.ai-mini-band-t em {
+  font-style: normal;
+  color: var(--color-accent);
+}
+
+.ai-mini-thumbs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.ai-mini-thumbs img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 2.6;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 4px;
+  border: 1px solid var(--color-line2);
+}
+
+/* ---- convergence: both readings feed the answer ---- */
+
+.ai-merge {
+  position: relative;
+  height: 46px;
+  border-top: 1px solid var(--color-line);
+  background: linear-gradient(180deg, rgba(0, 230, 255, 0.02), transparent);
+}
+
+.ai-merge svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ai-merge-path {
+  stroke: color-mix(in srgb, var(--color-accent) 38%, var(--color-line2));
+  stroke-width: 1;
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.ai-merge-node {
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  box-shadow: 0 0 12px 2px rgba(0, 230, 255, 0.5);
+}
+
+.ai-answer {
+  padding: 1.4rem 0 1.6rem;
+}
+
+/* --------------------------- reduced motion ------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] .serp-pin {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+
+  .js [data-reveal] .serp-pin::before {
+    transform: none;
+  }
+
+  .serp-caret {
+    animation: none;
+    opacity: 1;
+  }
+
+  .js [data-reveal]:not(.is-visible) .perf-arc {
+    stroke-dashoffset: 0 !important;
+  }
+
+  .js [data-reveal]:not(.is-visible) .perf-needle {
+    transform: translateX(var(--x, 0%));
+  }
+
+  .js [data-reveal]:not(.is-visible) .perf-wbar,
+  .js [data-reveal]:not(.is-visible) .perf-late {
+    opacity: 1;
+    transform: none;
+  }
+
+  .ai-caret {
+    animation: none;
+    opacity: 1;
+  }
+
+  .js .ai-src,
+  .js .ai-rise {
+    opacity: 1;
+    transform: none;
+  }
+}

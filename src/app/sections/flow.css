@@ -1,0 +1,559 @@
+/* flow — the homepage services conveyor ("the build line").
+   A full-viewport stage pins while its track scrolls past; the world inside
+   dollies horizontally along a drawn line, stopping at one station per
+   service. Prefix: flw-. */
+
+/* ------------------------------ gating ----------------------------------- */
+
+/* The conveyor exists only where it can be excellent: wide viewport, JS
+   confirmed, and no reduced-motion request. Everyone else gets the rail —
+   same content, same links, vertical. */
+.flw-track {
+  display: none;
+}
+
+.flw-rail {
+  display: block;
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .js .flw-track {
+    display: block;
+    /* 1 viewport for the stage + the scrub distance */
+    height: calc((1 + var(--flw-scrub, 5.5)) * 100vh);
+  }
+
+  .js .flw-rail {
+    display: none;
+  }
+}
+
+/* ------------------------------ stage ------------------------------------ */
+
+.flw-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden; /* clips the world; the track above it must never clip */
+  background: var(--color-bg);
+}
+
+.flw-world {
+  position: absolute;
+  inset: 0 auto 0 0;
+  will-change: transform;
+}
+
+.flw-svg {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* The lit segment's soft echo — same path, blurred, beneath */
+.flw-line-echo {
+  filter: blur(6px);
+  opacity: 0.35;
+}
+
+/* The travelling head of the line */
+.flw-head {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  box-shadow:
+    0 0 12px 2px rgba(0, 230, 255, 0.55),
+    0 0 44px 10px rgba(0, 230, 255, 0.18);
+  pointer-events: none;
+}
+
+/* ------------------------------ intro ------------------------------------ */
+
+.flw-intro {
+  position: absolute;
+  left: 140px;
+  top: 24%;
+  width: min(680px, 44vw);
+  will-change: opacity;
+}
+
+/* ------------------------------ stations --------------------------------- */
+
+/* A station is a 0x0 anchor sitting exactly on the line; everything hangs
+   off it with transforms. --f (0..1) is how close it is to the focus point. */
+.flw-st {
+  position: absolute;
+  width: 0;
+  height: 0;
+  --f: 0;
+}
+
+.flw-dot {
+  position: absolute;
+  left: -6px;
+  top: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--color-bg);
+  border: 2px solid var(--color-accent);
+  box-shadow: 0 0 0 0 rgba(0, 230, 255, 0.35);
+  opacity: calc(0.45 + 0.55 * var(--f));
+}
+
+.flw-st::after {
+  /* pulse halo, only meaningful near focus */
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 230, 255, 0.5);
+  opacity: calc(var(--f) * 0.9);
+  animation: flw-pulse 2.6s var(--ease-out-expo) infinite;
+}
+
+@keyframes flw-pulse {
+  0% {
+    transform: scale(1);
+    opacity: calc(var(--f) * 0.9);
+  }
+  70%,
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+.flw-drop {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  height: 58px;
+  border-left: 1px dashed color-mix(in srgb, var(--color-accent) 45%, transparent);
+  opacity: calc(0.3 + 0.7 * var(--f));
+}
+
+/* Caption below the line */
+.flw-cap {
+  position: absolute;
+  left: 0;
+  top: 76px;
+  width: 330px;
+  transform: translateX(-14px);
+  opacity: calc(0.28 + 0.72 * var(--f));
+  will-change: opacity;
+}
+
+/* index above, name below — not shoulder to shoulder */
+.flw-cap > .label-mono {
+  display: block;
+}
+
+.flw-cap-name {
+  display: inline-block;
+  margin-top: 0.55rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  font-size: clamp(1.45rem, 1.6vw, 1.9rem);
+  color: var(--color-ink);
+  transition: color 0.2s ease;
+}
+
+.flw-cap-name:hover,
+.flw-cap-name:focus-visible {
+  color: var(--color-accent2);
+}
+
+.flw-cap-line {
+  margin-top: 0.5rem;
+  max-width: 30ch;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+}
+
+/* The docked composite above the line — a screenshot window with the
+   instrument plate riding its lower corner. The outer element takes the
+   focus transform, the inner one carries the idle bob so they never fight. */
+.flw-art {
+  position: absolute;
+  left: 0;
+  bottom: 78px;
+  transform: translate(-50%, calc(-6px - 14px * var(--f)))
+    scale(calc(0.955 + 0.055 * var(--f)));
+  opacity: calc(0.3 + 0.7 * var(--f));
+  will-change: transform, opacity;
+}
+
+/* The instrument plate overlaps the window's lower-right corner; a touch of
+   extra lift near focus separates the two layers. */
+.flw-art .flw-art-plate {
+  position: absolute;
+  right: -44px;
+  bottom: -46px;
+  transform: translateY(calc(6px * (1 - var(--f, 0))));
+  filter: drop-shadow(0 26px 34px rgba(0, 0, 0, 0.55));
+}
+
+/* Over a light screenshot the plate must be opaque, or the page behind
+   washes through it. */
+.flw-art .flw-art-plate .flw-plate {
+  background: var(--color-surface);
+}
+
+.flw-art-bob {
+  animation: flw-bob 7s ease-in-out infinite;
+}
+
+@keyframes flw-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+/* Shared plate chrome for artifacts */
+.flw-plate {
+  width: 250px;
+  border-radius: 12px;
+  border: 1px solid var(--color-line2);
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  box-shadow: 0 30px 70px -32px rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+}
+
+.flw-plate-cap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.45rem 0.7rem;
+  border-bottom: 1px solid var(--color-line);
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+}
+
+.flw-plate-cap b {
+  font-weight: 400;
+  color: var(--color-accent2);
+}
+
+/* ------------------------------ end card --------------------------------- */
+
+.flw-end {
+  position: absolute;
+  width: 0;
+  height: 0;
+  --f: 0;
+}
+
+.flw-end-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* The anchor is zero-width; without this the card shrinks to its
+     narrowest word and everything wraps. */
+  width: max-content;
+  max-width: 360px;
+  transform: translate(-50%, -50%) scale(calc(0.96 + 0.05 * var(--f)));
+  opacity: calc(0.25 + 0.75 * var(--f));
+  text-align: center;
+  will-change: transform, opacity;
+  /* A solid landing pad — otherwise the line runs straight through the
+     ghost button. */
+  padding: 1.4rem 1.8rem;
+  border-radius: 16px;
+  border: 1px solid var(--color-line);
+  background: var(--color-bg);
+}
+
+/* ------------------------------ readouts --------------------------------- */
+
+.flw-progress {
+  position: absolute;
+  right: clamp(1.25rem, 3vw, 3.25rem);
+  bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.flw-progress-bar {
+  width: 130px;
+  height: 2px;
+  background: var(--color-line);
+  overflow: hidden;
+}
+
+.flw-progress-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--color-accent);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.flw-hint {
+  position: absolute;
+  left: clamp(1.25rem, 3vw, 3.25rem);
+  bottom: 1.5rem;
+}
+
+/* ------------------------------ the rail (mobile / fallback) -------------- */
+
+.flw-rail-list {
+  position: relative;
+  margin-top: 3rem;
+  padding-left: 1.75rem;
+}
+
+.flw-rail-list::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: var(--color-line2);
+}
+
+.flw-rail-st {
+  position: relative;
+  padding-bottom: 3rem;
+}
+
+.flw-rail-st:last-child {
+  padding-bottom: 0;
+}
+
+.flw-rail-st::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.75rem + 1px);
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--color-bg);
+  border: 2px solid var(--color-accent);
+}
+
+.flw-rail-st .flw-plate {
+  width: 100%;
+  max-width: 330px;
+  margin-top: 1.1rem;
+}
+
+
+/* Scope chips under a station's one-liner */
+.flw-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  margin-top: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+  opacity: calc(0.5 + 0.5 * var(--f, 1));
+}
+
+.flw-chips span {
+  position: relative;
+}
+
+.flw-chips span + span::before {
+  content: "";
+  position: absolute;
+  left: -0.55rem;
+  top: 50%;
+  width: 2px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--color-faint);
+}
+
+/* The satellite: a small status chip floating beside the window, on its
+   own bob phase so the station reads layered, not welded. */
+.flw-sat {
+  position: absolute;
+  left: 172px;
+  bottom: 318px;
+  transform: translateY(calc(-10px * var(--f)));
+  opacity: calc(0.12 + 0.88 * var(--f));
+  will-change: transform, opacity;
+}
+
+.flw-sat-bob {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--color-line2);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-bg) 82%, transparent);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  animation: flw-bob 8.5s ease-in-out -2.4s infinite;
+}
+
+/* Waypoint tick: a small rotated square riding the line between stations */
+.flw-tick {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  transform: rotate(45deg);
+  border: 1px solid var(--color-line2);
+  background: var(--color-bg);
+  opacity: 0.55;
+}
+
+/* --------------------- the docked screenshot window ----------------------- */
+
+.flw-shot {
+  width: 348px;
+  border-radius: 12px;
+  border: 1px solid var(--color-line2);
+  background: var(--color-surface);
+  overflow: hidden;
+  box-shadow: 0 34px 80px -34px rgba(0, 0, 0, 0.92);
+}
+
+.flw-shot-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.4rem 0.65rem;
+  border-bottom: 1px solid var(--color-line);
+  background: linear-gradient(180deg, var(--color-surface2, #1a1d22), var(--color-surface));
+}
+
+.flw-shot-dots {
+  display: flex;
+  gap: 0.28rem;
+  flex: none;
+}
+
+.flw-shot-dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(244, 243, 239, 0.24);
+}
+
+.flw-shot-dots i:first-child {
+  background: rgba(244, 243, 239, 0.38);
+}
+
+.flw-shot-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* The window shows the build's opening viewport — top of the screenshot. */
+.flw-shot-view {
+  aspect-ratio: 880 / 520;
+  overflow: hidden;
+  background: var(--color-bg2);
+}
+
+.flw-shot-view img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.flw-shot-view--ui {
+  background: rgba(10, 11, 13, 0.75);
+}
+
+/* Real-work tie under the station's one-liner */
+.flw-from {
+  margin-top: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+}
+
+.flw-from b {
+  font-weight: 500;
+  color: var(--color-accent2);
+}
+
+/* The services that are not stations, named on the end card */
+.flw-end-also {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem 0.9rem;
+  margin: 0 auto 1.2rem;
+  max-width: 32ch;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+.flw-end-also span {
+  position: relative;
+  white-space: nowrap;
+}
+
+.flw-end-also span + span::before {
+  content: "";
+  position: absolute;
+  left: -0.55rem;
+  top: 50%;
+  width: 2px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--color-faint);
+}
+
+/* Rail sizing for the shots (mobile / fallback) */
+.flw-rail-st .flw-shot {
+  width: 100%;
+  max-width: 330px;
+}
+
+.flw-rail-st .flw-shot-view {
+  aspect-ratio: 880 / 500;
+}

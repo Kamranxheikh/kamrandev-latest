@@ -1,0 +1,775 @@
+@import "tailwindcss";
+/* Section-scoped styles — one file per page region so they can evolve independently */
+@import "./sections/menu.css";
+@import "./sections/standard.css";
+@import "./sections/services.css";
+@import "./sections/craft.css";
+@import "./sections/proof.css";
+@import "./sections/evidence.css";
+@import "./sections/closing.css";
+@import "./sections/flow.css";
+@import "./sections/pages.css";
+@import "./sections/monument.css";
+
+/* ---------------------------------------------------------------------------
+   MustafaDev design tokens — see design-system/MASTER.md
+--------------------------------------------------------------------------- */
+@theme {
+  --color-bg: #0a0b0d;
+  --color-bg2: #0e1013;
+  --color-surface: #14161a;
+  --color-surface2: #1a1d22;
+  --color-line: rgba(244, 243, 239, 0.09);
+  --color-line2: rgba(244, 243, 239, 0.18);
+  --color-ink: #f4f3ef;
+  --color-muted: #a9aeb8;
+  --color-faint: #62666e;
+  --color-accent: #00e6ff;
+  --color-accent2: #66eeff;
+  --color-accent-ink: #001d26;
+  --color-amber: #f0b429;
+
+  --font-sans: var(--font-grotesk), system-ui, sans-serif;
+  --font-serif: var(--font-instrument), Georgia, serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+/* Scrolling is smoothed by Lenis (SmoothScroll.tsx) — native
+   scroll-behavior:smooth would double-ease and fight it. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ------------------------------ layout utils ----------------------------- */
+
+.container-x {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 4rem);
+}
+
+.section-pad {
+  /* 11vw carries desktop; the 3.5rem floor keeps phones compact instead of
+     stacking two 88px voids between every pair of sections. */
+  padding-block: clamp(3.5rem, 11vw, 10rem);
+}
+
+/* Technical hairline grid ground */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(244, 243, 239, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244, 243, 239, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 30%, transparent 100%);
+}
+
+/* Film-grain noise, pure SVG data URI, ~2% */
+.noise::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.022;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Mono annotation label: `SEC.03 — SERVICES` */
+.label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.label-mono--accent {
+  color: var(--color-accent);
+}
+
+.label-mono--faint {
+  color: var(--color-faint);
+}
+
+/* Display headline defaults */
+.display {
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.display em,
+.serif-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--color-accent2);
+}
+
+/* ------------------------------ buttons ---------------------------------- */
+
+/* Every pill on the site is a beam button: a bright arc orbits the ring,
+   with a soft blurred echo trailing beneath it. Ghost pills carry a cyan
+   beam on their hairline; the accent pill carries a white sheen over its
+   fill. Built entirely from pseudo-elements so no markup changes, ever. */
+
+@property --btn-beam {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+:root {
+  --btn-beam-light: color-mix(in srgb, #ffffff 80%, var(--color-accent));
+}
+
+.btn {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition:
+    transform 0.2s var(--ease-out-expo),
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.25s ease,
+    color 0.2s ease;
+  will-change: transform;
+}
+
+/* The beam: a conic arc masked down to the pill's ring… */
+.btn::before,
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--btn-beam),
+    transparent 0deg 286deg,
+    var(--btn-beam-color, var(--btn-beam-light)) 322deg,
+    transparent 352deg 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: btn-beam-spin 3.4s linear infinite;
+}
+
+/* …and its glow, the same arc blurred into a bloom. */
+.btn::after {
+  filter: blur(7px);
+  opacity: 0.7;
+}
+
+@keyframes btn-beam-spin {
+  to {
+    --btn-beam: 360deg;
+  }
+}
+
+.btn:hover::before,
+.btn:hover::after {
+  animation-duration: 1.5s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-ink) 8%, var(--color-surface)) 0%,
+    var(--color-bg2) 100%
+  );
+  color: var(--color-ink);
+  font-weight: 600;
+  border: 1px solid rgba(244, 243, 239, 0.24);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    0 12px 34px -20px rgba(0, 0, 0, 0.95);
+  --btn-beam-color: rgba(255, 255, 255, 0.95);
+}
+
+.btn-primary:hover {
+  border-color: rgba(244, 243, 239, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 10px 38px -16px rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  border: 1px solid var(--color-line2);
+  color: var(--color-ink);
+  background: color-mix(in srgb, var(--color-bg) 72%, transparent);
+}
+
+.btn-ghost:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 55%, var(--color-line2));
+  color: var(--color-accent2);
+  transform: translateY(-1px);
+}
+
+/* Reduced motion: the ring keeps a still highlight, nothing spins. */
+@media (prefers-reduced-motion: reduce) {
+  .btn::before,
+  .btn::after {
+    animation: none;
+  }
+}
+
+/* ------------------------------ cards ------------------------------------ */
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
+  transition:
+    transform 0.25s var(--ease-out-expo),
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.card:hover {
+  border-color: var(--color-line2);
+  background: var(--color-surface2);
+  transform: translateY(-3px);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+
+/* ------------------------------ reveals ----------------------------------- */
+
+/* Reveal hiding only applies once JS has confirmed it can un-hide (html.js). */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s var(--ease-out-expo),
+    transform 0.7s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ------------------------------ hero 3D ----------------------------------- */
+
+.persp {
+  perspective: 1400px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* --------------------- hero: the exploded build chamber -------------------- */
+
+/* A real vanishing-point floor the layer stack stands on. */
+.floor {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 58%;
+  perspective: 220px;
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(ellipse 62% 100% at 50% 100%, black 12%, transparent 76%);
+  mask-image: radial-gradient(ellipse 62% 100% at 50% 100%, black 12%, transparent 76%);
+}
+
+.floor-plane {
+  position: absolute;
+  inset: 0;
+  transform: rotateX(62deg);
+  transform-origin: 50% 0%;
+}
+
+.floor-grid {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  right: -100%;
+  height: 320%;
+  background-image:
+    linear-gradient(to right, rgba(0, 230, 255, 0.11) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 230, 255, 0.11) 1px, transparent 1px);
+  background-size: 74px 74px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 26%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 26%);
+  animation: floor-drift 7s linear infinite;
+  will-change: transform;
+}
+
+@keyframes floor-drift {
+  from { transform: translateY(0); }
+  to { transform: translateY(74px); }
+}
+
+/* Horizon: where the floor meets the void */
+.horizon {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 230, 255, 0.45),
+    transparent
+  );
+  filter: blur(0.5px);
+}
+
+.horizon::after {
+  content: "";
+  position: absolute;
+  inset: -22px 0 auto 0;
+  height: 44px;
+  background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(0, 230, 255, 0.16), transparent 70%);
+}
+
+/* The rig: one shared 3D space, tilted by the pointer. */
+.chamber {
+  perspective: 1500px;
+  perspective-origin: 50% 44%;
+}
+
+/* The stack is viewed slightly off-axis — that angle is what makes the
+   recessed sheets readable instead of hiding behind the finished page. */
+.rig {
+  position: relative;
+  transform-style: preserve-3d;
+  /* --flat ramps the whole rotation away as the panel reaches centre, so it
+     faces the reader square-on there instead of staying angled. Pointer tilt
+     rides inside it and bows out at the same time. */
+  transform: rotateX(calc((var(--rx0) + var(--rx, 0deg)) * var(--flat, 1)))
+    rotateY(calc((var(--ry0) + var(--ry, 0deg)) * var(--flat, 1)));
+  will-change: transform;
+  --depth: 0.4;
+  --rx0: 2deg;
+  --ry0: -7deg;
+}
+
+@media (min-width: 640px) {
+  .rig {
+    --depth: 0.68;
+    --rx0: 3deg;
+    --ry0: -10deg;
+  }
+}
+
+@media (min-width: 1024px) {
+  .rig {
+    --depth: 1;
+    --rx0: 3deg;
+    --ry0: -13deg;
+  }
+}
+
+/* Collapsing the depth to zero snaps every layer back into the finished page. */
+.rig.is-collapsed {
+  --depth: 0;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  /* --lift rides inside the depth product so a focused sheet drops flat when
+     the stack collapses, instead of hanging in front of the finished page.
+     --morph is the scroll scrub's multiplier (1 resting → 0 taken over); it
+     stays separate from --depth so the Explode button and the load
+     choreography keep owning --depth without the two overwriting each other. */
+  /* --open is the scrub's own multiplier: the stack flattens into a single
+     clean plane as it takes centre. It stays separate from --depth so the
+     Explode button and the load choreography keep owning that one. */
+  transform: translate3d(
+    calc(var(--sx, 0%) * var(--depth) * var(--open, 1)),
+    calc(var(--sy, 0%) * var(--depth) * var(--open, 1)),
+    calc((var(--sz, 0px) + var(--lift, 0px)) * var(--depth) * var(--open, 1))
+  );
+  opacity: var(--op, 1);
+  transition:
+    transform 1.05s var(--ease-out-expo) var(--sd, 0ms),
+    opacity 0.7s ease var(--sd, 0ms);
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+/* Blueprint sheets and instruments retire as the finished page takes over */
+.layer--ghost {
+  opacity: calc(var(--op, 1) * var(--fade, 1));
+}
+
+/* While the scrub is driving frame by frame, easing would lag a frame behind */
+.rig.is-scrubbing .layer {
+  transition: none;
+}
+
+/* Blueprint sheets stacked behind the live page */
+.ghost {
+  border-radius: 1rem;
+  border: 1px solid var(--color-line2);
+  background: rgba(12, 14, 17, 0.72);
+  box-shadow: 0 34px 70px -44px rgba(0, 0, 0, 0.95);
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.ghost.is-focus {
+  border-color: rgba(0, 230, 255, 0.5);
+  box-shadow:
+    0 0 0 1px rgba(0, 230, 255, 0.14),
+    0 34px 80px -44px rgba(0, 230, 255, 0.4);
+}
+
+/* Registration marks — engineering drawing corners */
+.mark {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  opacity: 0.55;
+}
+
+/* Light pooling on the floor under the stack */
+.light-pool {
+  position: absolute;
+  left: 50%;
+  bottom: -9%;
+  width: 76%;
+  height: 110px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(0, 230, 255, 0.2), transparent 70%);
+  filter: blur(16px);
+}
+
+/* Slow sweep of light across the finished page */
+@keyframes scan-x {
+  0% { transform: translateX(-160%); }
+  100% { transform: translateX(420%); }
+}
+
+.scan {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 26%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(0, 230, 255, 0.09),
+    transparent
+  );
+  animation: scan-x 8s linear infinite;
+  animation-delay: 1.5s;
+}
+
+/* Depth-floating instrument chips */
+@keyframes hover-z {
+  0%, 100% { transform: translateY(-5px); }
+  50% { transform: translateY(5px); }
+}
+
+.hover-z {
+  animation: hover-z 8s ease-in-out infinite;
+}
+/* ---------------------- hero: the scroll-driven reel ----------------------
+   One behaviour at every size, no viewport gates.
+
+   The reel's holder is several viewports tall. Inside it, a sticky wrapper
+   exactly one viewport high holds the panel vertically centred, so while the
+   holder passes the panel simply stays put in the middle of the screen. The
+   copy column gets the same treatment on desktop so it can fade in place
+   instead of scrolling away.
+
+   Nothing is forced into a fixed box and nothing clips, which is why this
+   works on a short laptop and a phone as well as a large display. */
+
+.hero-track {
+  position: relative;
+  /* Decorative layers (floor grid, ghost marks) bleed past the viewport by
+     design; clip the x-axis so they never widen the page on phones. `clip`
+     creates no scroll container, so the sticky stage inside keeps working. */
+  overflow-x: clip;
+}
+
+.reel-hold {
+  height: calc(var(--track, 3) * 100vh);
+}
+
+.reel-stick,
+.copy-stick {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* The decorative ground rides along with the panel rather than sitting at the
+   bottom of a very tall section. Zero height so it adds nothing to layout. */
+.bg-stick {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.bg-stick > div {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Single column: no pinning at all. On a phone the scrub added ~2 screens of
+   dead scroll with the reel just sitting there, so the whole hero flows
+   normally and the reel keeps its resting tour (auto-switching projects) —
+   alive, but no sticky hold. The scrub JS bails on its own (span <= 0). */
+@media (max-width: 1023px) {
+  .reel-hold {
+    height: auto;
+  }
+
+  .reel-stick,
+  .copy-stick {
+    position: static;
+    height: auto;
+    display: block;
+  }
+
+  .bg-stick {
+    position: absolute;
+    inset: 0;
+    height: auto;
+  }
+
+  .bg-stick > div {
+    height: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reel-hold {
+    height: auto;
+  }
+
+  .reel-stick,
+  .copy-stick {
+    position: static;
+    height: auto;
+    display: block;
+  }
+
+  .bg-stick {
+    position: absolute;
+    inset: 0;
+    height: auto;
+  }
+
+  .bg-stick > div {
+    height: 100%;
+  }
+}
+
+/* Kinetic headline: words hinge up into place */
+.kin {
+  perspective: 800px;
+}
+
+.kin-w {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  animation: kin-in 0.9s var(--ease-out-expo) both;
+}
+
+@keyframes kin-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.42em) rotateX(-72deg);
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.pulse-dot {
+  animation: pulse-dot 2.2s ease-in-out infinite;
+}
+
+/* Skeleton shimmer used inside browser phases */
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(
+    100deg,
+    rgba(244, 243, 239, 0.05) 40%,
+    rgba(244, 243, 239, 0.12) 50%,
+    rgba(244, 243, 239, 0.05) 60%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.6s linear infinite;
+}
+
+/* Marquee ticker */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 36s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* SVG line draw */
+@keyframes dash-in {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ------------------------------ misc ------------------------------------- */
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-ink) 30%, rgba(244, 243, 239, 0.55));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-weight: 600;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ------------------------- reduced motion -------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Screenshots rest at the top of the page rather than snapping mid-scroll */
+  .site-shot {
+    transform: none !important;
+  }
+}
+
+/* Instrument furniture that has to get out of its own way at centre.
+   Flattened, the vitals panel, the schema chip and the layer tabs all
+   collapse into the same bottom-right corner of the card; each carries its
+   own --ui-lift so the scrub can walk them apart into distinct corners.
+   The lift lives on a wrapper, not on .chip itself, because the chips run a
+   hover-z transform animation that would overwrite it. */
+.ui-lift {
+  transform: translateY(calc(var(--ui-lift, 0px) * -1));
+}

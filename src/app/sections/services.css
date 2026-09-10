@@ -1,0 +1,450 @@
+/* services — section-scoped styles. Owned by one design agent; prefix every class. */
+
+/* ====================================================================== *
+ *  svc — THE SERVICE LEDGER
+ *  Full-width numbered index rows. Hover: ink brightens, a faint surface
+ *  wash sweeps in from the ledger margin, and a preview plate — a small
+ *  but real interface for that service family — floats up at the row's
+ *  right edge. One plate at a time; the crossfade is free because only
+ *  one row can be hovered.
+ * ====================================================================== */
+
+/* Shared column template — the mono column captions and every row use it,
+   so the ledger reads as one ruled table. */
+.svc-cols {
+  display: grid;
+  grid-template-columns: 2.9rem minmax(0, 1fr) 2.25rem;
+  align-items: center;
+  column-gap: 0.9rem;
+}
+
+@media (min-width: 768px) {
+  .svc-cols {
+    grid-template-columns: 5rem minmax(0, 1fr) minmax(0, 20rem) 3.5rem;
+    column-gap: 1.25rem;
+  }
+}
+
+.svc-row {
+  position: relative;
+  border-top: 1px solid var(--color-line);
+}
+
+.svc-row:last-child {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.svc-link {
+  position: relative;
+  padding-block: 1.05rem;
+}
+
+@media (min-width: 768px) {
+  .svc-link {
+    padding-block: 1.55rem;
+  }
+}
+
+/* Surface wash — sweeps from the numbered margin, never a solid card fill */
+.svc-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(244, 243, 239, 0.04),
+    rgba(244, 243, 239, 0.014) 55%,
+    transparent 92%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.svc-row:hover .svc-link::before,
+.svc-link:focus-visible::before {
+  opacity: 1;
+}
+
+.svc-idx {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  color: var(--color-faint);
+  transition: color 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .svc-idx {
+    font-size: 1.05rem;
+  }
+}
+
+.svc-name {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  font-size: clamp(1.35rem, 4.4vw, 2.1rem);
+  color: rgba(244, 243, 239, 0.76);
+  transition:
+    color 0.3s ease,
+    transform 0.45s var(--ease-out-expo);
+  will-change: transform;
+}
+
+@media (min-width: 768px) {
+  .svc-name {
+    font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  }
+}
+
+.svc-meta {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.svc-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--color-faint);
+  transition:
+    color 0.3s ease,
+    transform 0.45s var(--ease-out-expo);
+  will-change: transform;
+}
+
+/* Row hover: the whole line of type wakes up */
+.svc-row:hover .svc-idx,
+.svc-link:focus-visible .svc-idx {
+  color: var(--color-accent);
+}
+
+.svc-row:hover .svc-name,
+.svc-link:focus-visible .svc-name {
+  color: var(--color-ink);
+  transform: translateX(6px);
+}
+
+.svc-row:hover .svc-meta,
+.svc-link:focus-visible .svc-meta {
+  opacity: 1;
+}
+
+.svc-row:hover .svc-arrow,
+.svc-link:focus-visible .svc-arrow {
+  color: var(--color-accent2);
+  transform: translateX(7px);
+}
+
+/* ------------------------------ preview plate ------------------------- */
+
+/* Hidden by default; only exists for pointer devices with room to spare.
+   Sized so the interface inside it is genuinely readable — a 250px plate
+   could only ever hold placeholder shapes. */
+.svc-plate {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 4.25rem;
+  width: 344px;
+  height: 238px;
+  z-index: 6;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-44%) translateX(16px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.55s var(--ease-out-expo);
+  will-change: transform, opacity;
+}
+
+@media (hover: hover) and (min-width: 1100px) {
+  .svc-plate {
+    display: block;
+  }
+}
+
+@media (min-width: 1440px) {
+  .svc-plate {
+    width: 384px;
+    height: 264px;
+  }
+}
+
+.svc-row:hover .svc-plate,
+.svc-link:focus-visible + .svc-plate {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* The plate itself: a small blueprint sheet in the hero's vocabulary —
+   hairline frame, registration corners, mono edge tag. */
+.svc-plate-in {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.625rem;
+  border: 1px solid var(--color-line2);
+  background:
+    linear-gradient(to right, rgba(244, 243, 239, 0.03) 1px, transparent 1px) 0 0 / 26px 26px,
+    linear-gradient(to bottom, rgba(244, 243, 239, 0.03) 1px, transparent 1px) 0 0 / 26px 26px,
+    rgba(10, 11, 13, 0.97);
+  box-shadow:
+    0 0 0 1px rgba(0, 230, 255, 0.05),
+    0 26px 52px -26px rgba(0, 0, 0, 0.9);
+}
+
+/* The interface drawn inside the plate. It fills the sheet edge to edge —
+   an interface stranded at the top of an empty frame reads as unfinished. */
+.svc-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 0.625rem;
+  padding: 0.7rem 0.75rem;
+}
+
+.svc-mark {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  opacity: 0.65;
+  border-color: var(--color-accent);
+  z-index: 2;
+}
+
+.svc-plate-tag {
+  position: absolute;
+  top: -0.55rem;
+  left: 0.8rem;
+  z-index: 2;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--color-line2);
+  border-radius: 999px;
+  background: var(--color-bg);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent2);
+}
+
+/* ====================================================================== *
+ *  dif — THE CROSS-SECTION
+ *  Two specimens on a shared bench. Left: the one plain plate most
+ *  agencies ship — a complete page, just drained of colour. Right: the
+ *  same rectangle split into five engineered layers, each carrying a
+ *  legible face. The stack spreads out of the finished page on scroll.
+ * ====================================================================== */
+
+.dif-stage {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vw, 2.5rem);
+}
+
+@media (min-width: 560px) {
+  .dif-stage {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(0.9rem, 2.2vw, 1.75rem);
+  }
+}
+
+.dif-scene {
+  position: relative;
+  aspect-ratio: 1 / 0.86;
+  perspective: 900px;
+}
+
+@media (min-width: 560px) {
+  .dif-scene {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+/* The rig: shared static viewing angle, same off-axis stance as the hero.
+   The engineered stack sits low so its ghost sheets have room to climb. */
+.dif-rig {
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  top: 32%;
+  bottom: 7%;
+  transform-style: preserve-3d;
+  transform: rotateX(8deg) rotateY(-13deg);
+}
+
+/* Specimen A never explodes, so its single plate is centred instead —
+   same footprint, no dead headroom above it. */
+.dif-rig--flat {
+  top: 20%;
+  bottom: 19%;
+}
+
+.dif-sheet {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.625rem;
+  border: 1px solid var(--color-line2);
+  background: rgba(12, 14, 17, 0.94);
+  box-shadow: 0 24px 48px -30px rgba(0, 0, 0, 0.9);
+  backface-visibility: hidden;
+  /* Resting (and no-JS) state = exploded. --dx/--dy/--dz/--op per sheet. */
+  transform: translate3d(var(--dx, 0%), var(--dy, 0%), var(--dz, 0px));
+  opacity: var(--op, 1);
+  transition:
+    transform 1s var(--ease-out-expo) var(--dd, 0ms),
+    opacity 0.65s ease var(--dd, 0ms);
+  will-change: transform, opacity;
+}
+
+/* With JS on and the bench not yet in view, every sheet hides inside the
+   finished page — the reveal is the page splitting into its layers. */
+.js .dif-bench:not(.dif-open) .dif-sheet {
+  transform: translate3d(0%, 0%, 0px);
+}
+
+.js .dif-bench:not(.dif-open) .dif-ghost {
+  opacity: 0;
+}
+
+/* The finished page on top: solid surface, cyan edge light, corner marks */
+.dif-live {
+  background: var(--color-surface);
+  border-color: rgba(0, 230, 255, 0.34);
+  box-shadow:
+    0 0 0 1px rgba(0, 230, 255, 0.1),
+    0 30px 60px -32px rgba(0, 230, 255, 0.32);
+}
+
+.dif-mark {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  opacity: 0.7;
+  border-color: var(--color-accent);
+  z-index: 2;
+}
+
+/* Specimen A: a complete, competent page — drained of colour, not of
+   contrast. Desaturation is the point; fading it out would just look
+   like something that failed to load. */
+.dif-flat {
+  filter: grayscale(1) brightness(0.92);
+  opacity: 0.96;
+  border-color: var(--color-line2);
+  background: rgba(16, 18, 21, 0.96);
+  box-shadow: 0 24px 48px -30px rgba(0, 0, 0, 0.9);
+}
+
+.dif-pill {
+  position: absolute;
+  /* Each sheet parks its pill in its own slot. On the shared top-left corner
+     the five collided into an unreadable pile — and out of numeric order,
+     because Live sits at zero offset while Performance hangs below it. */
+  top: -0.6rem;
+  left: var(--pill-x, 0.6rem);
+  z-index: 2;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--color-line2);
+  border-radius: 999px;
+  background: var(--color-bg);
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.dif-pill--live {
+  border-color: rgba(0, 230, 255, 0.5);
+  color: var(--color-accent2);
+}
+
+/* Stagger the pills across the sheet so the stack reads 01 -> 05 cleanly. */
+.dif-sheet:nth-child(1) .dif-pill { --pill-x: 0.6rem; }
+.dif-sheet:nth-child(2) .dif-pill { --pill-x: 32%; }
+.dif-sheet:nth-child(3) .dif-pill { --pill-x: 60%; }
+.dif-sheet:nth-child(4) .dif-pill { --pill-x: 0.6rem; }
+.dif-sheet:nth-child(5) .dif-pill { --pill-x: 46%; }
+
+/* Performance sits in front of Live, so drop its pill to the sheet foot
+   rather than letting it crowd the four above it. */
+.dif-sheet:nth-child(4) .dif-pill {
+  top: auto;
+  bottom: -0.6rem;
+}
+
+/* The face drawn on a sheet fills it corner to corner. */
+.dif-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 0.625rem;
+  padding: 0.5rem 0.55rem;
+}
+
+@media (min-width: 640px) {
+  .dif-face {
+    padding: 0.6rem 0.65rem;
+  }
+}
+
+/* Light pooling under the engineered stack once it opens */
+.dif-pool {
+  position: absolute;
+  left: 50%;
+  bottom: -2%;
+  width: 78%;
+  height: 34px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(0, 230, 255, 0.18), transparent 70%);
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.9s ease 0.45s;
+  pointer-events: none;
+}
+
+.dif-open .dif-pool,
+html:not(.js) .dif-pool {
+  opacity: 1;
+}
+
+/* The bench: shared baseline with measurement ticks fading downward */
+.dif-rail {
+  position: relative;
+  height: 12px;
+  border-top: 1px solid var(--color-line2);
+}
+
+.dif-rail::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--color-line2) 0 1px,
+    transparent 1px 20px
+  );
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+  mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+/* Query-loop thumbnails: a drawn photo per real project, hue from its data. */
+.svc-tile-img {
+  flex: 1 1 auto;
+  min-height: 14px;
+  background:
+    radial-gradient(120% 80% at 68% 22%, hsl(var(--h) 70% 62% / 0.55) 0%, transparent 62%),
+    linear-gradient(195deg, hsl(var(--h) 45% 28%) 0%, hsl(var(--h) 40% 16%) 60%, #0c1216 100%);
+}

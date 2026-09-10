@@ -1,0 +1,330 @@
+/* monument — the 3D hero ("The Monument"). The scene owns the viewport;
+   the interface stays a thin overlay out of its way. Prefix: mh-.
+   Palette is scene-local (the renderer clears to #050709 and lights in
+   #3fe0ff), so the ground and accents here match the 3D exactly. */
+
+.mh-hero {
+  position: relative;
+  height: 100svh;
+  min-height: 620px;
+  overflow: clip;
+  background: #050709;
+  --mh-accent: #3fe0ff;
+  --mh-accent-soft: #9ceeff;
+  --mh-dim: #93a6ad;
+  --mh-faint: #5b6d74;
+}
+
+.mh-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* deepen the bottom so overlay text sits on solid ground */
+.mh-floorfade {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 30%;
+  background: linear-gradient(180deg, transparent, rgba(5, 7, 9, 0.8) 80%);
+  pointer-events: none;
+}
+
+/* film grain */
+.mh-hero::after {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+/* ————— overlay ————— */
+
+.mh-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0 clamp(1.25rem, 4vw, 3rem) clamp(2.6rem, 7svh, 4.6rem);
+}
+
+.mh-overlay a,
+.mh-overlay [role] {
+  pointer-events: auto;
+}
+
+/* With JS confirmed (html.js lands before first paint) the copy starts
+   hidden, so the very first frame is the dark stage alone — the scene
+   plays first and gsap brings the interface in afterwards. No JS means
+   no .js class, and everything simply shows. Reduced-motion overrides
+   this further down with !important. */
+.js .mh-hero [data-io] {
+  opacity: 0;
+}
+
+.mh-signal {
+  position: absolute;
+  top: clamp(5.4rem, 11svh, 6.6rem);
+  right: clamp(1.25rem, 4vw, 3rem);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-jetbrains);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mh-faint);
+}
+
+.mh-signal-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--mh-accent);
+  box-shadow: 0 0 10px rgba(63, 224, 255, 0.9);
+  animation: mh-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes mh-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.mh-left {
+  max-width: 560px;
+}
+
+.mh-eyebrow {
+  font-family: var(--font-jetbrains);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--mh-accent);
+}
+
+.mh-title {
+  margin-top: 0.9rem;
+  font-size: clamp(1.45rem, 2.5vw, 2.15rem);
+  line-height: 1.22;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  color: #edf3f4;
+}
+
+.mh-title em {
+  font-family: var(--font-instrument);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.12em;
+  color: var(--mh-accent);
+}
+
+.mh-meta {
+  margin-top: 0.9rem;
+  font-family: var(--font-jetbrains);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mh-faint);
+}
+
+.mh-ctas {
+  margin-top: 1.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.mh-ctas .btn svg {
+  transition: transform 0.3s cubic-bezier(0.65, 0.01, 0.05, 0.99);
+}
+
+.mh-ctas .btn:hover svg {
+  transform: translateX(4px);
+}
+
+.mh-right {
+  display: flex;
+  align-items: flex-end;
+}
+
+/* vitals HUD */
+.mh-vitals {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1.1rem;
+  border: 1px solid rgba(63, 224, 255, 0.22);
+  border-radius: 12px;
+  background: rgba(7, 12, 15, 0.55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.mh-vitals-score {
+  position: relative;
+  width: 52px;
+  height: 52px;
+}
+
+.mh-vitals-score svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.mh-vitals-track,
+.mh-vitals-arc {
+  fill: none;
+  stroke-width: 3.4;
+}
+
+.mh-vitals-track {
+  stroke: rgba(147, 166, 173, 0.18);
+}
+
+.mh-vitals-arc {
+  stroke: var(--mh-accent);
+  stroke-linecap: round;
+  stroke-dasharray: 119.4;
+  stroke-dashoffset: 119.4;
+  filter: drop-shadow(0 0 5px rgba(63, 224, 255, 0.6));
+}
+
+.mh-vitals-num {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-jetbrains);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--mh-accent);
+}
+
+.mh-vitals-rows {
+  display: grid;
+  gap: 0.28rem;
+  font-family: var(--font-jetbrains);
+}
+
+.mh-vitals-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+}
+
+.mh-vitals-row dt {
+  color: var(--mh-faint);
+  width: 2.4rem;
+}
+
+.mh-vitals-row dd {
+  color: #edf3f4;
+}
+
+/* scroll hint */
+.mh-scrollhint {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.2rem, 3svh, 2rem);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-jetbrains);
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--mh-faint);
+}
+
+.mh-scrollhint-line {
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(180deg, transparent, var(--mh-accent));
+  animation: mh-drip 2.2s cubic-bezier(0.65, 0.01, 0.05, 0.99) infinite;
+}
+
+@keyframes mh-drip {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  56% {
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+/* ————— responsive ————— */
+
+@media (max-width: 900px) {
+  .mh-floorfade {
+    height: 52%;
+    background: linear-gradient(180deg, transparent, rgba(5, 7, 9, 0.94) 62%);
+  }
+
+  .mh-overlay {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 1.1rem;
+  }
+
+  .mh-right {
+    width: 100%;
+  }
+
+  .mh-vitals {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .mh-signal {
+    display: none;
+  }
+
+  .mh-scrollhint {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mh-signal-dot,
+  .mh-scrollhint-line {
+    animation: none;
+  }
+
+  .mh-hero [data-io] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

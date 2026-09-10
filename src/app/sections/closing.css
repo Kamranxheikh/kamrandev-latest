@@ -1,0 +1,582 @@
+/* closing — section-scoped styles. Owned by one design agent; prefix every class.
+   Prefixes: xp- (ExperienceTeaser), ins- (InsightsTeaser), cta- (FinalCta). */
+
+/* =========================================================================
+   xp- — the career rail
+   Desktop: one horizontal hairline timeline, employment roles as nodes
+   positioned proportionally by start date; the freelance track runs beneath
+   as a second, deliberately overlapping dashed rail. Mobile: vertical rail.
+   ========================================================================= */
+
+.xp-rail {
+  position: relative;
+  height: 248px;
+}
+
+/* Decoration layer rides its own Reveal, but suppresses the default fade-up
+   translate — lines draw with scaleX instead of sliding in. */
+.xp-deco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.js .xp-deco[data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Main employment rail */
+.xp-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40px;
+  height: 1px;
+  background: var(--color-line2);
+  transform-origin: left center;
+}
+
+/* Freelance rail — dashed, running from its real start to the present edge */
+.xp-line-free {
+  position: absolute;
+  right: 0;
+  top: 188px;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-line2) 0 5px,
+    transparent 5px 11px
+  );
+  transform-origin: left center;
+}
+
+.xp-line-free::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: -2.5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-faint);
+}
+
+.js .xp-deco[data-reveal] .xp-line,
+.js .xp-deco[data-reveal] .xp-line-free {
+  transform: scaleX(0);
+  transition: transform 1.2s var(--ease-out-expo);
+}
+
+.js .xp-deco[data-reveal] .xp-line-free {
+  transition-delay: 0.35s;
+}
+
+.js .xp-deco[data-reveal].is-visible .xp-line,
+.js .xp-deco[data-reveal].is-visible .xp-line-free {
+  transform: scaleX(1);
+}
+
+/* Year ticks — the shared measurement axis along the bottom */
+.xp-year {
+  position: absolute;
+  top: 206px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  color: var(--color-faint);
+}
+
+.xp-year::before {
+  content: "";
+  width: 1px;
+  height: 8px;
+  background: var(--color-line2);
+}
+
+.js .xp-deco[data-reveal] .xp-year {
+  opacity: 0;
+  transition: opacity 0.7s ease 0.9s;
+}
+
+.js .xp-deco[data-reveal].is-visible .xp-year {
+  opacity: 1;
+}
+
+/* Node list fills the rail so nodes can be placed in % of real time */
+.xp-nodes {
+  position: absolute;
+  inset: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.xp-node {
+  position: absolute;
+  top: 0;
+  min-width: 8rem;
+  max-width: 15.5rem;
+}
+
+.xp-node--end {
+  text-align: right;
+}
+
+/* Period row above the line; role + company below it */
+.xp-node .xp-node-top {
+  margin-bottom: 26px;
+}
+
+.xp-node-top {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 28px;
+}
+
+.xp-node--end .xp-node-top {
+  justify-content: flex-end;
+}
+
+.xp-role {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-ink);
+}
+
+.xp-co {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+/* Node dot, centered on the rail at the role's real start date */
+.xp-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-line2);
+}
+
+.xp-node .xp-dot {
+  top: 35px;
+  left: -5px;
+}
+
+.xp-node--end .xp-dot {
+  left: auto;
+  right: -5px;
+}
+
+.xp-dot--live {
+  background: var(--color-accent);
+  box-shadow: 0 0 12px rgba(0, 230, 255, 0.55);
+}
+
+.xp-dot--live::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 230, 255, 0.55);
+  animation: xp-ping 2.4s var(--ease-out-expo) infinite;
+}
+
+@keyframes xp-ping {
+  0% {
+    transform: scale(0.45);
+    opacity: 1;
+  }
+  70%,
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+.xp-chip {
+  border-color: rgba(0, 230, 255, 0.4);
+  color: var(--color-accent);
+}
+
+/* Freelance annotation sits above its rail, at the rail's origin */
+.xp-free {
+  position: absolute;
+  left: 0;
+  top: 138px;
+  max-width: 34rem;
+}
+
+.xp-free-role {
+  margin-top: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
+}
+
+/* ---- mobile / tablet: vertical rail, same anatomy ---- */
+
+.xp-vert {
+  position: relative;
+  padding-left: 56px;
+}
+
+.xp-vline {
+  position: absolute;
+  left: 36px;
+  top: 4px;
+  bottom: 4px;
+  width: 1px;
+  background: var(--color-line2);
+}
+
+.xp-vline-free {
+  position: absolute;
+  left: 20px;
+  top: 4px;
+  bottom: 4px;
+  width: 1px;
+  background: repeating-linear-gradient(
+    180deg,
+    var(--color-line2) 0 5px,
+    transparent 5px 11px
+  );
+}
+
+.xp-vlabel {
+  position: absolute;
+  left: 3px;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.xp-vnode {
+  position: relative;
+}
+
+.xp-vnode .xp-dot {
+  top: 9px;
+  left: -25px;
+}
+
+.xp-vnode .xp-role {
+  margin-top: 0.5rem;
+}
+
+/* =========================================================================
+   ins- — the editorial index
+   Full-width ledger rows: oversized faint numeral, display title with an
+   underline that draws on hover, mono meta, sliding arrow. No cards.
+   ========================================================================= */
+
+.ins-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: clamp(1rem, 3.5vw, 2.75rem);
+  padding-block: clamp(1.35rem, 2.5vw, 1.85rem);
+  border-top: 1px solid var(--color-line);
+}
+
+.ins-num {
+  font-family: var(--font-mono);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--color-faint);
+  opacity: 0.65;
+  min-width: 2.2ch;
+  transition:
+    color 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.ins-row:hover .ins-num,
+.ins-row:focus-visible .ins-num {
+  color: var(--color-accent);
+  opacity: 1;
+}
+
+.ins-title {
+  font-size: clamp(1.3rem, 2.4vw, 1.85rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  color: var(--color-ink);
+}
+
+/* Underline draw — background-size animation survives multi-line wrapping */
+.ins-title-line {
+  background-image: linear-gradient(var(--color-accent2), var(--color-accent2));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  padding-bottom: 3px;
+  transition: background-size 0.5s var(--ease-out-expo);
+}
+
+.ins-row:hover .ins-title-line,
+.ins-row:focus-visible .ins-title-line {
+  background-size: 100% 1px;
+}
+
+.ins-meta {
+  display: block;
+  margin-top: 0.55rem;
+}
+
+.ins-arrow {
+  color: var(--color-faint);
+  transition:
+    transform 0.35s var(--ease-out-expo),
+    color 0.25s ease;
+}
+
+.ins-row:hover .ins-arrow,
+.ins-row:focus-visible .ins-arrow {
+  transform: translateX(6px);
+  color: var(--color-accent2);
+}
+
+/* =========================================================================
+   cta- — the closing frame
+   Registration corners draw in, a hairline rules itself above the headline,
+   one soft light pool behind. The last page of the printed portfolio.
+   ========================================================================= */
+
+/* The frame is a Reveal that stays put — it only gates the draw-ins below. */
+.cta-frame {
+  position: relative;
+}
+
+.js .cta-frame[data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Single soft light pool behind the headline — the only glow in the frame */
+.cta-pool {
+  position: absolute;
+  left: -12%;
+  top: -18%;
+  width: 72vmin;
+  height: 72vmin;
+  pointer-events: none;
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 62%);
+  opacity: 0.06;
+}
+
+/* Eyebrow: the wolf signs the closing frame before the headline */
+.cta-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cta-mark {
+  width: 34px;
+  height: 34px;
+}
+
+@media (min-width: 640px) {
+  .cta-mark {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Registration corner marks — same drawing language as the hero sheets */
+.cta-corner {
+  position: absolute;
+  z-index: 5;
+  width: 22px;
+  height: 22px;
+  opacity: 0.7;
+}
+
+.cta-corner--tl {
+  top: clamp(14px, 2.5vw, 26px);
+  left: clamp(14px, 2.5vw, 26px);
+}
+
+.cta-corner--tr {
+  top: clamp(14px, 2.5vw, 26px);
+  right: clamp(14px, 2.5vw, 26px);
+  transform: rotate(90deg);
+}
+
+.cta-corner--br {
+  bottom: clamp(14px, 2.5vw, 26px);
+  right: clamp(14px, 2.5vw, 26px);
+  transform: rotate(180deg);
+}
+
+.cta-corner--bl {
+  bottom: clamp(14px, 2.5vw, 26px);
+  left: clamp(14px, 2.5vw, 26px);
+  transform: rotate(270deg);
+}
+
+.cta-corner::before,
+.cta-corner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--color-faint);
+}
+
+.cta-corner::before {
+  width: 100%;
+  height: 1px;
+  transform-origin: left center;
+}
+
+.cta-corner::after {
+  width: 1px;
+  height: 100%;
+  transform-origin: center top;
+}
+
+.js .cta-frame[data-reveal] .cta-corner::before {
+  transform: scaleX(0);
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.js .cta-frame[data-reveal] .cta-corner::after {
+  transform: scaleY(0);
+  transition: transform 0.6s var(--ease-out-expo) 0.12s;
+}
+
+.js .cta-frame[data-reveal] .cta-corner--tr::before {
+  transition-delay: 0.1s;
+}
+
+.js .cta-frame[data-reveal] .cta-corner--tr::after {
+  transition-delay: 0.22s;
+}
+
+.js .cta-frame[data-reveal] .cta-corner--br::before {
+  transition-delay: 0.2s;
+}
+
+.js .cta-frame[data-reveal] .cta-corner--br::after {
+  transition-delay: 0.32s;
+}
+
+.js .cta-frame[data-reveal] .cta-corner--bl::before {
+  transition-delay: 0.3s;
+}
+
+.js .cta-frame[data-reveal] .cta-corner--bl::after {
+  transition-delay: 0.42s;
+}
+
+.js .cta-frame[data-reveal].is-visible .cta-corner::before {
+  transform: scaleX(1);
+}
+
+.js .cta-frame[data-reveal].is-visible .cta-corner::after {
+  transform: scaleY(1);
+}
+
+/* The slow hairline that rules itself above the headline */
+.cta-rule {
+  height: 1px;
+  background: var(--color-line2);
+  transform-origin: left center;
+}
+
+.js .cta-frame[data-reveal] .cta-rule {
+  transform: scaleX(0);
+  transition: transform 1.5s var(--ease-out-expo) 0.25s;
+}
+
+.js .cta-frame[data-reveal].is-visible .cta-rule {
+  transform: scaleX(1);
+}
+
+/* Mono email link — quiet secondary next to the primary button */
+.cta-mail {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  color: var(--color-ink);
+  box-shadow: inset 0 -1px 0 var(--color-line2);
+  transition:
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.cta-mail:hover {
+  color: var(--color-accent2);
+  box-shadow: inset 0 -1px 0 var(--color-accent);
+}
+
+/* Work link in the colophon row */
+.cta-worklink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  color: var(--color-muted);
+  transition: color 0.2s ease;
+}
+
+.cta-worklink:hover {
+  color: var(--color-accent2);
+}
+
+.cta-worklink svg {
+  transition: transform 0.3s var(--ease-out-expo);
+}
+
+.cta-worklink:hover svg {
+  transform: translateX(4px);
+}
+
+/* ------------------------- reduced motion -------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .js .xp-deco[data-reveal] .xp-line,
+  .js .xp-deco[data-reveal] .xp-line-free,
+  .js .cta-frame[data-reveal] .cta-rule,
+  .js .cta-frame[data-reveal] .cta-corner::before {
+    transform: scaleX(1);
+  }
+
+  .js .cta-frame[data-reveal] .cta-corner::after {
+    transform: scaleY(1);
+  }
+
+  .js .xp-deco[data-reveal] .xp-year {
+    opacity: 1;
+  }
+
+  .xp-dot--live::after {
+    animation: none;
+  }
+}
