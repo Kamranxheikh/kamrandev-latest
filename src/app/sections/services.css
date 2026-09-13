@@ -53,8 +53,8 @@
   pointer-events: none;
   background: linear-gradient(
     90deg,
-    rgba(244, 243, 239, 0.04),
-    rgba(244, 243, 239, 0.014) 55%,
+    rgba(243, 236, 226, 0.04),
+    rgba(243, 236, 226, 0.014) 55%,
     transparent 92%
   );
   opacity: 0;
@@ -85,7 +85,7 @@
   letter-spacing: -0.02em;
   line-height: 1.08;
   font-size: clamp(1.35rem, 4.4vw, 2.1rem);
-  color: rgba(244, 243, 239, 0.76);
+  color: rgba(243, 236, 226, 0.76);
   transition:
     color 0.3s ease,
     transform 0.45s var(--ease-out-expo);
@@ -191,11 +191,11 @@
   border-radius: 0.625rem;
   border: 1px solid var(--color-line2);
   background:
-    linear-gradient(to right, rgba(244, 243, 239, 0.03) 1px, transparent 1px) 0 0 / 26px 26px,
-    linear-gradient(to bottom, rgba(244, 243, 239, 0.03) 1px, transparent 1px) 0 0 / 26px 26px,
-    rgba(10, 11, 13, 0.97);
+    linear-gradient(to right, rgba(243, 236, 226, 0.03) 1px, transparent 1px) 0 0 / 26px 26px,
+    linear-gradient(to bottom, rgba(243, 236, 226, 0.03) 1px, transparent 1px) 0 0 / 26px 26px,
+    rgba(13, 11, 10, 0.97);
   box-shadow:
-    0 0 0 1px rgba(0, 230, 255, 0.05),
+    0 0 0 1px rgba(255, 138, 61, 0.05),
     0 26px 52px -26px rgba(0, 0, 0, 0.9);
 }
 
@@ -318,10 +318,10 @@
 /* The finished page on top: solid surface, cyan edge light, corner marks */
 .dif-live {
   background: var(--color-surface);
-  border-color: rgba(0, 230, 255, 0.34);
+  border-color: rgba(255, 138, 61, 0.34);
   box-shadow:
-    0 0 0 1px rgba(0, 230, 255, 0.1),
-    0 30px 60px -32px rgba(0, 230, 255, 0.32);
+    0 0 0 1px rgba(255, 138, 61, 0.1),
+    0 30px 60px -32px rgba(255, 138, 61, 0.32);
 }
 
 .dif-mark {
@@ -365,7 +365,7 @@
 }
 
 .dif-pill--live {
-  border-color: rgba(0, 230, 255, 0.5);
+  border-color: rgba(255, 138, 61, 0.5);
   color: var(--color-accent2);
 }
 
@@ -408,7 +408,7 @@
   width: 78%;
   height: 34px;
   transform: translateX(-50%);
-  background: radial-gradient(ellipse at center, rgba(0, 230, 255, 0.18), transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(255, 138, 61, 0.18), transparent 70%);
   filter: blur(10px);
   opacity: 0;
   transition: opacity 0.9s ease 0.45s;

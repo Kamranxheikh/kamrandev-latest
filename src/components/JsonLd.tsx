@@ -20,7 +20,7 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
       "@type": "ListItem",
       position: i + 1,
       name: item.name,
-      item: `https://mustafadev.org${item.path}`,
+      item: `https://kamrandev.com${item.path}`,
     })),
   };
 }

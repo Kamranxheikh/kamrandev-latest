@@ -65,10 +65,10 @@ function SerpFace() {
         </span>
         <span className="min-w-0 leading-none">
           <span className="block truncate text-[7px] leading-none text-ink">
-            mustafadev.org
+            kamrandev.com
           </span>
           <span className="block truncate font-mono text-[6px] leading-[1.5] text-muted">
-            https://mustafadev.org › seo
+            https://kamrandev.com › seo
           </span>
         </span>
       </div>
@@ -251,7 +251,7 @@ function WireFace() {
               className="absolute inset-1 rounded-[2px] opacity-70"
               style={{
                 background:
-                  "linear-gradient(150deg, rgba(0,230,255,0.30), rgba(240,180,41,0.20) 70%, rgba(244,243,239,0.06))",
+                  "linear-gradient(150deg, rgba(255, 138, 61,0.30), rgba(232, 200, 114,0.20) 70%, rgba(243, 236, 226,0.06))",
               }}
             />
             <span className="relative font-mono text-[5.5px] leading-none tracking-[0.14em] text-ink">
@@ -336,9 +336,9 @@ function MeterFace() {
 /** WooCommerce — a real catalogue row with prices, cart and checkout. */
 function ShopFace() {
   const items = [
-    { n: "Roast Blend 250g", p: "£14.00", g: "linear-gradient(150deg,rgba(240,180,41,.55),rgba(120,70,30,.45))" },
-    { n: "Ceramic Mug", p: "£19.00", g: "linear-gradient(150deg,rgba(0,230,255,.42),rgba(30,80,110,.5))" },
-    { n: "Gift Box", p: "£42.00", g: "linear-gradient(150deg,rgba(244,243,239,.34),rgba(90,95,105,.5))" },
+    { n: "Roast Blend 250g", p: "£14.00", g: "linear-gradient(150deg,rgba(232, 200, 114,.55),rgba(120,70,30,.45))" },
+    { n: "Ceramic Mug", p: "£19.00", g: "linear-gradient(150deg,rgba(255, 138, 61,.42),rgba(30,80,110,.5))" },
+    { n: "Gift Box", p: "£42.00", g: "linear-gradient(150deg,rgba(243, 236, 226,.34),rgba(90,95,105,.5))" },
   ];
   return (
     <div className="svc-face">
@@ -443,8 +443,8 @@ function AppFace() {
             <svg viewBox="0 0 200 64" preserveAspectRatio="none" className="h-full w-full">
               <defs>
                 <linearGradient id="svc-app-fill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="rgba(0,230,255,0.42)" />
-                  <stop offset="100%" stopColor="rgba(0,230,255,0)" />
+                  <stop offset="0%" stopColor="rgba(255, 138, 61,0.42)" />
+                  <stop offset="100%" stopColor="rgba(255, 138, 61,0)" />
                 </linearGradient>
               </defs>
               <path
@@ -454,7 +454,7 @@ function AppFace() {
               <polyline
                 points="0,52 26,44 52,48 78,30 104,34 130,16 156,22 200,8"
                 fill="none"
-                stroke="#00E6FF"
+                stroke="#ff8a3d"
                 strokeWidth="1.6"
                 vectorEffect="non-scaling-stroke"
                 strokeLinejoin="round"
@@ -508,11 +508,11 @@ function AiFace() {
       </div>
 
       <p className="mt-2 text-[7.5px] leading-[1.6] text-muted">
-        Fakhar e Mustafa is a web developer and SEO expert in Lahore who builds
-        WordPress sites with technical SEO engineered into the build
+        Muhammad Kamran is a software developer in Lahore who builds Next.js
+        and React applications with technical SEO engineered into the build
         <span className="align-super font-mono text-[6px] text-accent2">[1]</span>
-        {" "}— Elementor Pro and WooCommerce front ends, schema markup and Core
-        Web Vitals handled by the same developer.
+        {" "}— Laravel and Node.js APIs, ISR, structured data and Core Web
+        Vitals handled by the same developer.
       </p>
 
       <div className="mt-auto flex items-center gap-1.5 border-t border-line pt-1.5">
@@ -521,7 +521,7 @@ function AiFace() {
             M
           </span>
           <span className="font-mono text-[6px] leading-none text-accent2">
-            mustafadev.org
+            kamrandev.com
           </span>
         </span>
         <span className="font-mono text-[6px] leading-none tracking-[0.12em] text-faint">

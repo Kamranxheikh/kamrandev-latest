@@ -37,10 +37,10 @@ export function ExperienceTeaser() {
 
   // Chronological left→right for the rail; site.ts order (current first) for mobile.
   const employment = jobs
-    .filter((j) => j.company !== "Freelance")
+    .filter((j) => String(j.company) !== "Freelance")
     .sort((a, b) => a.start - b.start);
-  const employmentRecent = jobs.filter((j) => j.company !== "Freelance");
-  const freelance = jobs.find((j) => j.company === "Freelance");
+  const employmentRecent = jobs.filter((j) => String(j.company) !== "Freelance");
+  const freelance = jobs.find((j) => String(j.company) === "Freelance");
 
   const years: number[] = [];
   for (let y = Math.ceil(t0 / 12); y * 12 <= t1; y++) years.push(y);

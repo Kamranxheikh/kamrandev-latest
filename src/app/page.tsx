@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     absolute: `${site.person} — ${site.role} in Lahore`,
   },
   description:
-    "I build high-performance websites and make them rank — web development and SEO as one job, with WordPress, WooCommerce and custom Next.js builds.",
+    "Software developer across AI/ML and the full stack — web applications and AI-enabled products with React, Next.js, TypeScript, Laravel and Node.js, Python for applied AI and computer vision, and SEO built in.",
   alternates: { canonical: "/" },
   openGraph: {
     title: `${site.person} — ${site.role}`,
@@ -35,11 +35,11 @@ const homeJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": `${site.url}/#service`,
-  name: "MustafaDev — Website Development & SEO",
+  name: "KamranDev — Full Stack Development & SEO",
   url: site.url,
   // Service order matches `services` in src/lib/site.ts.
   description:
-    "Website development, SEO, WordPress development, SEO-friendly web development, website design, WooCommerce and custom web applications by Fakhar e Mustafa.",
+    "Web application development, AI solutions, website development, SEO, WordPress, website design and WooCommerce by Muhammad Kamran.",
   founder: { "@id": `${site.url}/#person` },
   address: {
     "@type": "PostalAddress",

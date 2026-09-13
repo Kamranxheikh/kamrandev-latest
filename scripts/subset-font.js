@@ -7,7 +7,7 @@ const path = require("path");
 
 const SRC = path.join(__dirname, "helvetiker_bold.typeface.json");
 const OUT = path.join(__dirname, "..", "public", "fonts", "monument-glyphs.json");
-const KEEP = [...new Set("MUSTAFA")];
+const KEEP = [...new Set("KAMRAN")];
 
 const src = JSON.parse(fs.readFileSync(SRC, "utf8"));
 const glyphs = {};

@@ -4,12 +4,12 @@ import type { ServiceContent } from "./types";
 export const serviceContent: ServiceContent[] = [
   {
     "slug": "website-development",
-    "metaTitle": "Website Development Services | Fakhar e Mustafa",
+    "metaTitle": "Website Development Services | Muhammad Kamran",
     "metaDescription": "I build fast, SEO-ready websites end to end — discovery, design, WordPress or custom development, optimization, and launch on hardened VPS hosting.",
     "heroLede": "I design, build, and launch websites engineered for search and speed from the first line of code. One developer owns everything — from discovery to the server your site runs on.",
     "intro": [
       "I build websites end to end: discovery, design, development, optimization, and launch. For most businesses that means WordPress with Elementor Pro or WooCommerce; for products that outgrow a CMS, I build custom applications with Next.js and Node.js. Either way, one developer owns the whole build, from the first sitemap to the server it runs on.",
-      "Most websites are built first and optimized later, usually by a different person working around decisions the developer already made. I work the other way. I have spent three years doing both jobs — building WordPress sites for international clients and running the technical SEO, Core Web Vitals, and server administration behind them — so search visibility and performance are engineered into the build, not patched on after launch.",
+      "Most websites are built first and optimized later, usually by a different person working around decisions the developer already made. I work the other way. I have spent two years doing both jobs — building WordPress sites for international clients and running the technical SEO, Core Web Vitals, and server administration behind them — so search visibility and performance are engineered into the build, not patched on after launch.",
       "This page explains what professional website development includes, how an SEO-first approach changes each phase, and how to judge any developer you are considering — including me. If you already know what you need, the individual service pages cover each area in more depth."
     ],
     "sections": [
@@ -29,7 +29,7 @@ export const serviceContent: ServiceContent[] = [
       {
         "heading": "How an SEO background changes the build",
         "paragraphs": [
-          "Most SEO problems are development problems. Bloated page-builder output, heading tags used for styling, images that shift the layout, missing schema — these are created during the build and are expensive to fix afterward. I have spent three years running technical SEO audits on sites other developers built, so I know exactly which decisions cause those problems, and I make different ones.",
+          "Most SEO problems are development problems. Bloated page-builder output, heading tags used for styling, images that shift the layout, missing schema — these are created during the build and are expensive to fix afterward. I have spent two years running technical SEO audits on sites other developers built, so I know exactly which decisions cause those problems, and I make different ones.",
           "In practice, site architecture is planned around search intent, every template uses semantic HTML with a correct heading structure, and schema markup is written into the build itself. Content is also structured so AI search — Google's AI Overviews, ChatGPT, Perplexity — can lift and cite it directly. Answer engine optimization is far easier to build in than to retrofit.",
           "Performance gets the same treatment. I keep Elementor output lean, control image formats and loading behavior, and test Core Web Vitals on real templates before launch. The SEO-friendly web development and website performance pages break the method down in detail."
         ]
@@ -53,7 +53,7 @@ export const serviceContent: ServiceContent[] = [
         "heading": "How to judge a website developer — including me",
         "paragraphs": [
           "Before you hire anyone, ask for evidence of craft rather than promises of outcomes. Any developer worth hiring can show you these things on sites they have already shipped.",
-          "I am glad to walk through my own builds against every item on this list. Email info@mustafadev.org or call +92 313 1483233 and tell me what you are trying to build."
+          "I am glad to walk through my own builds against every item on this list. Email kamranshakh841@gmail.com or call +92 320 6899684 and tell me what you are trying to build."
         ],
         "bullets": [
           "Run their recent work through PageSpeed Insights and look at mobile Core Web Vitals, not the portfolio screenshots.",
@@ -207,12 +207,12 @@ export const serviceContent: ServiceContent[] = [
   },
   {
     "slug": "wordpress-development",
-    "metaTitle": "WordPress Development Services | Fakhar e Mustafa",
+    "metaTitle": "WordPress Development Services | Muhammad Kamran",
     "metaDescription": "Custom WordPress development with Elementor Pro, WooCommerce, and clean code. Fast, secure, SEO-ready builds by a web developer and SEO expert in Lahore.",
     "heroLede": "I build lean, secure, fast WordPress sites with Elementor Pro, WooCommerce, and JetEngine — and custom PHP or JavaScript where a plugin would just add weight.",
     "intro": [
       "WordPress powers a huge share of the web, and much of it is built badly. Bloated multipurpose themes, thirty plugins doing overlapping jobs, hosting nobody maintains. The platform gets blamed for decisions the builder made.",
-      "WordPress is my core development specialty, and I build it differently. A lean theme foundation, Elementor Pro interfaces designed around your content, WooCommerce where you sell, JetEngine where you need dynamic listings, and custom PHP or JavaScript where another plugin would be dead weight. Three years of building responsive WordPress sites for international clients taught me where these projects go wrong and how to avoid it.",
+      "WordPress is one of the platforms I build on, and I build it differently. A lean theme foundation, Elementor Pro interfaces designed around your content, WooCommerce where you sell, JetEngine where you need dynamic listings, and custom PHP or JavaScript where another plugin would be dead weight. Building responsive sites for international clients taught me where these projects go wrong and how to avoid it.",
       "Every build ships with the fundamentals handled: security hardening, tested backups, clean metadata, schema markup, and Core Web Vitals treated as a requirement rather than a post-launch fix. I work from Lahore with clients worldwide, and the goal is always the same — a site that is fast on day one and still fast in year three."
     ],
     "sections": [
@@ -309,7 +309,7 @@ export const serviceContent: ServiceContent[] = [
   },
   {
     "slug": "web-application-development",
-    "metaTitle": "Custom Web Application Development | Fakhar e Mustafa",
+    "metaTitle": "Custom Web Application Development | Muhammad Kamran",
     "metaDescription": "Custom web apps and AI-based SaaS products in Next.js and Node.js. Dashboards, portals, API integrations — deployed on hardened VPS infrastructure.",
     "heroLede": "When WordPress is the wrong tool, I build the right one: custom web applications and AI-based SaaS products in Next.js and Node.js, deployed on infrastructure I manage myself.",
     "intro": [
@@ -468,7 +468,7 @@ export const serviceContent: ServiceContent[] = [
         "heading": "How to judge an AI proposal — including mine",
         "paragraphs": [
           "AI attracts vague pitches, so it is worth applying the same scepticism you would to any other technical purchase. These five questions separate a build from a slide deck.",
-          "I am happy to answer every one of them about my own work before you commit anything. Email info@mustafadev.org or call +92 313 1483233 and describe the task you want handled."
+          "I am happy to answer every one of them about my own work before you commit anything. Email kamranshakh841@gmail.com or call +92 320 6899684 and describe the task you want handled."
         ],
         "bullets": [
           "Ask what specific task the AI performs, in one sentence. If the answer is a category rather than a task, the scope does not exist yet.",
@@ -525,7 +525,7 @@ export const serviceContent: ServiceContent[] = [
     "heroLede": "I build WooCommerce stores engineered to sell: a catalog structure that scales, product pages that load fast under heavy imagery, a checkout that gets out of the way, and product schema that makes your listings eligible for rich results.",
     "intro": [
       "An online store is a different engineering problem than a brochure site. It carries hundreds of images, runs database queries on every page load, and asks visitors to trust it with a purchase. I build WooCommerce stores on WordPress with Elementor Pro, and I treat those three pressures — weight, queries, and trust — as the core of the job, not an afterthought.",
-      "My background shapes how I build. For three years I have developed WordPress and WooCommerce sites and then done the technical SEO, server administration, and Core Web Vitals work on the same sites afterward. That means I know exactly which build decisions cause slow category pages, thin product metadata, and checkout drop-off later — so I make the opposite decisions from day one.",
+      "My background shapes how I build. For two years I have developed WordPress and WooCommerce sites and then done the technical SEO, server administration, and Core Web Vitals work on the same sites afterward. That means I know exactly which build decisions cause slow category pages, thin product metadata, and checkout drop-off later — so I make the opposite decisions from day one.",
       "Every store I deliver runs on a VPS I configure myself: SSL/TLS, firewall, backups, and server hardening included. You get one accountable developer for the storefront, the search visibility, and the infrastructure underneath it."
     ],
     "sections": [
@@ -618,13 +618,13 @@ export const serviceContent: ServiceContent[] = [
   },
   {
     "slug": "website-redesign",
-    "metaTitle": "Website Redesign Without Losing Rankings | Mustafa Dev",
+    "metaTitle": "Website Redesign Without Losing Rankings | Kamran Dev",
     "metaDescription": "Website redesign that protects your rankings: redesign audit, content mapping, one-to-one 301 redirects, and Core Web Vitals built into the rebuild.",
     "heroLede": "I rebuild outdated websites without losing the rankings they took years to earn. The redesign audit, content mapping, and a tested 301 redirect map come standard — not as an add-on.",
     "intro": [
       "Most websites don't lose traffic because of a new design. They lose it because of what the redesign broke: URLs that changed without redirects, pages that were quietly deleted, internal links that no longer point anywhere, and templates twice as heavy as the ones they replaced.",
       "I treat a redesign as an engineering problem, not just a visual one. Before I change anything, I document what your current site has earned — the pages that rank, the links that point to them, the structure search engines already understand. The new site is built to inherit all of it.",
-      "I'm a web developer and SEO expert based in Lahore, working with clients worldwide. Redesigns are where the combination of development and technical SEO matters most, because the cost of getting it wrong is measured in rankings you already own."
+      "I'm a software developer based in Lahore, working with clients worldwide. Redesigns are where the combination of development and technical SEO matters most, because the cost of getting it wrong is measured in rankings you already own."
     ],
     "sections": [
       {
@@ -718,7 +718,7 @@ export const serviceContent: ServiceContent[] = [
   },
   {
     "slug": "seo-friendly-web-development",
-    "metaTitle": "SEO-Friendly Web Development | Fakhar e Mustafa",
+    "metaTitle": "SEO-Friendly Web Development | Muhammad Kamran",
     "metaDescription": "Websites built with SEO engineered in from day one: architecture, semantic HTML, schema, and Core Web Vitals. By a web developer, not bolted on later.",
     "heroLede": "SEO bolted on after launch fights the build. I engineer it in from the first decision — architecture, markup, structure, and speed — so the site is ready to earn search visibility the day it goes live.",
     "intro": [
@@ -858,7 +858,7 @@ export const serviceContent: ServiceContent[] = [
       "The work covers the full stack: front-end code, images, caching layers, the database, and the server itself. Because I administer VPS infrastructure daily — deployments, DNS, SSL, security hardening — I can fix problems at layers most WordPress developers never touch."
     ],
     "metaDescription": "Core Web Vitals, image optimization, caching, and server tuning for WordPress and custom sites. I make slow websites fast and keep them that way.",
-    "metaTitle": "Website Performance Optimization | Fakhar e Mustafa",
+    "metaTitle": "Website Performance Optimization | Muhammad Kamran",
     "related": [
       "website-development",
       "website-redesign",

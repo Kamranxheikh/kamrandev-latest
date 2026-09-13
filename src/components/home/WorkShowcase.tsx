@@ -8,11 +8,11 @@ import { TiltCard } from "@/components/TiltCard";
    top-of-page crop holding ~2 screenfuls, so translateY(-50%) pans the
    frame to the second screenful. */
 const featured = [
+  "resumaic",
+  "onlinetoolpot",
   "huckleberrys-restaurant",
   "ai-tool-camp",
   "prophero-real-estate-crm",
-  "citygate-financial-planning",
-  "rose-wealth",
 ];
 
 /** One gallery plate: a minimal browser frame holding the live screenshot. */
@@ -45,7 +45,7 @@ function Plate({ project: p, index }: { project: Project; index: number }) {
                   <rect x="0.5" y="4" width="7" height="5.5" rx="1.2" fill="currentColor" opacity="0.85" />
                 </svg>
                 <span>
-                  mustafadev.org<b>/work/{p.slug}</b>
+                  kamrandev.com<b>/work/{p.slug}</b>
                 </span>
               </span>
               <svg
@@ -69,7 +69,7 @@ function Plate({ project: p, index }: { project: Project; index: number }) {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={`/work/${p.slug}.webp`}
-                alt={`${p.name} website — built by Fakhar e Mustafa`}
+                alt={`${p.name} website — built by Muhammad Kamran`}
                 width={880}
                 height={1320}
                 loading="lazy"

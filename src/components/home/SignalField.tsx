@@ -70,7 +70,7 @@ export function SignalField() {
           const d = Math.hypot(dx, dy);
           if (d < LINK) {
             const a = (1 - d / LINK) * 0.13;
-            ctx.strokeStyle = `rgba(0, 230, 255, ${a})`;
+            ctx.strokeStyle = `rgba(255, 138, 61, ${a})`;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);

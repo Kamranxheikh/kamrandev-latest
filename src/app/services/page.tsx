@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "Website development and SEO, WordPress and WooCommerce builds, website design, performance, custom web apps and redesigns — one developer, end to end.",
   alternates: { canonical: "/services/" },
   openGraph: {
-    title: "Website Development & SEO Services — MustafaDev",
+    title: "Website Development & SEO Services — KamranDev",
     description:
       "Website development and SEO, WordPress builds, custom web apps, redesigns and performance optimization.",
     url: "/services/",
@@ -51,8 +51,8 @@ export default function ServicesPage() {
             Everything a website needs — <em>from one developer</em>
           </>
         }
-        lede="Development, SEO, design, performance and infrastructure. WordPress
-          is my core development specialty. No vendor chains, no handoffs —
+        lede="Development, SEO, design, performance and infrastructure. Next.js and React
+          are my core stack. No vendor chains, no handoffs —
           one person who owns the outcome from the first wireframe to the
           server it runs on."
         aside={

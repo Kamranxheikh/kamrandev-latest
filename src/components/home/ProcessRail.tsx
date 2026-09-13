@@ -149,7 +149,7 @@ function InstrumentGrid() {
 
         <div className="prc-wire">
           <div className="prc-wire-nav prc-in" style={delay(0, 90)}>
-            <span className="prc-wire-logo">MUSTAFADEV</span>
+            <span className="prc-wire-logo">KAMRANDEV</span>
             <span className="prc-wire-links">
               <i>Services</i>
               <i>Work</i>
@@ -270,7 +270,7 @@ const HEAD: Tok[][] = [
   [["prc-p", "{"]],
   [["prc-k", '  "@context"'], ["prc-p", ": "], ["prc-s", '"https://schema.org"'], ["prc-p", ","]],
   [["prc-k", '  "@type"'], ["prc-p", ": "], ["prc-s", '"ProfessionalService"'], ["prc-p", ","]],
-  [["prc-k", '  "name"'], ["prc-p", ": "], ["prc-s", '"MustafaDev"'], ["prc-p", ","]],
+  [["prc-k", '  "name"'], ["prc-p", ": "], ["prc-s", '"KamranDev"'], ["prc-p", ","]],
   [["prc-k", '  "areaServed"'], ["prc-p", ": "], ["prc-s", '"Lahore, PK"']],
   [["prc-p", "}"]],
   [["prc-p", "</"], ["prc-t", "script"], ["prc-p", ">"]],
@@ -346,7 +346,7 @@ function InstrumentLaunch() {
         <div className="prc-live">
           <span className="prc-live-dot pulse-dot" />
           <span className="prc-live-t">Live</span>
-          <span className="prc-live-url">mustafadev.org</span>
+          <span className="prc-live-url">kamrandev.com</span>
         </div>
       </div>
       <div className="prc-chips">

@@ -1,27 +1,28 @@
 // Central site configuration — single source of truth for identity, nav and data.
-// All facts here come from Fakhar e Mustafa's resume / existing site. Never invent.
+// All facts here come from Muhammad Kamran's resume / existing site. Never invent.
 
 export const site = {
-  name: "MustafaDev",
-  domain: "mustafadev.org",
-  url: "https://mustafadev.org",
-  person: "Fakhar e Mustafa",
-  /** Primary positioning — web development and SEO lead everywhere on the site. */
-  role: "Web Developer & SEO Expert",
+  name: "KamranDev",
+  domain: "kamrandev.com",
+  url: "https://kamrandev.com",
+  person: "Muhammad Kamran",
+  /** Primary positioning — software development across AI/ML and the full stack. */
+  role: "Software Developer — AI/ML & Full Stack",
   /** Prime expertise inside development; leads every development-side list. */
-  devSpecialty: "WordPress",
+  devSpecialty: "Next.js",
   tagline: "Websites that look incredible. Built to perform. Designed to be found.",
   description:
-    "Fakhar e Mustafa — web developer and SEO expert in Lahore, Pakistan. I build high-performance websites and make them rank: web development and technical SEO as one job, with WordPress as my core development specialty, plus WooCommerce, custom builds, Core Web Vitals and AI search visibility engineered in from day one.",
-  email: "info@mustafadev.org",
-  phone: "+92 313 1483233",
-  phoneHref: "tel:+923131483233",
-  whatsapp: "https://wa.me/923131483233",
+    "Muhammad Kamran — software developer in Lahore, Pakistan, working across AI/ML and the full stack. I build modern web applications and AI-enabled products with React, Next.js, TypeScript, Laravel/PHP, REST APIs and SQL, and use Python, OpenCV and PyTorch for applied AI and computer-vision work — with performance, SEO and LLM integration engineered in from day one.",
+  email: "kamranshakh841@gmail.com",
+  phone: "+92 320 6899684",
+  phoneHref: "tel:+923206899684",
+  whatsapp: "https://wa.me/923206899684",
   location: { city: "Lahore", region: "Punjab", country: "Pakistan" },
-  linkedin: "https://www.linkedin.com/in/fakharemustafa/",
-  yearsExperience: 3,
-  /** Total client projects delivered, incl. agency work not listed in `projects`. */
-  projectsShipped: 200,
+  linkedin: "https://www.linkedin.com/in/kamran-professional/",
+  github: "https://github.com/kamrancrossmedia",
+  yearsExperience: 2,
+  /** Named portfolio projects — every one of them is listed in `projects`. */
+  projectsShipped: 20,
 } as const;
 
 export const nav = [
@@ -47,9 +48,25 @@ export type ServiceMeta = {
 };
 
 // Order is deliberate and drives the services page, the homepage grid, the
-// footer and the sitemap: web development and SEO lead, WordPress heads the
-// development side, everything else follows.
+// footer and the sitemap: web application development (Next.js / React /
+// Laravel) leads, AI solutions second, website development and SEO follow.
 export const services: ServiceMeta[] = [
+  {
+    slug: "web-application-development",
+    name: "Web Application Development",
+    title: "Web Application Development",
+    blurb:
+      "My core specialty: custom web applications and AI-powered SaaS products built with React, Next.js, TypeScript, Laravel and Node.js.",
+    chips: ["Next.js", "React", "Laravel", "AI SaaS"],
+  },
+  {
+    slug: "ai-solutions",
+    name: "AI Solutions",
+    title: "AI Solutions",
+    blurb:
+      "AI features built into web apps and SaaS products — LLM/API integration, prompt engineering, AI pipelines and computer-vision workflows with Python, OpenCV and PyTorch — plus AEO/GEO so AI answer engines can cite you.",
+    chips: ["LLM Integration", "Computer Vision", "AEO/GEO"],
+  },
   {
     slug: "website-development",
     name: "Website Development",
@@ -71,7 +88,7 @@ export const services: ServiceMeta[] = [
     name: "WordPress Development",
     title: "WordPress Development",
     blurb:
-      "My core development specialty: WordPress websites built with Elementor Pro, JetEngine and custom code — fast, secure and easy to manage.",
+      "WordPress websites built with Elementor Pro, JetEngine and custom code — fast, secure and easy to manage.",
     chips: ["WordPress", "Elementor Pro", "Custom Code"],
   },
   {
@@ -99,22 +116,6 @@ export const services: ServiceMeta[] = [
     chips: ["WooCommerce", "Online Store", "Checkout"],
   },
   {
-    slug: "web-application-development",
-    name: "Web Application Development",
-    title: "Web Application Development",
-    blurb:
-      "Custom web applications and AI-based SaaS products built with Next.js, Node.js and modern custom code.",
-    chips: ["Next.js", "Node.js", "AI SaaS"],
-  },
-  {
-    slug: "ai-solutions",
-    name: "AI Solutions",
-    title: "AI Solutions",
-    blurb:
-      "AI-based SaaS products, AI features built into WordPress and web apps, and AEO/GEO work so AI answer engines can cite you.",
-    chips: ["AI SaaS", "Integration", "AEO/GEO"],
-  },
-  {
     slug: "website-redesign",
     name: "Website Redesign",
     title: "Website Redesign",
@@ -138,7 +139,56 @@ export type Project = {
 };
 
 // Real projects only (resume + existing portfolio). No invented metrics anywhere.
+// Kamran's own products lead; the earlier portfolio follows unchanged.
 export const projects: Project[] = [
+  {
+    slug: "resumaic",
+    name: "Resumaic",
+    industry: "AI Career Tools · SaaS",
+    role: "Full Stack Developer",
+    services: ["SaaS Platform", "AI Features", "Stripe Billing", "ISR & SEO"],
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Laravel", "Node.js", "Stripe"],
+    blurb:
+      "An AI-powered resume and career platform — resume creation, cover letter generation and ATS compatibility analysis, with Stripe subscriptions, Google OAuth and a Node.js scoring microservice.",
+    hue: 160,
+    caseStudy: true,
+  },
+  {
+    slug: "onlinetoolpot",
+    name: "OnlineToolPot",
+    industry: "Multi-Tool Platform · Programmatic SEO",
+    role: "Full Stack Developer",
+    services: ["Web Application", "Programmatic SEO", "Performance"],
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Redux", "React Query"],
+    blurb:
+      "A scalable multi-tool platform — text tools, file converters, calculators and AI utilities — with programmatic SEO across 130+ tool pages and a mobile PageSpeed score lifted from ~55 to ~90.",
+    hue: 140,
+    caseStudy: true,
+  },
+  {
+    slug: "real-estate-image-qc",
+    name: "Real-Estate Image QC",
+    industry: "AI · Computer Vision",
+    role: "AI / Computer Vision Developer",
+    services: ["Computer Vision", "Dataset Preparation", "AI-Assisted QC"],
+    stack: ["Python", "OpenCV", "PyTorch", "NumPy", "Pandas", "Jupyter", "Google Colab"],
+    blurb:
+      "Experimental computer-vision workflows for real-estate photography — scene classification, image comparison, mask-based analysis and image-quality signals (color, exposure, similarity, HDR) to support AI-assisted quality control.",
+    hue: 30,
+    caseStudy: true,
+  },
+  {
+    slug: "ertakcham",
+    name: "Ertakcham",
+    industry: "Content Platform · Uzbekistan",
+    role: "Freelance Full Stack Developer",
+    services: ["Website Development", "SEO Architecture", "Core Web Vitals"],
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+    blurb:
+      "A production-grade content platform for a client — SEO architecture, Core Web Vitals optimization, responsive design and scalable components, delivered end to end from design to deployment.",
+    hue: 290,
+    caseStudy: true,
+  },
   {
     slug: "huckleberrys-restaurant",
     name: "Huckleberry's Restaurant",
@@ -393,68 +443,61 @@ export const projects: Project[] = [
   },
 ];
 
-// Reverse-chronological by start date. Employment ran Blue-IT → Webinfites →
-// AiPixVisuals; freelancing is a separate track that has run continuously
-// since 2023 and overlaps all three. Any role ending in "Present" is marked
-// current on the timeline.
+// Reverse-chronological by start date. Any role ending in "Present" is
+// marked current on the timeline.
 export const experience = [
   {
-    company: "AiPixVisuals",
-    role: "SEO & Marketing Manager",
-    period: "Jul 2026 — Present",
+    company: "Cross Media Sole",
+    role: "Full Stack Developer",
+    period: "Jan 2025 — Present",
     points: [
-      "Lead SEO and marketing for AiPixVisuals.",
+      "Developed and maintained production web applications with React, Next.js, TypeScript and Tailwind CSS — reusable interfaces, with frontend workflows integrated into backend services.",
+      "Built and integrated REST APIs with Laravel/PHP and Node.js to support application data flows and full-stack product functionality.",
+      "Implemented Incremental Static Regeneration with on-demand revalidation so admin and dashboard updates appear on live pages without full site rebuilds.",
+      "Improved mobile PageSpeed from roughly 55 to 90 through dependency cleanup, dynamic component loading and font optimization; implemented technical and programmatic SEO across production pages.",
     ],
   },
   {
-    company: "Webinfites",
-    role: "SEO Specialist & WordPress Developer",
-    period: "Jan 2025 — Jun 2026",
+    company: "Social Swirl",
+    role: "Frontend Developer Intern",
+    period: "Aug 2024 — Dec 2024",
     points: [
-      "Develop and maintain WordPress websites with Elementor Pro and WooCommerce; deploy to VPS hosting environments.",
-      "Administer VPS servers end-to-end — deployments, DNS, SSL/TLS, backups, security hardening and WAF configuration.",
-      "Conduct technical SEO audits and implement on-page and off-page optimization strategies.",
-      "Keyword research and competitor analysis with SEMrush, Ahrefs, Moz and Ubersuggest.",
-      "Monitor and improve performance via Google Search Console and GA4 — traffic, indexing and ranking trends.",
-      "Apply early-stage AEO and GEO practices for visibility in AI-generated search results.",
-      "Improve Core Web Vitals, page speed and overall website performance.",
-    ],
-  },
-  {
-    company: "Blue-IT Technologies",
-    role: "WordPress Developer & SEO Specialist",
-    period: "Feb 2024 — Mar 2026",
-    points: [
-      "Developed responsive WordPress websites and custom Elementor-based interfaces for international clients.",
-      "After each build, implemented on-page SEO, metadata optimization, internal linking and schema markup.",
-      "Performed technical SEO improvements alongside server maintenance, updates and database administration.",
-      "Collaborated with clients to deliver scalable, search-optimized business solutions.",
-    ],
-  },
-  {
-    company: "Freelance",
-    role: "Web Developer & SEO",
-    period: "2023 — Present",
-    points: [
-      "Independent website development and SEO for direct clients — running continuously since 2023, alongside every agency role above.",
+      "Built reusable React and TypeScript UI components and responsive layouts for social-media management tools during a five-month frontend internship.",
     ],
   },
 ] as const;
 
 export const techEcosystem = {
   development: [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "JavaScript",
+    "Python",
+    "PHP",
+    "SQL",
+    "Tailwind CSS",
+    "Redux",
+    "React Query",
+    "Laravel",
+    "Node.js",
+    "REST APIs",
+    "Authentication APIs",
+    "MySQL",
+    "HTML5",
+    "CSS3",
     "WordPress",
     "Elementor Pro",
     "WooCommerce",
     "JetEngine",
-    "Next.js",
-    "Node.js",
-    "JavaScript",
-    "PHP",
-    "HTML",
-    "CSS",
   ],
   seo: [
+    "On-Page SEO",
+    "Programmatic SEO",
+    "Dynamic Metadata",
+    "Structured Data",
+    "XML Sitemaps",
+    "Core Web Vitals",
     "Google Search Console",
     "GA4",
     "Ahrefs",
@@ -465,6 +508,12 @@ export const techEcosystem = {
     "Schema.org",
   ],
   infrastructure: [
+    "Vercel",
+    "ISR & Revalidation",
+    "Git & GitHub",
+    "Stripe",
+    "Jupyter",
+    "Google Colab",
     "Linux",
     "VPS Hosting",
     "DNS",
@@ -473,6 +522,27 @@ export const techEcosystem = {
     "Cloud Hosting",
     "Backups",
     "Server Hardening",
+  ],
+  aiMl: [
+    "Machine Learning",
+    "Deep Learning",
+    "Computer Vision",
+    "OpenCV",
+    "PyTorch",
+    "Image Processing",
+    "Image Segmentation",
+    "Image Quality Analysis",
+    "Scene Classification",
+    "Image Similarity Analysis",
+    "HDR / Image Enhancement",
+    "Dataset Preparation",
+    "Data Preprocessing",
+    "Model Evaluation",
+    "LLM / API Integration",
+    "Prompt Engineering",
+    "AI Pipelines",
+    "NumPy",
+    "Pandas",
   ],
 } as const;
 

@@ -58,7 +58,7 @@ const SPECIMEN_CARDS = [
   },
   {
     label: site.devSpecialty,
-    body: "Elementor Pro, JetEngine and custom code.",
+    body: "React, TypeScript, Tailwind CSS and Laravel APIs.",
     icon: "M6.5 1 2.2 6.8h3.3L4.8 11l4.3-5.8H5.8z",
   },
 ] as const;
@@ -85,7 +85,7 @@ const SPECIMEN_CODE: CodeLine[] = [
   { ind: 0, raw: "{" },
   { ind: 1, k: "@context", v: "https://schema.org" },
   { ind: 1, k: "@type", v: "ProfessionalService", hi: true },
-  { ind: 1, k: "name", v: "MustafaDev" },
+  { ind: 1, k: "name", v: "KamranDev" },
   { ind: 1, k: "areaServed", v: "Worldwide", last: true },
   { ind: 0, raw: "}" },
 ];
@@ -143,7 +143,7 @@ function SpecimenPage({ wire = false }: { wire?: boolean }) {
             wire ? "border-accent/40 text-transparent" : "border-line text-muted"
           }`}
         >
-          mustafadev.org
+          kamrandev.com
         </span>
         <span
           className={`ml-auto font-mono text-[8px] tracking-[0.16em] text-accent2 ${t}`}
@@ -162,7 +162,7 @@ function SpecimenPage({ wire = false }: { wire?: boolean }) {
               M
             </span>
             <span className="text-[11px] font-semibold leading-none text-ink">
-              Mustafa
+              Kamran
               <span className="font-mono text-[7px] font-medium text-accent2">
                 dev
               </span>
@@ -227,7 +227,7 @@ function SpecimenPage({ wire = false }: { wire?: boolean }) {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/work/citygate-financial-planning.webp"
-                  alt="Citygate Financial Planning website, built and optimised by Fakhar e Mustafa"
+                  alt="Citygate Financial Planning website, built and optimised by Muhammad Kamran"
                   width={880}
                   height={1320}
                   loading="lazy"
@@ -378,7 +378,7 @@ function SpecimenPage({ wire = false }: { wire?: boolean }) {
           <span
             className={`shrink-0 font-mono text-[6px] tracking-[0.14em] text-faint ${t}`}
           >
-            © MUSTAFADEV · LAHORE, PK
+            © KAMRANDEV · LAHORE, PK
           </span>
         </div>
       </div>

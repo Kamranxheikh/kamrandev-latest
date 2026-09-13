@@ -33,7 +33,7 @@ const sources: SourceRow[] = [
         <span className="ai-punc">&lt;</span>
         <span className="ai-tag">h1</span>
         <span className="ai-punc">&gt;</span>
-        <span className="ai-str">Fakhar e Mustafa — Web Developer &amp; SEO Expert in Lahore</span>
+        <span className="ai-str">Muhammad Kamran — Software Developer in Lahore</span>
         <span className="ai-punc">&lt;/</span>
         <span className="ai-tag">h1</span>
         <span className="ai-punc">&gt;</span>
@@ -92,7 +92,7 @@ function MiniPage() {
     <div className="ai-mini" aria-hidden>
       <div className="ai-mini-nav">
         <span className="ai-mini-logo">
-          Mustafa<b>dev</b>
+          Kamran<b>dev</b>
         </span>
         <span className="ai-mini-links">
           <i>Services</i>
@@ -102,7 +102,7 @@ function MiniPage() {
       </div>
 
       <div className="ai-mini-hero">
-        <p className="ai-mini-kicker">Fakhar e Mustafa — Web Developer &amp; SEO Expert</p>
+        <p className="ai-mini-kicker">Muhammad Kamran — Software Developer, AI/ML &amp; Full Stack</p>
         <p className="ai-mini-h1">
           Built to be <em>found</em>.
         </p>
@@ -305,7 +305,7 @@ export function AiSearch() {
                   <span className="label-mono label-mono--faint">source</span>
                   <span className="ai-cite">
                     <span aria-hidden className="ai-cite-dot" />
-                    mustafadev.org
+                    kamrandev.com
                   </span>
                 </div>
               </div>

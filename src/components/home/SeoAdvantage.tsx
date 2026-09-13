@@ -83,7 +83,7 @@ export function SeoAdvantage() {
           </Reveal>
           <Reveal delay={160}>
             <p className="mt-6 text-lg leading-relaxed text-muted">
-              I&apos;ve spent three years doing SEO professionally — audits, keyword
+              I&apos;ve spent the last two years doing SEO alongside development — audits, keyword
               research, Search Console, schema, Core Web Vitals — alongside
               development. So the fundamentals aren&apos;t a service you add later.
               They&apos;re already in the build.
@@ -151,7 +151,7 @@ export function SeoAdvantage() {
                   {/* breadcrumb — clean URL */}
                   <div className="serp-row">
                     <p className="font-mono text-xs tracking-wide text-muted">
-                      mustafadev.org <span className="text-faint">› services › seo</span>
+                      kamrandev.com <span className="text-faint">› services › seo</span>
                     </p>
                     <Pin label={anatomy[0]} delay={150} />
                   </div>
@@ -159,7 +159,7 @@ export function SeoAdvantage() {
                   {/* title line — the real one this page would rank with */}
                   <div className="serp-row mt-2">
                     <p className="serp-title">
-                      SEO-Ready Web Development in Lahore — Fakhar e Mustafa
+                      SEO-Ready Web Development in Lahore — Muhammad Kamran
                     </p>
                     <Pin label={anatomy[1]} delay={300} />
                   </div>

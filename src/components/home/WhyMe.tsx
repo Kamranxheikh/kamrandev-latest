@@ -55,12 +55,12 @@ function StatNumber({ value, pad = 0 }: { value: number; pad?: number }) {
   return <span ref={ref}>{fmt(value, pad)}</span>;
 }
 
-/* Freelancing has run continuously since 2023 (see `experience` in site.ts),
+/* Professional work started in 2024 (see `experience` in site.ts),
    so the timeline readout under the years stat is a fact, not a graphic. */
-const START_YEAR = 2023;
-const YEARS = [2023, 2024, 2025, 2026];
+const START_YEAR = 2024;
+const YEARS = [2024, 2025, 2026];
 
-/** 200 delivered projects, 11 of them named in the portfolio. Both real. */
+/** Every delivered project is named in the portfolio. Both numbers are real. */
 const UNITS = site.projectsShipped;
 const NAMED = projects.length;
 
@@ -70,7 +70,7 @@ const points = [
   { term: "Design", note: "Conversion-focused, shaped around your brand.", beyond: false },
   {
     term: "Development",
-    note: "WordPress at the core — custom code where it earns its place.",
+    note: "Next.js and React at the core — Laravel and Node.js behind them.",
     beyond: false,
   },
   {
@@ -175,7 +175,7 @@ export function WhyMe() {
                     +
                   </span>
                 </p>
-                <p className="why-lab">Years — web development &amp; SEO</p>
+                <p className="why-lab">Years — software development &amp; AI</p>
                 <div className="why-read" aria-hidden>
                   <div className="why-years">
                     <span className="why-years-fill" />
@@ -186,7 +186,7 @@ export function WhyMe() {
                     ))}
                   </ul>
                   <p className="why-foot">
-                    Freelance track open since {START_YEAR} — still running
+                    Building professionally since {START_YEAR} — still going
                   </p>
                 </div>
               </div>

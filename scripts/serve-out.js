@@ -6,7 +6,7 @@
 
    It also owns the host/caching policy the platform layer would otherwise
    need (.htaccess is not welcome in the web-app pipeline):
-   - www.mustafadev.org is 301'd to the bare domain — one canonical host,
+   - www.kamrandev.com is 301'd to the bare domain — one canonical host,
      matching every canonical tag on the site.
    - HTML always revalidates, so a fresh deployment shows up on refresh;
      the content-hashed build assets are cached forever. */
@@ -14,7 +14,7 @@ const http = require("http");
 const handler = require("serve-handler");
 
 const PORT = Number(process.env.PORT) || 3000;
-const CANONICAL_HOST = "mustafadev.org";
+const CANONICAL_HOST = "kamrandev.com";
 
 const server = http.createServer((req, res) => {
   const host = String(req.headers.host || "").toLowerCase();
@@ -43,5 +43,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, "0.0.0.0", () => {
-  console.log(`mustafadev static export serving on http://0.0.0.0:${PORT}`);
+  console.log(`kamrandev static export serving on http://0.0.0.0:${PORT}`);
 });

@@ -21,12 +21,12 @@
 @supports (-webkit-text-stroke: 1px black) {
   .prc-num {
     color: transparent;
-    -webkit-text-stroke: 1px rgba(244, 243, 239, 0.3);
+    -webkit-text-stroke: 1px rgba(243, 236, 226, 0.3);
     transition: -webkit-text-stroke-color 0.6s ease;
   }
 
   .prc-step.is-on .prc-num {
-    -webkit-text-stroke-color: rgba(244, 243, 239, 0.55);
+    -webkit-text-stroke-color: rgba(243, 236, 226, 0.55);
   }
 }
 
@@ -53,7 +53,7 @@
   position: absolute;
   width: 9px;
   height: 9px;
-  border-color: rgba(244, 243, 239, 0.3);
+  border-color: rgba(243, 236, 226, 0.3);
   border-style: solid;
   border-width: 0;
   pointer-events: none;
@@ -183,8 +183,8 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-accent);
-  border: 1px solid rgba(0, 230, 255, 0.45);
-  background: rgba(0, 230, 255, 0.1);
+  border: 1px solid rgba(255, 138, 61, 0.45);
+  background: rgba(255, 138, 61, 0.1);
   border-radius: 3px;
   padding: 0.15rem 0.4rem;
   transform: rotate(-3deg);
@@ -203,7 +203,7 @@
   align-items: center;
   gap: 0.55rem;
   padding: 0.3rem 0.15rem;
-  border-bottom: 1px solid rgba(244, 243, 239, 0.08);
+  border-bottom: 1px solid rgba(243, 236, 226, 0.08);
 }
 
 .prc-check-t {
@@ -230,8 +230,8 @@
   width: 14px;
   height: 14px;
   flex: none;
-  border: 1px solid rgba(0, 230, 255, 0.5);
-  background: rgba(0, 230, 255, 0.14);
+  border: 1px solid rgba(255, 138, 61, 0.5);
+  background: rgba(255, 138, 61, 0.14);
   border-radius: 3px;
   color: var(--color-accent);
 }
@@ -270,10 +270,10 @@ html:not(.js) .prc-tickbox svg {
   border: 1px solid var(--color-line2);
   border-radius: 0.5rem;
   padding: 0.7rem 0.7rem 1.5rem;
-  background-color: rgba(10, 11, 13, 0.6);
+  background-color: rgba(13, 11, 10, 0.6);
   background-image:
-    linear-gradient(to right, rgba(244, 243, 239, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(244, 243, 239, 0.06) 1px, transparent 1px);
+    linear-gradient(to right, rgba(243, 236, 226, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(243, 236, 226, 0.06) 1px, transparent 1px);
   background-size: 16px 16px;
 }
 
@@ -281,7 +281,7 @@ html:not(.js) .prc-tickbox svg {
   position: absolute;
   width: 9px;
   height: 9px;
-  border-color: rgba(240, 180, 41, 0.6);
+  border-color: rgba(232, 200, 114, 0.6);
   border-style: solid;
   border-width: 0;
 }
@@ -380,7 +380,7 @@ html:not(.js) .prc-tickbox svg {
   overflow: hidden;
   border: 1px solid var(--color-line2);
   background:
-    radial-gradient(circle at 74% 26%, rgba(240, 180, 41, 0.9) 0 4px, transparent 5px),
+    radial-gradient(circle at 74% 26%, rgba(232, 200, 114, 0.9) 0 4px, transparent 5px),
     linear-gradient(180deg, #123a4a 0%, #0d2c3a 52%, #0a1c26 100%);
 }
 
@@ -389,7 +389,7 @@ html:not(.js) .prc-tickbox svg {
   content: "";
   position: absolute;
   bottom: 0;
-  border-bottom: 18px solid rgba(0, 230, 255, 0.34);
+  border-bottom: 18px solid rgba(255, 138, 61, 0.34);
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
 }
@@ -401,7 +401,7 @@ html:not(.js) .prc-tickbox svg {
 .prc-wire-img::after {
   right: 0;
   border-bottom-width: 24px;
-  border-bottom-color: rgba(0, 230, 255, 0.2);
+  border-bottom-color: rgba(255, 138, 61, 0.2);
   border-left-width: 20px;
   border-right-width: 20px;
 }
@@ -446,7 +446,7 @@ html:not(.js) .prc-tickbox svg {
 }
 
 .prc-wire-thumbs i:nth-child(1) {
-  background: linear-gradient(150deg, rgba(0, 230, 255, 0.45), rgba(0, 230, 255, 0.1) 62%, rgba(10, 11, 13, 0.9));
+  background: linear-gradient(150deg, rgba(255, 138, 61, 0.45), rgba(255, 138, 61, 0.1) 62%, rgba(13, 11, 10, 0.9));
 }
 
 .prc-wire-thumbs i:nth-child(2) {
@@ -454,7 +454,7 @@ html:not(.js) .prc-tickbox svg {
 }
 
 .prc-wire-thumbs i:nth-child(3) {
-  background: linear-gradient(150deg, rgba(240, 180, 41, 0.4), rgba(20, 22, 26, 0.95) 70%);
+  background: linear-gradient(150deg, rgba(232, 200, 114, 0.4), rgba(20, 22, 26, 0.95) 70%);
 }
 
 .prc-wire-row {
@@ -539,7 +539,7 @@ html:not(.js) .prc-tickbox svg {
   border: 1px solid var(--color-line2);
   border-radius: 0.5rem;
   overflow: hidden;
-  background: rgba(10, 11, 13, 0.75);
+  background: rgba(13, 11, 10, 0.75);
 }
 
 .prc-tabs {
@@ -561,7 +561,7 @@ html:not(.js) .prc-tickbox svg {
 
 .prc-tab.is-on {
   color: var(--color-ink);
-  background: rgba(10, 11, 13, 0.9);
+  background: rgba(13, 11, 10, 0.9);
   box-shadow: inset 0 -2px 0 0 var(--color-accent);
 }
 
@@ -583,7 +583,7 @@ html:not(.js) .prc-tickbox svg {
 }
 
 .prc-code li.is-hit {
-  background: rgba(0, 230, 255, 0.07);
+  background: rgba(255, 138, 61, 0.07);
   box-shadow: inset 2px 0 0 0 var(--color-accent);
 }
 
@@ -591,7 +591,7 @@ html:not(.js) .prc-tickbox svg {
   flex: none;
   width: 0.85rem;
   text-align: right;
-  color: rgba(244, 243, 239, 0.34);
+  color: rgba(243, 236, 226, 0.34);
   user-select: none;
 }
 
@@ -601,7 +601,7 @@ html:not(.js) .prc-tickbox svg {
 }
 
 /* Syntax palette — every token reads as content, never as a grey bar. */
-.prc-p { color: rgba(244, 243, 239, 0.48); }
+.prc-p { color: rgba(243, 236, 226, 0.48); }
 .prc-t { color: var(--color-accent2); }
 .prc-a { color: var(--color-muted); }
 .prc-s { color: var(--color-ink); }
@@ -641,8 +641,8 @@ html:not(.js) .prc-tickbox svg {
   display: inline-flex;
   align-items: center;
   gap: 0.22rem;
-  border: 1px solid rgba(0, 230, 255, 0.42);
-  background: rgba(0, 230, 255, 0.12);
+  border: 1px solid rgba(255, 138, 61, 0.42);
+  background: rgba(255, 138, 61, 0.12);
   border-radius: 999px;
   padding: 0.14rem 0.42rem;
   font-family: var(--font-mono);
@@ -668,7 +668,7 @@ html:not(.js) .prc-tickbox svg {
   border: 1px solid var(--color-line2);
   border-radius: 0.5rem;
   overflow: hidden;
-  background: rgba(10, 11, 13, 0.75);
+  background: rgba(13, 11, 10, 0.75);
 }
 
 .prc-term-head {
@@ -690,7 +690,7 @@ html:not(.js) .prc-tickbox svg {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(244, 243, 239, 0.3);
+  background: rgba(243, 236, 226, 0.3);
   flex: none;
 }
 
@@ -729,7 +729,7 @@ html:not(.js) .prc-tickbox svg {
   align-items: center;
   gap: 0.45rem;
   border-top: 1px solid var(--color-line);
-  background: linear-gradient(90deg, rgba(0, 230, 255, 0.18), rgba(0, 230, 255, 0.03));
+  background: linear-gradient(90deg, rgba(255, 138, 61, 0.18), rgba(255, 138, 61, 0.03));
   padding: 0.4rem 0.5rem;
 }
 
@@ -738,7 +738,7 @@ html:not(.js) .prc-tickbox svg {
   height: 6px;
   border-radius: 50%;
   background: var(--color-accent);
-  box-shadow: 0 0 8px rgba(0, 230, 255, 0.8);
+  box-shadow: 0 0 8px rgba(255, 138, 61, 0.8);
   flex: none;
 }
 
@@ -828,11 +828,11 @@ html:not(.js) .prc-tickbox svg {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: rgba(244, 243, 239, 0.26);
+  background: rgba(243, 236, 226, 0.26);
 }
 
 .wrk-dots span:first-child {
-  background: rgba(244, 243, 239, 0.38);
+  background: rgba(243, 236, 226, 0.38);
 }
 
 /* Chrome bar address */
@@ -847,7 +847,7 @@ html:not(.js) .prc-tickbox svg {
   font-size: 0.625rem;
   letter-spacing: 0.04em;
   color: var(--color-muted);
-  background: rgba(10, 11, 13, 0.6);
+  background: rgba(13, 11, 10, 0.6);
   border: 1px solid var(--color-line);
   border-radius: 999px;
   padding: 0.2rem 0.7rem;
@@ -894,10 +894,10 @@ html:not(.js) .prc-tickbox svg {
   .wrk-plate:hover .wrk-frame,
   .wrk-plate:focus-visible .wrk-frame {
     transform: translateY(-4px);
-    border-color: rgba(0, 230, 255, 0.4);
+    border-color: rgba(255, 138, 61, 0.4);
     box-shadow:
       0 34px 80px -34px rgba(0, 0, 0, 0.95),
-      0 10px 30px -18px rgba(0, 230, 255, 0.22);
+      0 10px 30px -18px rgba(255, 138, 61, 0.22);
   }
 
   .wrk-plate:hover .wrk-shot,
@@ -1003,10 +1003,10 @@ html:not(.js) .prc-tickbox svg {
   border-radius: 24px;
   border: 1px solid var(--color-line2);
   background:
-    radial-gradient(90% 70% at 12% 0%, rgba(0, 230, 255, 0.06) 0%, transparent 55%),
-    radial-gradient(60% 55% at 88% 100%, rgba(0, 230, 255, 0.035) 0%, transparent 60%),
-    linear-gradient(rgba(244, 243, 239, 0.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(244, 243, 239, 0.028) 1px, transparent 1px),
+    radial-gradient(90% 70% at 12% 0%, rgba(255, 138, 61, 0.06) 0%, transparent 55%),
+    radial-gradient(60% 55% at 88% 100%, rgba(255, 138, 61, 0.035) 0%, transparent 60%),
+    linear-gradient(rgba(243, 236, 226, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(243, 236, 226, 0.028) 1px, transparent 1px),
     linear-gradient(180deg, var(--color-surface) 0%, var(--color-bg2) 100%);
   background-size:
     auto,
@@ -1042,12 +1042,12 @@ html:not(.js) .prc-tickbox svg {
   width: clamp(18px, 2.4vw, 30px);
   height: 3px;
   border-radius: 999px;
-  background: rgba(244, 243, 239, 0.13);
+  background: rgba(243, 236, 226, 0.13);
 }
 
 .prc-meter i.is-lit {
   background: var(--color-accent);
-  box-shadow: 0 0 9px rgba(0, 230, 255, 0.55);
+  box-shadow: 0 0 9px rgba(255, 138, 61, 0.55);
 }
 
 .prc-out {
@@ -1139,10 +1139,10 @@ html:not(.js) .prc-tickbox svg {
   line-height: 1;
   letter-spacing: -0.04em;
   color: transparent;
-  background: linear-gradient(180deg, rgba(0, 230, 255, 0.09), rgba(244, 243, 239, 0.02) 70%);
+  background: linear-gradient(180deg, rgba(255, 138, 61, 0.09), rgba(243, 236, 226, 0.02) 70%);
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-stroke: 1px rgba(244, 243, 239, 0.14);
+  -webkit-text-stroke: 1px rgba(243, 236, 226, 0.14);
   user-select: none;
   pointer-events: none;
 }

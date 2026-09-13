@@ -130,7 +130,7 @@ function SheetFace({ layer }: { layer: string }) {
                   className="absolute inset-1 rounded-[2px]"
                   style={{
                     background:
-                      "linear-gradient(150deg, rgba(0,230,255,0.28), rgba(240,180,41,0.18) 70%, rgba(244,243,239,0.06))",
+                      "linear-gradient(150deg, rgba(255, 138, 61,0.28), rgba(232, 200, 114,0.18) 70%, rgba(243, 236, 226,0.06))",
                   }}
                 />
                 <span className="relative font-mono text-[5.5px] leading-none tracking-[0.14em] text-ink">
@@ -267,7 +267,7 @@ function MiniPage({ live = false }: { live?: boolean }) {
       <div className="flex items-center gap-1 border-b border-line pb-1.5">
         <span className={`h-[8px] w-[8px] rounded-[2px] ${mark}`} />
         <span className="text-[7px] font-semibold leading-none text-ink">
-          Mustafa
+          Kamran
         </span>
         <span className="ml-auto flex gap-1.5 text-[6px] leading-none text-muted">
           <span>Work</span>
@@ -310,7 +310,7 @@ function MiniPage({ live = false }: { live?: boolean }) {
         ))}
       </div>
       <span className="mt-1 block font-mono text-[5.5px] leading-none tracking-[0.14em] text-faint">
-        MUSTAFADEV.ORG
+        KAMRANDEV.COM
       </span>
     </div>
   );

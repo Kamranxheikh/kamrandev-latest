@@ -1,6 +1,6 @@
-# MustafaDev Design System — MASTER
+# KamranDev Design System — MASTER
 
-Single source of truth for the mustafadev.org rebuild. Every page and component follows this.
+Single source of truth for the kamrandev.com rebuild. Every page and component follows this.
 
 ## Concept
 
@@ -18,18 +18,18 @@ purple gradients.
 
 | Token        | Value                  | Use |
 |--------------|------------------------|-----|
-| `bg`         | `#0A0B0D`              | Page ground |
-| `bg2`        | `#0E1013`              | Alternate section ground |
-| `surface`    | `#14161A`              | Cards, browser chrome |
-| `surface2`   | `#1A1D22`              | Hover / raised |
-| `line`       | `rgba(244,243,239,.09)`| Hairlines, borders |
-| `line2`      | `rgba(244,243,239,.16)`| Hover borders |
-| `ink`        | `#F4F3EF`              | Primary text (warm off-white) |
-| `muted`      | `#A9AEB8`              | Secondary text (≥ 4.5:1 on bg) |
-| `faint`      | `#62666E`              | Decorative/meta only, never body text |
-| `accent`     | `#00E6FF`              | Brand cyan — taken straight from the logo mark |
-| `accent2`    | `#66EEFF`              | Accent hover / glow tint / emphasized serif words |
-| `amber`      | `#F0B429`              | Rare secondary highlight (design phase, warnings) |
+| `bg`         | `#0d0b0a`              | Page ground |
+| `bg2`        | `#12100e`              | Alternate section ground |
+| `surface`    | `#1a1714`              | Cards, browser chrome |
+| `surface2`   | `#221e1a`              | Hover / raised |
+| `line`       | `rgba(243, 236, 226,.09)`| Hairlines, borders |
+| `line2`      | `rgba(243, 236, 226,.16)`| Hover borders |
+| `ink`        | `#f3ece2`              | Primary text (warm off-white) |
+| `muted`      | `#b3aa9d`              | Secondary text (≥ 4.5:1 on bg) |
+| `faint`      | `#6b645b`              | Decorative/meta only, never body text |
+| `accent`     | `#ff8a3d`              | Brand copper — taken straight from the logo mark |
+| `accent2`    | `#ffab73`              | Accent hover / glow tint / emphasized serif words |
+| `amber`      | `#e8c872`              | Rare secondary highlight (design phase, warnings) |
 
 Rule: one accent per screen. Amber appears at most once per viewport. Contrast ≥ 4.5:1 for all
 text; `faint` only for decorative annotations at ≥ 14px mono uppercase.
@@ -64,10 +64,10 @@ text; `faint` only for decorative annotations at ≥ 14px mono uppercase.
 
 ## Components
 
-- **Logo:** square mark (brackets knocked out of a solid cyan fill) + `Mustafa` wordmark with
+- **Logo:** faceted copper K mark (arms double as a `>` cursor, diamond full stop) + `Kamran` wordmark with
   `dev` set small in mono beneath it, left-aligned. Brackets ease open on hover and blink open
   once every 7s at idle; `dev` tracks wider on hover. All transform-only, killed by reduced-motion.
-- **Buttons:** pill. Primary = accent fill + `#001D26` text. Ghost = hairline border, ink text.
+- **Buttons:** pill. Primary = accent fill + `#2a1200` text. Ghost = hairline border, ink text.
   Min target 44×44. Visible focus ring (`accent`, 2px offset).
 - **Cards:** `surface` + hairline border; hover = border→`line2`, translateY(−2px), 200ms.
 - **Chips:** mono 11px uppercase, hairline pill.

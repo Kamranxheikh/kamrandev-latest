@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "Practical guides on website development and SEO — build costs, choosing a developer, WordPress vs custom, SEO-friendly builds, Core Web Vitals and redesigns.",
   alternates: { canonical: "/insights/" },
   openGraph: {
-    title: "Insights — MustafaDev",
+    title: "Insights — KamranDev",
     description: "Practical guides on website development, SEO, WordPress and performance.",
     url: "/insights/",
   },
@@ -54,7 +54,7 @@ export default function InsightsPage() {
           </>
         }
         lede="Costs, trade-offs, checklists and the technical foundations — written
-          in plain language, from three years of building and ranking websites."
+          in plain language, from two years of building and ranking websites."
       />
 
       <section className="container-x section-pad" aria-label="All articles">

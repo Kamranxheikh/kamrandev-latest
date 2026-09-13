@@ -697,7 +697,7 @@ function Artifact({ i, bare = false }: { i: number; bare?: boolean }) {
     <Plate key="s" cap="Search" tag="Rich result" bare={bare}>
       <div className="flex flex-col gap-[4px] leading-none">
         <span className="font-mono text-[7px] text-faint">
-          mustafadev.org › services
+          kamrandev.com › services
         </span>
         <span className="text-[10px] font-medium leading-tight text-accent2">
           SEO &amp; AI Search Visibility
@@ -755,7 +755,7 @@ function Artifact({ i, bare = false }: { i: number; bare?: boolean }) {
         </span>
         <span className="mt-[2px] flex items-center gap-1">
           <span className="rounded-full border border-accent/50 bg-accent/10 px-1.5 py-[2px] font-mono text-[6.5px] leading-none text-accent2">
-            mustafadev.org
+            kamrandev.com
           </span>
           <span className="font-mono text-[6px] text-faint">SOURCE 1 OF 3</span>
         </span>

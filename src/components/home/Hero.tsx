@@ -781,7 +781,7 @@ export function Hero({ showcase }: { showcase: Showcase[] }) {
       name: site.name,
       industry: "Portfolio",
       image: "",
-      url: "mustafadev.org/work/",
+      url: "kamrandev.com/work/",
     };
 
   /* Depth transform + emphasis for one sheet ------------------------------ */

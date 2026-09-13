@@ -21,8 +21,8 @@ import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment
    Client-only; imported dynamically inside HeroMonument's effect. The
    font JSON is fetched in parallel with this chunk and passed in.      */
 
-const ACCENT = 0x3fe0ff;
-const WORD = "MUSTAFA";
+const ACCENT = 0xff8a3d;
+const WORD = "KAMRAN";
 
 export type MonumentScene = {
   intro(): gsap.core.Timeline;
@@ -43,12 +43,12 @@ export function createMonumentScene(
     powerPreference: "high-performance",
   });
   renderer.setPixelRatio(dpr);
-  renderer.setClearColor(0x050709, 1);
+  renderer.setClearColor(0x080605, 1);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 0.98;
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0x050709, 15, 34);
+  scene.fog = new THREE.Fog(0x080605, 15, 34);
 
   /* ————— night sky: two layers of stars, far behind the stage ————— */
 
@@ -105,7 +105,7 @@ export function createMonumentScene(
   // distance fade laid over the floor so sheen + reflection die out
   const dim = new THREE.Mesh(
     new THREE.PlaneGeometry(90, 90),
-    new THREE.MeshBasicMaterial({ color: 0x050709, transparent: true, opacity: 0.66 }),
+    new THREE.MeshBasicMaterial({ color: 0x080605, transparent: true, opacity: 0.66 }),
   );
   dim.rotation.x = -Math.PI / 2;
   dim.position.y = 0.012;
@@ -219,8 +219,8 @@ export function createMonumentScene(
     (ctx, w, h) => {
       const g = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2);
       g.addColorStop(0, "rgba(255,255,255,1)");
-      g.addColorStop(0.25, "rgba(190,230,255,0.55)");
-      g.addColorStop(1, "rgba(190,230,255,0)");
+      g.addColorStop(0.25, "rgba(255,214,186,0.55)");
+      g.addColorStop(1, "rgba(255,214,186,0)");
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
     },
@@ -394,7 +394,7 @@ export function createMonumentScene(
   };
   syncMirror();
 
-  // the brand mark: a cyan diamond as the full stop
+  // the brand mark: a copper diamond as the full stop
   const dot = new THREE.Mesh(
     new THREE.OctahedronGeometry(0.3),
     new THREE.MeshStandardMaterial({

@@ -13,7 +13,7 @@ export const articles: ArticleContent[] = [
         "heading": "SEO-Friendly Is a Build Quality, Not a Plugin",
         "paragraphs": [
           "\"SEO-friendly\" gets used loosely, so here is a working definition. A website is SEO-friendly when search engines can find every page, understand what each page is about, and serve it to users quickly on any device. Nothing on that list is a marketing task. Every item is a construction decision.",
-          "I build websites for a living — WordPress and custom code — and for three years I have also done the SEO work that follows a build: metadata, schema, internal linking, technical audits, Core Web Vitals fixes. Doing the second job taught me exactly what the first job usually gets wrong. This article walks through the technical foundations in plain terms, so you know what to ask for — whether you hire me or someone else."
+          "I build websites for a living — WordPress and custom code — and for two years I have also done the SEO work that follows a build: metadata, schema, internal linking, technical audits, Core Web Vitals fixes. Doing the second job taught me exactly what the first job usually gets wrong. This article walks through the technical foundations in plain terms, so you know what to ask for — whether you hire me or someone else."
         ]
       },
       {
@@ -69,7 +69,7 @@ export const articles: ArticleContent[] = [
         "paragraphs": [
           "Every item above is cheapest on day one. Architecture set during planning costs nothing extra; restructuring a live site is a migration project. Schema added during the build takes hours; retrofitting it across a finished site with tangled markup can take longer than the original build. This is the whole argument for SEO-friendly web development as a construction standard rather than a service you buy later.",
           "Before you hire any developer — including me — ask these questions and expect specific answers:",
-          "Everything in this article is my default process, not an upsell. Architecture and URLs are settled in planning, semantic markup and schema go in during development, internal linking follows the content map, and performance is verified against Core Web Vitals on servers I administer myself. If you have a new build or a website redesign coming, I am happy to walk through how these foundations would apply to your project — reach me at info@mustafadev.org or +92 313 1483233."
+          "Everything in this article is my default process, not an upsell. Architecture and URLs are settled in planning, semantic markup and schema go in during development, internal linking follows the content map, and performance is verified against Core Web Vitals on servers I administer myself. If you have a new build or a website redesign coming, I am happy to walk through how these foundations would apply to your project — reach me at kamranshakh841@gmail.com or +92 320 6899684."
         ],
         "bullets": [
           "How will the URL structure be organized, and who maps the redirects if any URLs change?",
@@ -139,7 +139,7 @@ export const articles: ArticleContent[] = [
       {
         "heading": "Why WordPress sites get slow",
         "paragraphs": [
-          "WordPress itself is not slow. Most slow WordPress sites got that way through a series of individually reasonable decisions, and after three years of building and auditing them, I see the same causes on nearly every audit.",
+          "WordPress itself is not slow. Most slow WordPress sites got that way through a series of individually reasonable decisions, and after two years of building and auditing them, I see the same causes on nearly every audit.",
           "None of these problems is exotic. That is the good news: common causes have known fixes."
         ],
         "bullets": [
@@ -263,7 +263,7 @@ export const articles: ArticleContent[] = [
         "paragraphs": [
           "Whatever you spend, some things are non-negotiable. You should own the domain, the hosting, and every account. The site should pass Core Web Vitals on mobile, ship with clean metadata and schema markup, run automatic offsite backups, and come with documented access to everything.",
           "That list is my baseline, not a premium tier. I build WordPress sites — from brochure sites to WooCommerce stores — with the SEO and performance foundation engineered in from the first line, because retrofitting it later always costs more than doing it once.",
-          "If you are pricing a new build, a redesign of an underperforming site, or a rescue of a cheap one, write to me at info@mustafadev.org with what the site needs to do. I will tell you what it should cost and exactly what that number includes."
+          "If you are pricing a new build, a redesign of an underperforming site, or a rescue of a cheap one, write to me at kamranshakh841@gmail.com with what the site needs to do. I will tell you what it should cost and exactly what that number includes."
         ]
       }
     ],
@@ -362,7 +362,7 @@ export const articles: ArticleContent[] = [
         "paragraphs": [
           "Some signals should end the conversation regardless of price: a guarantee of first-page rankings, refusal to share live portfolio URLs, resistance to giving you admin access, a quote with no written scope, or vagueness about plugins and hosting. Each of these predicts a specific, expensive problem later.",
           "A good process feels plain by comparison. You get a written scope, a realistic timeline, questions about your business before any design talk, and technical decisions explained in ordinary language. When a good developer says no to a request, they tell you why.",
-          "If you are comparing developers right now, use this list on me too. My WordPress development and website redesign work is meant to pass every check on this page — ask me the five SEO questions above and I will answer them in writing at info@mustafadev.org."
+          "If you are comparing developers right now, use this list on me too. My WordPress development and website redesign work is meant to pass every check on this page — ask me the five SEO questions above and I will answer them in writing at kamranshakh841@gmail.com."
         ]
       }
     ],
@@ -463,7 +463,7 @@ export const articles: ArticleContent[] = [
         "paragraphs": [
           "Whichever platform you choose, the fundamentals do not change. The site has to load fast, render content search engines and AI systems can read, carry correct schema markup, and sit on infrastructure that stays up. I engineer those in from the first commit on both stacks — SEO-friendly development is how I build, not a package added after launch.",
           "My honest default: most businesses asking this question need WordPress development done with discipline, and they should be suspicious of anyone pushing a custom build for a ten-page site. But when the project is a product, I build it as one, in Next.js and Node, on infrastructure I manage myself.",
-          "If you are weighing the two for a specific project, describe what the site needs to do and I will tell you plainly which way I would build it — including when the answer is the cheaper one. Write to info@mustafadev.org."
+          "If you are weighing the two for a specific project, describe what the site needs to do and I will tell you plainly which way I would build it — including when the answer is the cheaper one. Write to kamranshakh841@gmail.com."
         ]
       }
     ],
@@ -486,7 +486,7 @@ export const articles: ArticleContent[] = [
     "slug": "website-redesign-checklist",
     "title": "The Website Redesign Checklist",
     "metaTitle": "Website Redesign Checklist: Relaunch Without Losing Rankings",
-    "metaDescription": "A website redesign checklist from a web developer and SEO expert: URL inventory, 301 redirect maps, content mapping, pre-launch QA, and GSC monitoring.",
+    "metaDescription": "A website redesign checklist from a full stack developer: URL inventory, 301 redirect maps, content mapping, pre-launch QA, and GSC monitoring.",
     "excerpt": "Most redesigns lose rankings because of missing redirects and deleted content, not bad design. This is the checklist I follow to relaunch a site safely.",
     "sections": [
       {
@@ -554,7 +554,7 @@ export const articles: ArticleContent[] = [
           "Submit the new XML sitemap in Google Search Console on launch day. Then watch three reports: page indexing for a spike in 404s or newly excluded pages, the performance report for movement in clicks and impressions on your most valuable pages, and Core Web Vitals as real-user data accumulates.",
           "Some fluctuation in the first weeks is normal while Google recrawls the site. A steady decline on pages that previously ranked is not; it usually points to a missed redirect or removed content, and the earlier you catch it, the easier it is to fix. I keep monitoring every redesign I launch for weeks afterward, because launch day is the start of the verification process, not the end of the project.",
           "The short version: inventory before you design, redirect one-to-one, preserve the content that earned the rankings, build fast on staging, run the QA checklist twice, and watch Search Console until the data confirms the move worked.",
-          "If your site needs a redesign and you cannot afford to lose the search visibility it already has, this is exactly the process I run. I handle the audit, the redirect map, the WordPress build, and the post-launch monitoring as one job, because splitting them between different people is where rankings fall through the cracks. Reach me at info@mustafadev.org."
+          "If your site needs a redesign and you cannot afford to lose the search visibility it already has, this is exactly the process I run. I handle the audit, the redirect map, the WordPress build, and the post-launch monitoring as one job, because splitting them between different people is where rankings fall through the cracks. Reach me at kamranshakh841@gmail.com."
         ]
       }
     ],

@@ -11,11 +11,11 @@ import { FinalCta } from "@/components/FinalCta";
 export const metadata: Metadata = {
   title: "Work — Website Development & SEO Portfolio",
   description:
-    "Website development and SEO projects for restaurants, financial services, SaaS, e-learning and content platforms — WordPress, WooCommerce and custom builds.",
+    "Full stack projects — AI SaaS, multi-tool platforms and content sites on Next.js and Laravel, plus WordPress and WooCommerce builds for restaurants, financial services and e-learning.",
   alternates: { canonical: "/work/" },
   openGraph: {
-    title: "Work — MustafaDev Portfolio",
-    description: "Real projects for real businesses across industries.",
+    title: "Work — KamranDev Portfolio",
+    description: "Real products and real client sites across industries.",
     url: "/work/",
   },
 };
@@ -27,9 +27,9 @@ const crumbs = [
 
 /** The three screenshots fanned in the hero — real builds, no mockups. */
 const FAN = [
-  { slug: "rose-wealth", name: "Rose Wealth" },
-  { slug: "huckleberrys-restaurant", name: "Huckleberry’s" },
-  { slug: "prophero-real-estate-crm", name: "Prophero CRM" },
+  { slug: "resumaic", name: "Resumaic" },
+  { slug: "onlinetoolpot", name: "OnlineToolPot" },
+  { slug: "ertakcham", name: "Ertakcham" },
 ];
 
 export default function WorkPage() {
@@ -64,7 +64,7 @@ export default function WorkPage() {
             Real projects, <em>real businesses</em>
           </>
         }
-        lede="Restaurants, financial firms, SaaS products, e-learning and content
+        lede="AI SaaS products, tool platforms and content sites — plus restaurants, financial firms and e-learning
           platforms. Different industries, one standard: websites that look
           right, load fast and can be found."
         aside={
@@ -163,7 +163,7 @@ export default function WorkPage() {
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={`/work/${p.slug}.webp`}
-                        alt={`${p.name} website — built by Fakhar e Mustafa`}
+                        alt={`${p.name} website — built by Muhammad Kamran`}
                         width={880}
                         height={1320}
                         loading="lazy"

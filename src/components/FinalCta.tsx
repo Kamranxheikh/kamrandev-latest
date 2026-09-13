@@ -16,7 +16,7 @@ export function FinalCta() {
     >
       <div className="grid-bg absolute inset-0" aria-hidden />
       <div className="cta-pool" aria-hidden />
-      {/* The wolf, bled off the right edge behind the frame — decoration only. */}
+      {/* The mark, bled off the right edge behind the frame — decoration only. */}
       <LogoMark className="logo-watermark logo-watermark--cta" />
 
       <Reveal className="cta-frame">

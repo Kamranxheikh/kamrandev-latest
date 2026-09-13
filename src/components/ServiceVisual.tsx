@@ -16,7 +16,7 @@ function Frame({ children, label }: { children: React.ReactNode; label: string }
           className="absolute inset-0 opacity-50"
           style={{
             background:
-              "radial-gradient(120% 90% at 85% 0%, rgba(0,230,255,0.10), transparent 60%)",
+              "radial-gradient(120% 90% at 85% 0%, rgba(255, 138, 61,0.10), transparent 60%)",
           }}
         />
         <div className="relative h-full">{children}</div>
@@ -49,7 +49,7 @@ export function ServiceVisual({ slug }: { slug: string }) {
             </div>
             <div className="flex flex-col gap-3">
               <div className="flex gap-2">
-                {["#00E6FF", "#F4F3EF", "#F0B429"].map((c) => (
+                {["#ff8a3d", "#f3ece2", "#e8c872"].map((c) => (
                   <span key={c} className="h-8 w-8 rounded-full" style={{ background: c }} />
                 ))}
               </div>
@@ -113,14 +113,14 @@ export function ServiceVisual({ slug }: { slug: string }) {
                 <polyline
                   points="0,72 30,58 60,64 90,38 120,44 150,20 200,10"
                   fill="none"
-                  stroke="#00E6FF"
+                  stroke="#ff8a3d"
                   strokeWidth="2"
                   vectorEffect="non-scaling-stroke"
                 />
                 <polyline
                   points="0,82 30,76 60,78 90,66 120,70 150,58 200,52"
                   fill="none"
-                  stroke="rgba(244,243,239,0.2)"
+                  stroke="rgba(243, 236, 226,0.2)"
                   strokeWidth="2"
                   vectorEffect="non-scaling-stroke"
                 />
@@ -190,12 +190,12 @@ export function ServiceVisual({ slug }: { slug: string }) {
                 ANSWER ENGINE
               </span>
               <span className="rounded-md border border-line2 bg-surface px-2.5 py-1.5 text-[11px] leading-snug text-ink">
-                Who builds SEO-ready WordPress sites in Lahore?
+                Who builds SEO-ready Next.js apps in Lahore?
               </span>
               <span className="text-[11px] leading-relaxed text-muted">
-                Fakhar e Mustafa is a web developer and SEO expert in Lahore who
-                builds WordPress sites with technical SEO engineered into the
-                build
+                Muhammad Kamran is a software developer in Lahore who builds
+                Next.js and React applications with technical SEO engineered
+                into the build
                 <span className="align-super font-mono text-[8px] text-accent2">
                   [1]
                 </span>
@@ -207,7 +207,7 @@ export function ServiceVisual({ slug }: { slug: string }) {
                     M
                   </span>
                   <span className="font-mono text-[9px] leading-none text-accent2">
-                    mustafadev.org
+                    kamrandev.com
                   </span>
                 </span>
                 <span className="font-mono text-[9px] leading-none text-faint">
@@ -264,10 +264,10 @@ export function ServiceVisual({ slug }: { slug: string }) {
                 </span>
                 <span className="min-w-0 leading-tight">
                   <span className="block truncate text-[10px] text-ink">
-                    mustafadev.org
+                    kamrandev.com
                   </span>
                   <span className="block truncate font-mono text-[8px] text-muted">
-                    https://mustafadev.org › seo
+                    https://kamrandev.com › seo
                   </span>
                 </span>
               </span>

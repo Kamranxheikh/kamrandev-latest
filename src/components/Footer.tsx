@@ -13,7 +13,7 @@ const company = [
 export function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-line bg-bg2">
-      {/* The wolf, bled off the lower-right corner — decoration only. */}
+      {/* The mark, bled off the lower-right corner — decoration only. */}
       <LogoMark className="logo-watermark logo-watermark--footer" />
 
       <div className="container-x section-pad relative z-10 !pb-10">

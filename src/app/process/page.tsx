@@ -50,10 +50,10 @@ const phases = [
     name: "Develop",
     tagline: "Clean, semantic, maintainable code",
     body: [
-      "For most businesses I build on WordPress — my core development specialty — with Elementor Pro, JetEngine and WooCommerce, kept lean, secure and easy for you to edit. When the project is an application, I build custom with Next.js and Node.js.",
+      "For applications and SaaS products I build with React, Next.js and TypeScript on the front end and Laravel or Node.js behind it — my core stack. For content-led business sites I also build on WordPress with Elementor Pro, JetEngine and WooCommerce, kept lean, secure and easy for you to edit.",
       "Either way the markup is semantic, the heading structure is correct, images are optimized, and the build is responsive from the smallest screen up. This is where most SEO problems are born — so this is where I prevent them.",
     ],
-    outputs: ["WordPress / custom build", "Semantic HTML structure", "Mobile-first responsive", "Editable CMS setup"],
+    outputs: ["Next.js / WordPress build", "Semantic HTML structure", "Mobile-first responsive", "Editable CMS setup"],
   },
   {
     n: "04",

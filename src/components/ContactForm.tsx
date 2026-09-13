@@ -4,10 +4,12 @@ import { useState, type FormEvent } from "react";
 import { site } from "@/lib/site";
 
 const projectTypes = [
+  "Web application / SaaS",
+  "Next.js / React frontend",
+  "AI / ML feature",
   "Business website",
   "WordPress website",
   "E-commerce store",
-  "Web application / SaaS",
   "Website redesign",
   "Something else",
 ];
@@ -27,7 +29,7 @@ export function ContactForm() {
     const message = String(data.get("message") ?? "");
     const subject = encodeURIComponent(`New project: ${type} — from ${name}`);
     const body = encodeURIComponent(
-      `Hi Mustafa,\n\nProject type: ${type}\nName: ${name}\nReply-to: ${email}\n\n${message}\n`,
+      `Hi Kamran,\n\nProject type: ${type}\nName: ${name}\nReply-to: ${email}\n\n${message}\n`,
     );
     window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
   };

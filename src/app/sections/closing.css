@@ -178,7 +178,7 @@
 
 .xp-dot--live {
   background: var(--color-accent);
-  box-shadow: 0 0 12px rgba(0, 230, 255, 0.55);
+  box-shadow: 0 0 12px rgba(255, 138, 61, 0.55);
 }
 
 .xp-dot--live::after {
@@ -186,7 +186,7 @@
   position: absolute;
   inset: -5px;
   border-radius: 50%;
-  border: 1px solid rgba(0, 230, 255, 0.55);
+  border: 1px solid rgba(255, 138, 61, 0.55);
   animation: xp-ping 2.4s var(--ease-out-expo) infinite;
 }
 
@@ -203,7 +203,7 @@
 }
 
 .xp-chip {
-  border-color: rgba(0, 230, 255, 0.4);
+  border-color: rgba(255, 138, 61, 0.4);
   color: var(--color-accent);
 }
 
@@ -386,7 +386,7 @@
   opacity: 0.06;
 }
 
-/* Eyebrow: the wolf signs the closing frame before the headline */
+/* Eyebrow: the mark signs the closing frame before the headline */
 .cta-eyebrow {
   display: flex;
   align-items: center;

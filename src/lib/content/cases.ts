@@ -3,6 +3,140 @@ import type { CaseStudyContent } from "./types";
 // Generated content — reviewed and assembled from the content pipeline.
 export const caseStudies: CaseStudyContent[] = [
   {
+    "slug": "resumaic",
+    "metaTitle": "Resumaic Case Study | AI Resume & Career SaaS Platform",
+    "metaDescription": "How I built Resumaic, a full-stack SaaS for AI-powered resume creation, cover letters and ATS analysis — Next.js, Laravel, Node.js, Stripe billing, Google OAuth and ISR with on-demand revalidation.",
+    "summary": "Resumaic is a full-stack SaaS platform for AI-powered resume creation, cover letter generation and ATS compatibility analysis. I built the product end to end: a React and Next.js frontend in TypeScript and Tailwind CSS, a Laravel backend with a Node.js microservice for ATS scoring and resume parsing, Stripe subscription billing, Google OAuth, and ISR with on-demand revalidation so content edited in the admin dashboard goes live instantly.",
+    "challenge": [
+      "A resume builder competes on two fronts at once. The product has to feel fast and reliable while it generates, scores and exports documents, and the marketing side has to rank for the searches job seekers actually make. Both sides live on the same domain, so a slow page or a rebuild that takes minutes hurts the business twice.",
+      "The technical brief was demanding for a small team: AI generation for resumes and cover letters, an ATS scoring engine that parses uploaded resumes, subscription billing, social login, and an admin dashboard whose changes should appear on the live site without waiting for a deployment."
+    ],
+    "strategy": [
+      "I split the system by responsibility. The Next.js frontend owns the experience and the SEO surface, the Laravel API owns accounts, billing and content, and a dedicated Node.js microservice owns the heavy parsing and ATS scoring so it can scale and fail independently of the main app.",
+      "For content, I chose Incremental Static Regeneration with on-demand revalidation. Public pages are served as static HTML for speed and crawlability, and a revalidation API lets the dashboard purge exactly the pages that changed — no full rebuilds, no stale content."
+    ],
+    "design": [
+      "The interface follows the same rule as the resumes it produces: clear hierarchy, generous spacing and nothing competing with the primary action. The builder is a focused, step-based flow with live preview, so users always see what the AI is producing.",
+      "Marketing pages were designed around search intent — a strong headline, a direct explanation of what the tool does, and immediate access to the builder. Tailwind CSS kept the design system consistent between the product and the public site."
+    ],
+    "development": [
+      "The frontend is React and Next.js in TypeScript, with Redux for application state and React Query for server state, caching and background refetching. Tailwind CSS drives the UI. Authentication uses Google OAuth alongside email accounts, and Stripe handles subscription plans, checkout and webhooks.",
+      "The Laravel backend exposes a REST API for users, documents, plans and CMS content. The Node.js microservice parses uploaded resumes and computes ATS compatibility scores, called from the API so the frontend never talks to it directly. The frontend deploys to Vercel."
+    ],
+    "seo": [
+      "Every public page ships with dynamic metadata, canonical tags and structured data generated from the CMS, plus an XML sitemap that updates as content is added. Blog and landing pages are pre-rendered through ISR so search engines receive complete HTML.",
+      "On-demand revalidation was the key SEO win: editors can fix a title or publish an article and the live page updates within seconds, so the site never serves outdated content to crawlers or users."
+    ],
+    "performance": [
+      "Static generation with ISR gives near-instant first loads on public pages. Inside the app, React Query caching and lazy-loaded components keep interactions responsive while the AI and scoring calls run in the background.",
+      "Heavy work — parsing, scoring, document generation — runs server-side in the microservice, keeping the client bundle lean and Core Web Vitals healthy on mobile."
+    ],
+    "result": [
+      "Resumaic launched as a complete SaaS: AI resume and cover letter generation, ATS scoring, subscription billing and an admin dashboard whose changes reflect on the live site instantly. The architecture separates concerns cleanly enough that each part can evolve on its own.",
+      "The same patterns — ISR with on-demand revalidation, a typed React frontend, a REST backend and isolated services for heavy work — are what I bring to every SaaS build."
+    ]
+  },
+  {
+    "slug": "onlinetoolpot",
+    "metaTitle": "OnlineToolPot Case Study | Programmatic SEO for a 130+ Tool Platform",
+    "metaDescription": "How I built OnlineToolPot, a Next.js multi-tool platform with programmatic SEO across 130+ tool pages, ISR with revalidation APIs, and a mobile PageSpeed score improved from ~55 to ~90.",
+    "summary": "OnlineToolPot is a scalable multi-tool web platform — text tools, file converters, calculators and AI-powered utilities — built with Next.js, React and TypeScript. I designed the programmatic SEO architecture behind 130+ tool pages, implemented ISR with revalidation APIs so admin updates go live instantly, and raised the mobile PageSpeed score from around 55 to around 90.",
+    "challenge": [
+      "A tool platform lives on organic search. Each of the 130+ tools needs its own page that ranks for its own query, and every one of those pages has to load fast on a phone, because that is where most tool searches happen.",
+      "The starting point had two problems. Tool pages were not structured for search at scale, and the mobile PageSpeed score sat around 55 — duplicate icon libraries, eager-loaded components and unoptimized fonts were dragging every page down."
+    ],
+    "strategy": [
+      "I treated the catalogue as a programmatic SEO system rather than a set of hand-built pages. One template, driven by structured tool data, generates a complete page for every tool: title, description, canonical tag, structured data, related tools and content sections.",
+      "Performance was tackled as an engineering task with a measurable target. Every fix — dependency cleanup, lazy loading, font optimization — was checked against PageSpeed Insights so the score reflected real improvements, not guesses."
+    ],
+    "design": [
+      "Tool pages follow a consistent layout: the tool itself above the fold, a clear explanation beneath it, and related tools and guides after that. Users get to the tool instantly; search engines get a complete, well-structured page.",
+      "The homepage acts as a discovery surface — search, categories and featured tools — with Tailwind CSS keeping the visual system consistent across dozens of tool types."
+    ],
+    "development": [
+      "The platform is Next.js and React in TypeScript, with Redux for shared state and React Query for data fetching and caching. Tool pages are generated with ISR from structured data, and revalidation APIs let the admin dashboard update any page on the live site without a rebuild.",
+      "Performance work included removing duplicate icon-library loading, lazy-loading heavier components with next/dynamic, and optimizing font loading — the changes that moved mobile PageSpeed from ~55 to ~90."
+    ],
+    "seo": [
+      "Every tool page ships with dynamic metadata, canonical tags, structured data and internal links to related tools, and the XML sitemap is generated from the same data. That is what makes 130+ pages crawlable and distinct rather than duplicates of each other.",
+      "Because pages are pre-rendered and revalidated on demand, search engines always receive fast, complete HTML — the foundation programmatic SEO depends on."
+    ],
+    "performance": [
+      "The mobile PageSpeed score improved from around 55 to around 90 through dependency cleanup, lazy-loaded components and font optimization, with Core Web Vitals — LCP, CLS and TTFB — tracked throughout.",
+      "ISR keeps time to first byte low across the whole catalogue, and React Query caching keeps in-app interactions responsive."
+    ],
+    "result": [
+      "OnlineToolPot runs as a single, scalable system: one template and one data model produce 130+ optimized tool pages, admin updates appear instantly, and the platform loads fast on mobile.",
+      "Programmatic SEO with ISR is the approach I recommend for any catalogue-style product — it compounds as the catalogue grows instead of fragmenting."
+    ]
+  },
+  {
+    "slug": "real-estate-image-qc",
+    "metaTitle": "Real-Estate Image QC Case Study | Computer Vision Experiments in Python",
+    "metaDescription": "Experimental computer-vision workflows for real-estate photography — dataset preparation, scene classification, image comparison, mask-based analysis and image-quality signals with Python, OpenCV and PyTorch to support AI-assisted quality control.",
+    "summary": "An applied computer-vision project for real-estate photography: I developed experimental workflows that prepare and preprocess image datasets, classify scenes, compare edited images against references and analyse image-quality signals — color, exposure, similarity and HDR/enhancement differences — to identify failure cases and support AI-assisted quality-control logic. Built with Python, OpenCV, PyTorch, NumPy, Pandas, Jupyter and Google Colab, and focused on testing and QC rather than production-model training.",
+    "challenge": [
+      "Real-estate photography goes through editing at volume — exposure correction, HDR blending, color work — and quality control is usually a person comparing the edited image against the original. That is slow, inconsistent and hard to scale across thousands of images.",
+      "The question was whether image-quality signals could flag likely failures automatically: over- or under-exposed edits, color shifts, HDR artefacts, or edits that drifted too far from the reference. Before any model is trained, someone has to prove which signals actually separate good edits from bad ones."
+    ],
+    "strategy": [
+      "I treated this as an experimentation and QC problem, not a model-training project. The first job was a clean dataset: collecting edited and reference pairs, preprocessing them consistently and organising them so every experiment ran on the same inputs.",
+      "From there I worked signal by signal — scene classification to route images to the right checks, image comparison and similarity to measure drift from the reference, and mask-based analysis to focus on the regions that matter, such as windows and skies where HDR problems show up."
+    ],
+    "design": [
+      "The workflows were designed as reproducible notebooks: each experiment loads the same prepared dataset, computes one family of signals and writes results as tables that can be compared across runs.",
+      "Outputs were kept visual wherever possible — side-by-side comparisons, difference maps and masked regions — so failure cases could be inspected by eye and used to refine the QC rules."
+    ],
+    "development": [
+      "Preprocessing, masks and image-quality analysis were built with Python and OpenCV; PyTorch handled scene classification and image-similarity features; NumPy and Pandas managed the numeric signals and result tables. Experiments ran in Jupyter locally and on Google Colab when they needed more compute.",
+      "Image-quality checks covered color and exposure statistics, similarity between edited and reference images, and HDR/enhancement differences — the signals that most often explain why an edit fails review."
+    ],
+    "seo": [
+      "This project had no public web surface, so there was no search work. Its value is in the data and the QC logic it produced."
+    ],
+    "performance": [
+      "Benchmarking was part of the work: measuring how each signal performs at separating passing from failing images, and how long each check takes, so the QC logic stays fast enough to run across large batches."
+    ],
+    "result": [
+      "The experiments produced a prepared dataset, a set of reproducible evaluation notebooks and a clear picture of which image-quality signals identify failure cases — the groundwork for AI-assisted QC logic in a real-estate photo pipeline.",
+      "It is also where my web and AI work meet: the same discipline of measurable checks that I apply to Core Web Vitals and SEO, applied to images instead of pages."
+    ]
+  },
+  {
+    "slug": "ertakcham",
+    "metaTitle": "Ertakcham Case Study | Production Content Platform on Next.js",
+    "metaDescription": "How I designed and built Ertakcham, a production-grade content platform for a client — SEO architecture, Core Web Vitals optimization, responsive design and scalable components, delivered end to end on Next.js and Vercel.",
+    "summary": "Ertakcham is a production content platform I designed and developed as a freelance project for a client in Uzbekistan. The focus was SEO architecture, Core Web Vitals optimization, responsive design and scalable components — delivered end to end, from design through deployment on Vercel.",
+    "challenge": [
+      "The client needed a content platform that would perform in search and convert visitors, built by one person from design to deployment. It had to be fast on mobile, easy to extend as content grew, and structured so search engines could understand it from day one.",
+      "Freelance delivery raises the bar on clarity: with no separate design, development and SEO teams, every decision had to serve all three at once."
+    ],
+    "strategy": [
+      "I started with the SEO architecture — URL structure, page templates and internal linking — before designing a single screen. That kept the design and the code aligned with how the content would be discovered.",
+      "Scalable components were a deliberate priority. Reusable sections mean new content and new page types can be added without rebuilding the site."
+    ],
+    "design": [
+      "The design is bold and mobile-first, with clear calls to action and content sections that reuse a small set of components. Consistency across sections keeps the site coherent as it grows.",
+      "Layouts were built responsive from the smallest screen up, with images and media sized for each breakpoint."
+    ],
+    "development": [
+      "Built with Next.js and TypeScript, styled with Tailwind CSS and deployed on Vercel. Page templates are component-driven so new content fits the existing system.",
+      "Semantic HTML, correct heading structure and optimized assets were part of the build, not a later pass."
+    ],
+    "seo": [
+      "Every page carries purposeful metadata, canonical tags and structured data, with a clean URL structure and internal links that follow the content architecture.",
+      "The pre-rendered Next.js output gives search engines complete HTML and fast responses."
+    ],
+    "performance": [
+      "Core Web Vitals were a build requirement: optimized images, no layout shift while loading, and minimal client-side JavaScript on content pages.",
+      "Vercel's edge network and Next.js static output keep time to first byte low for the platform's audience."
+    ],
+    "result": [
+      "The client received a production-grade content platform with SEO, performance and responsive design engineered in, delivered end to end by one developer.",
+      "It is the same standard I hold on every freelance build: architecture first, then design, then a codebase that can keep growing."
+    ]
+  },
+  {
     "slug": "huckleberrys-restaurant",
     "metaTitle": "Huckleberry's Restaurant Case Study | Local SEO & WordPress Optimization",
     "metaDescription": "How I optimized a UK restaurant's WordPress website for local search: on-page SEO, schema markup, and Google Business Profile alignment, engineered into the site itself.",

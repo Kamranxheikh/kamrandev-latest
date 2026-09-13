@@ -16,7 +16,7 @@
   content: "";
   position: absolute;
   inset: -18% -10% 30% -10%;
-  background: radial-gradient(ellipse 55% 60% at 50% 0%, rgba(244, 243, 239, 0.05), transparent 70%);
+  background: radial-gradient(ellipse 55% 60% at 50% 0%, rgba(243, 236, 226, 0.05), transparent 70%);
   pointer-events: none;
 }
 
@@ -50,7 +50,7 @@
   width: 82%;
   height: 64px;
   transform: translateX(-50%);
-  background: radial-gradient(ellipse at center, rgba(0, 230, 255, 0.13), transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(255, 138, 61, 0.13), transparent 70%);
   filter: blur(14px);
   pointer-events: none;
 }
@@ -75,14 +75,14 @@
 .std-shot-fade {
   position: absolute;
   inset: 42% 0 0 0;
-  background: linear-gradient(to top, rgba(10, 11, 13, 0.94) 22%, rgba(10, 11, 13, 0.6) 58%, transparent);
+  background: linear-gradient(to top, rgba(13, 11, 10, 0.94) 22%, rgba(13, 11, 10, 0.6) 58%, transparent);
 }
 
 /* Image placeholder in the x-ray copy — the crossed box of a wireframe */
 .std-wire-x {
   background-image:
-    linear-gradient(to top right, transparent calc(50% - 0.5px), rgba(0, 230, 255, 0.35) 50%, transparent calc(50% + 0.5px)),
-    linear-gradient(to bottom right, transparent calc(50% - 0.5px), rgba(0, 230, 255, 0.35) 50%, transparent calc(50% + 0.5px));
+    linear-gradient(to top right, transparent calc(50% - 0.5px), rgba(255, 138, 61, 0.35) 50%, transparent calc(50% + 0.5px)),
+    linear-gradient(to bottom right, transparent calc(50% - 0.5px), rgba(255, 138, 61, 0.35) 50%, transparent calc(50% + 0.5px));
 }
 
 /* --------------------------- inspection overlays -------------------------- */
@@ -120,16 +120,16 @@
   flex-direction: column;
   gap: 3px;
   padding: 0.45rem 0.55rem 0.5rem;
-  border: 1px solid rgba(0, 230, 255, 0.38);
+  border: 1px solid rgba(255, 138, 61, 0.38);
   border-radius: 0.5rem;
-  background: rgba(10, 11, 13, 0.93);
+  background: rgba(13, 11, 10, 0.93);
   box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.9);
   font-family: var(--font-mono);
 }
 
 .std-panel-h {
   padding-bottom: 3px;
-  border-bottom: 1px solid rgba(0, 230, 255, 0.22);
+  border-bottom: 1px solid rgba(255, 138, 61, 0.22);
   font-size: 8px;
   line-height: 1.2;
   letter-spacing: 0.2em;
@@ -168,20 +168,20 @@
 
 /* Amber variant — the design-grid instrument, the one amber moment on screen */
 .std-panel--amber {
-  border-color: rgba(240, 180, 41, 0.45);
+  border-color: rgba(232, 200, 114, 0.45);
 }
 
 .std-panel--amber .std-panel-h {
-  border-bottom-color: rgba(240, 180, 41, 0.28);
+  border-bottom-color: rgba(232, 200, 114, 0.28);
   color: var(--color-amber);
 }
 
 .std-panel--amber .std-panel-row {
-  color: rgba(240, 180, 41, 0.95);
+  color: rgba(232, 200, 114, 0.95);
 }
 
 .std-panel--amber .std-panel-row b {
-  color: rgba(240, 180, 41, 0.6);
+  color: rgba(232, 200, 114, 0.6);
 }
 
 /* -- 01 Beautiful: 8pt grid + rulers + dimension lines (amber) ------------- */
@@ -190,10 +190,10 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(to right, rgba(240, 180, 41, 0.36) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(240, 180, 41, 0.36) 1px, transparent 1px),
-    linear-gradient(to right, rgba(240, 180, 41, 0.12) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(240, 180, 41, 0.12) 1px, transparent 1px);
+    linear-gradient(to right, rgba(232, 200, 114, 0.36) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(232, 200, 114, 0.36) 1px, transparent 1px),
+    linear-gradient(to right, rgba(232, 200, 114, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(232, 200, 114, 0.12) 1px, transparent 1px);
   background-size:
     64px 64px,
     64px 64px,
@@ -210,12 +210,12 @@
 
 .std-ticks--minor {
   height: 5px;
-  background-image: repeating-linear-gradient(to right, rgba(240, 180, 41, 0.55) 0 1px, transparent 1px 8px);
+  background-image: repeating-linear-gradient(to right, rgba(232, 200, 114, 0.55) 0 1px, transparent 1px 8px);
 }
 
 .std-ticks--major {
   height: 10px;
-  background-image: repeating-linear-gradient(to right, rgba(240, 180, 41, 0.9) 0 1px, transparent 1px 64px);
+  background-image: repeating-linear-gradient(to right, rgba(232, 200, 114, 0.9) 0 1px, transparent 1px 64px);
 }
 
 /* Numbered rulers — cells are exactly one 64px grid module wide/tall, so the
@@ -238,7 +238,7 @@
 .std-ruler-x > span {
   flex: 0 0 64px;
   padding-left: 3px;
-  border-left: 1px solid rgba(240, 180, 41, 0.5);
+  border-left: 1px solid rgba(232, 200, 114, 0.5);
   font-family: var(--font-mono);
   font-size: 8px;
   line-height: 11px;
@@ -257,7 +257,7 @@
 .std-ruler-y > span {
   flex: 0 0 64px;
   padding: 2px 0 0 3px;
-  border-top: 1px solid rgba(240, 180, 41, 0.5);
+  border-top: 1px solid rgba(232, 200, 114, 0.5);
   font-family: var(--font-mono);
   font-size: 8px;
   line-height: 1;
@@ -282,7 +282,7 @@
   position: relative;
   flex: 1;
   width: 1px;
-  background: rgba(240, 180, 41, 0.7);
+  background: rgba(232, 200, 114, 0.7);
 }
 
 .std-dim-y i::before {
@@ -291,7 +291,7 @@
   left: -4px;
   width: 9px;
   height: 1px;
-  background: rgba(240, 180, 41, 0.9);
+  background: rgba(232, 200, 114, 0.9);
 }
 
 .std-dim-y i:first-child::before { top: 0; }
@@ -313,8 +313,8 @@
   width: 45%;
   height: 2px;
   border-radius: 999px;
-  background: linear-gradient(to right, transparent, rgba(0, 230, 255, 0.9));
-  box-shadow: 0 0 10px rgba(0, 230, 255, 0.4);
+  background: linear-gradient(to right, transparent, rgba(255, 138, 61, 0.9));
+  box-shadow: 0 0 10px rgba(255, 138, 61, 0.4);
   transform: translateX(-110%);
   animation: std-sweep 2.4s linear infinite;
   /* Runs only while its overlay is active AND the section is on screen */
@@ -337,7 +337,7 @@
   top: 0;
   bottom: 0;
   width: 0;
-  border-left: 1px dashed rgba(0, 230, 255, 0.6);
+  border-left: 1px dashed rgba(255, 138, 61, 0.6);
 }
 
 /* The label hangs to the LEFT of the marker line so it never collides with
@@ -347,9 +347,9 @@
   top: 6px;
   right: 5px;
   padding: 2px 5px;
-  border: 1px solid rgba(0, 230, 255, 0.45);
+  border: 1px solid rgba(255, 138, 61, 0.45);
   border-radius: 4px;
-  background: rgba(10, 11, 13, 0.92);
+  background: rgba(13, 11, 10, 0.92);
   font-family: var(--font-mono);
   font-size: 7.5px;
   letter-spacing: 0.12em;
@@ -387,7 +387,7 @@
   display: block;
   height: 3px;
   border-radius: 999px;
-  background: rgba(0, 230, 255, 0.18);
+  background: rgba(255, 138, 61, 0.18);
   overflow: hidden;
 }
 
@@ -419,7 +419,7 @@
   display: block;
   height: 4px;
   border-radius: 999px;
-  background: rgba(244, 243, 239, 0.12);
+  background: rgba(243, 236, 226, 0.12);
 }
 
 .std-wf-bar {
@@ -427,7 +427,7 @@
   top: 0;
   bottom: 0;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(0, 230, 255, 0.55), var(--color-accent));
+  background: linear-gradient(90deg, rgba(255, 138, 61, 0.55), var(--color-accent));
 }
 
 .std-wf-ms {
@@ -442,9 +442,9 @@
   position: absolute;
   z-index: 2;
   padding: 1px 6px;
-  border: 1px solid rgba(0, 230, 255, 0.6);
+  border: 1px solid rgba(255, 138, 61, 0.6);
   border-radius: 4px;
-  background: rgba(10, 11, 13, 0.92);
+  background: rgba(13, 11, 10, 0.92);
   font-family: var(--font-mono);
   font-size: 9px;
   line-height: 1.5;
@@ -462,8 +462,8 @@
   align-items: center;
   gap: 4px 12px;
   padding: 0.5rem 0.75rem;
-  border-top: 1px solid rgba(0, 230, 255, 0.32);
-  background: rgba(10, 11, 13, 0.95);
+  border-top: 1px solid rgba(255, 138, 61, 0.32);
+  background: rgba(13, 11, 10, 0.95);
   font-family: var(--font-mono);
   font-size: 8px;
   letter-spacing: 0.14em;
@@ -527,7 +527,7 @@
 }
 
 .std-tab[aria-selected="true"] {
-  border-color: rgba(0, 230, 255, 0.5);
+  border-color: rgba(255, 138, 61, 0.5);
   background: var(--color-surface2);
 }
 

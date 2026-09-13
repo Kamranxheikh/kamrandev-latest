@@ -11,6 +11,9 @@ import { ProjectArt } from "@/components/ProjectArt";
 
 /** Slugs with a real screenshot in /public/work/. */
 const SHOT_SLUGS = new Set([
+  "resumaic",
+  "onlinetoolpot",
+  "ertakcham",
   "huckleberrys-restaurant",
   "ai-tool-camp",
   "prophero-real-estate-crm",
@@ -58,7 +61,7 @@ export function ShotFrame({ project: p }: { project: Project }) {
             <rect x="0.5" y="4" width="7" height="5.5" rx="1.2" fill="currentColor" opacity="0.85" />
           </svg>
           <span>
-            mustafadev.org<b>/work/{p.slug}</b>
+            kamrandev.com<b>/work/{p.slug}</b>
           </span>
         </span>
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden className="shrink-0 text-muted">
@@ -74,7 +77,7 @@ export function ShotFrame({ project: p }: { project: Project }) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`/work/${p.slug}.webp`}
-          alt={`${p.name} website — built by Fakhar e Mustafa`}
+          alt={`${p.name} website — built by Muhammad Kamran`}
           width={880}
           height={1320}
           loading="lazy"

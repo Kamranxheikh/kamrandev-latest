@@ -2,18 +2,18 @@
    Owned by one design agent; every class prefixed `logo-` or `menu-`. */
 
 /* =========================================================================
-   logo- — the wolf mark
-   A low-poly wolf head in its own palette: mint muzzle and ears, mid teals
-   through the body, slate navy at the jaw. It keeps those colours rather
-   than being tinted to the site cyan — a real brand mark carries its own
-   palette, and the mint highlights sit in the same family as the accent.
+   logo- — the brand mark
+   A faceted copper K in its own palette: bright facets on the lit edges, umber
+   through the body, a dark umber extrusion behind. It keeps those colours rather
+   than being tinted to the site accent — a real brand mark carries its own
+   palette, and the bright facets sit in the same family as the accent.
    ========================================================================= */
 
 .logo-lockup {
-  --logo-bloom: 0 0 0 rgba(122, 231, 206, 0);
+  --logo-bloom: 0 0 0 rgba(255, 138, 61, 0);
 }
 
-.logo-wolf {
+.logo-mark {
   display: block;
   flex: none;
   filter: drop-shadow(0 2px 9px rgba(0, 0, 0, 0.55)) drop-shadow(var(--logo-bloom));
@@ -23,7 +23,7 @@
   will-change: transform;
 }
 
-/* The mint facets drift a fraction of a pixel, out of phase with each other —
+/* The bright copper facets drift a fraction of a pixel, out of phase with each other —
    the mark breathes without ever reading as an animation. */
 .logo-facet {
   transform-box: fill-box;
@@ -44,9 +44,9 @@
   }
 }
 
-.logo-lockup:hover .logo-wolf,
-a:hover > .logo-lockup .logo-wolf {
-  --logo-bloom: 0 0 15px rgba(110, 223, 198, 0.5);
+.logo-lockup:hover .logo-mark,
+a:hover > .logo-lockup .logo-mark {
+  --logo-bloom: 0 0 15px rgba(255, 138, 61, 0.5);
   transform: translateY(-1px) scale(1.04);
 }
 
@@ -111,7 +111,7 @@ a:hover > .logo-lockup .logo-tag {
     animation: none;
   }
 
-  .logo-wolf,
+  .logo-mark,
   .logo-tag {
     transition: none;
   }
@@ -224,7 +224,7 @@ a:hover > .logo-lockup .logo-tag {
   background: linear-gradient(180deg, #111318, #0c0e11);
   box-shadow:
     0 48px 120px -32px rgba(0, 0, 0, 0.85),
-    inset 0 1px 0 rgba(244, 243, 239, 0.05);
+    inset 0 1px 0 rgba(243, 236, 226, 0.05);
   padding: clamp(1.1rem, 3vw, 2.1rem) clamp(1.1rem, 3.5vw, 2.75rem);
   opacity: 0;
   transform: translateY(18px) scale(0.98);
@@ -437,7 +437,7 @@ a:hover > .logo-lockup .logo-tag {
   border-radius: 16px;
   border: 1px solid var(--color-line2);
   background:
-    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(244, 243, 239, 0.045), transparent 70%),
+    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(243, 236, 226, 0.045), transparent 70%),
     var(--color-surface);
   overflow: hidden;
   opacity: 0;
@@ -527,14 +527,14 @@ a:hover > .logo-lockup .logo-tag {
   gap: 0.3rem;
   padding: 0.42rem 0.6rem;
   border-bottom: 1px solid var(--color-line);
-  background: rgba(244, 243, 239, 0.04);
+  background: rgba(243, 236, 226, 0.04);
 }
 
 .menu-pv-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(244, 243, 239, 0.22);
+  background: rgba(243, 236, 226, 0.22);
 }
 
 .menu-pv-url {
@@ -547,7 +547,7 @@ a:hover > .logo-lockup .logo-tag {
 
 .menu-pv-tls {
   margin-left: auto;
-  border: 1px solid rgba(0, 230, 255, 0.4);
+  border: 1px solid rgba(255, 138, 61, 0.4);
   border-radius: 3px;
   padding: 0 3px;
   font-family: var(--font-mono);
@@ -679,8 +679,8 @@ a:hover > .logo-lockup .logo-tag {
   left: 6px;
   bottom: 5px;
   border-radius: 999px;
-  border: 1px solid rgba(244, 243, 239, 0.24);
-  background: rgba(10, 11, 13, 0.72);
+  border: 1px solid rgba(243, 236, 226, 0.24);
+  background: rgba(13, 11, 10, 0.72);
   padding: 2px 6px;
   font-family: var(--font-mono);
   font-size: 6.5px;
@@ -778,7 +778,7 @@ a:hover > .logo-lockup .logo-tag {
 }
 
 .menu-pv-svc-row--hot {
-  background: rgba(0, 230, 255, 0.08);
+  background: rgba(255, 138, 61, 0.08);
   box-shadow: inset 2px 0 0 var(--color-accent);
 }
 
@@ -792,7 +792,7 @@ a:hover > .logo-lockup .logo-tag {
 }
 
 .menu-pv-svc-row--hot u {
-  border-color: rgba(0, 230, 255, 0.5);
+  border-color: rgba(255, 138, 61, 0.5);
   color: var(--color-accent-ink);
   background: var(--color-accent);
 }
@@ -854,8 +854,8 @@ a:hover > .logo-lockup .logo-tag {
   bottom: 5px;
   right: 5px;
   border-radius: 999px;
-  border: 1px solid rgba(244, 243, 239, 0.24);
-  background: rgba(10, 11, 13, 0.82);
+  border: 1px solid rgba(243, 236, 226, 0.24);
+  background: rgba(13, 11, 10, 0.82);
   padding: 2px 6px;
   font-family: var(--font-mono);
   font-size: 6.5px;
@@ -943,7 +943,7 @@ a:hover > .logo-lockup .logo-tag {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(244, 243, 239, 0.3);
+  background: rgba(243, 236, 226, 0.3);
 }
 
 .menu-pv-step i {
@@ -970,8 +970,8 @@ a:hover > .logo-lockup .logo-tag {
 }
 
 .menu-pv-step--live {
-  background: rgba(0, 230, 255, 0.08);
-  border-color: rgba(0, 230, 255, 0.32);
+  background: rgba(255, 138, 61, 0.08);
+  border-color: rgba(255, 138, 61, 0.32);
 }
 
 .menu-pv-step--live b {
@@ -984,7 +984,7 @@ a:hover > .logo-lockup .logo-tag {
 
 .menu-pv-step--live::before {
   background: var(--color-accent);
-  box-shadow: 0 0 9px rgba(0, 230, 255, 0.8);
+  box-shadow: 0 0 9px rgba(255, 138, 61, 0.8);
 }
 
 /* ---------------------- plate: profile / contact ledger ------------------ */
@@ -1000,9 +1000,9 @@ a:hover > .logo-lockup .logo-tag {
   display: flex;
   flex-direction: column;
   gap: 3px;
-  border: 1px solid rgba(0, 230, 255, 0.24);
+  border: 1px solid rgba(255, 138, 61, 0.24);
   border-radius: 6px;
-  background: rgba(0, 230, 255, 0.07);
+  background: rgba(255, 138, 61, 0.07);
   padding: 8px 9px;
 }
 
@@ -1081,8 +1081,8 @@ a:hover > .logo-lockup .logo-tag {
 }
 
 .menu-pv-chip--hot {
-  border-color: rgba(0, 230, 255, 0.5);
-  background: rgba(0, 230, 255, 0.12);
+  border-color: rgba(255, 138, 61, 0.5);
+  background: rgba(255, 138, 61, 0.12);
   color: var(--color-accent2);
 }
 
@@ -1133,7 +1133,7 @@ a:hover > .logo-lockup .logo-tag {
 }
 
 .menu-pv-art--hot {
-  background: rgba(0, 230, 255, 0.06);
+  background: rgba(255, 138, 61, 0.06);
   box-shadow: inset 2px 0 0 var(--color-accent);
   padding-left: 7px;
 }

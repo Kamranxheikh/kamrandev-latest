@@ -63,8 +63,6 @@ export function HeroMonument() {
         el.style.opacity = "1";
         el.style.transform = "none";
       });
-      const arc = root.querySelector<SVGCircleElement>(".mh-vitals-arc");
-      if (arc) arc.style.strokeDashoffset = "0";
     };
     const failsafe = window.setTimeout(forceShow, 3200);
     cleanups.push(() => window.clearTimeout(failsafe));
@@ -87,11 +85,7 @@ export function HeroMonument() {
         if (revealed) return; // failsafe already showed everything
         revealed = true;
         window.clearTimeout(failsafe);
-        const arc = root.querySelector<SVGCircleElement>(".mh-vitals-arc");
-        if (reduced) {
-          if (arc) arc.style.strokeDashoffset = "0";
-          return;
-        }
+        if (reduced) return;
         const tl = gsap
           .timeline({ defaults: { ease: "power4.out" } })
           .fromTo(
@@ -99,11 +93,6 @@ export function HeroMonument() {
             { y: 22, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.9, stagger: 0.09 },
             delay,
-          )
-          .to(
-            q(".mh-vitals-arc"),
-            { strokeDashoffset: 0, duration: 1.3, ease: "power2.inOut" },
-            delay + 0.35,
           );
         cleanups.push(() => tl.kill());
       };
@@ -201,11 +190,6 @@ export function HeroMonument() {
 
       {/* minimal overlay: the 3D is the hero */}
       <div className="mh-overlay">
-        <p className="mh-signal" data-io>
-          <span className="mh-signal-dot" aria-hidden />
-          Available
-        </p>
-
         <div className="mh-left">
           <p className="mh-eyebrow" data-io>
             {site.role}
@@ -213,11 +197,6 @@ export function HeroMonument() {
           <h1 className="mh-title" data-io>
             Websites that look <em>incredible</em>. Built to be <em>found</em>.
           </h1>
-          <p className="mh-meta" data-io>
-            {site.yearsExperience}+ years&nbsp;&nbsp;·&nbsp;&nbsp;
-            {site.projectsShipped}+ projects shipped&nbsp;&nbsp;·&nbsp;&nbsp;
-            {site.location.city}, PK
-          </p>
           <div className="mh-ctas" data-io>
             <Link className="btn btn-primary" href="/contact/" data-magnetic>
               Build My Website
@@ -239,30 +218,25 @@ export function HeroMonument() {
         </div>
 
         <div className="mh-right" data-io>
-          <div
-            className="mh-vitals"
-            role="img"
-            aria-label="Lighthouse performance 100. Largest Contentful Paint 1.1 seconds, Interaction to Next Paint 42 milliseconds, Cumulative Layout Shift zero."
-          >
-            <div className="mh-vitals-score">
-              <svg viewBox="0 0 44 44" aria-hidden>
-                <circle className="mh-vitals-track" cx="22" cy="22" r="19" />
-                <circle className="mh-vitals-arc" cx="22" cy="22" r="19" />
-              </svg>
-              <span className="mh-vitals-num">100</span>
-            </div>
-            <dl className="mh-vitals-rows" aria-hidden>
-              <div className="mh-vitals-row">
-                <dt>LCP</dt>
-                <dd>1.1s</dd>
+          <div className="mh-status" aria-label="Availability">
+            <p className="mh-status-line">
+              <span className="mh-signal-dot" aria-hidden />
+              Available for new projects
+            </p>
+            <dl className="mh-status-rows">
+              <div className="mh-status-row">
+                <dt>Base</dt>
+                <dd>
+                  {site.location.city}, {site.location.country}
+                </dd>
               </div>
-              <div className="mh-vitals-row">
-                <dt>INP</dt>
-                <dd>42ms</dd>
+              <div className="mh-status-row">
+                <dt>Time</dt>
+                <dd>PKT · UTC+5</dd>
               </div>
-              <div className="mh-vitals-row">
-                <dt>CLS</dt>
-                <dd>0.00</dd>
+              <div className="mh-status-row">
+                <dt>Reply</dt>
+                <dd>Within a day</dd>
               </div>
             </dl>
           </div>

@@ -19,7 +19,7 @@ const clusters = [
     cls: "eco-c2",
     idx: "02",
     name: "Build",
-    desc: "The code and platforms — WordPress at the core, custom code beside it.",
+    desc: "The code and platforms — Next.js and React at the core, Laravel and Node.js behind them.",
     items: techEcosystem.development,
     ports: ["IN ← 01 infra", "OUT → 03 seo"],
   },
@@ -36,7 +36,7 @@ const clusters = [
 type Cluster = (typeof clusters)[number];
 
 /** The one chip that is a documented fact rather than a preference. */
-const CORE = "WordPress";
+const CORE = "Next.js";
 
 function ClusterPanel({ c, delay }: { c: Cluster; delay: number }) {
   return (
@@ -177,7 +177,7 @@ export function TechEcosystem() {
             <Rail dir="up" />
             <p className="eco-rail-lab eco-rail-lab--bot" aria-hidden>
               <span className="eco-rail-tag">Feedback</span>
-              Search Console &amp; GA4 data returns to the build
+              Search Console, GA4 &amp; PageSpeed data returns to the build
             </p>
           </div>
         </Reveal>

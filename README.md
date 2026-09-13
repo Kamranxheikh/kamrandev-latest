@@ -1,7 +1,7 @@
-# mustafadev.org — rebuild
+# kamrandev.com — rebuild
 
-Premium personal-brand website for **Fakhar e Mustafa** — web developer & SEO expert
-(WordPress is the core development specialty). Built with Next.js 15 (App Router,
+Premium personal-brand website for **Muhammad Kamran** — software developer (AI/ML & full stack)
+(React, Next.js, TypeScript, Laravel and Node.js). Built with Next.js 15 (App Router,
 TypeScript, Tailwind v4), fully statically
 exported: every page is pre-rendered HTML that can be hosted on any server, including a VPS
 with plain nginx.
@@ -33,14 +33,14 @@ npm run build   # production build + static export into ./out
 ## Deploying to a VPS (nginx)
 
 1. `npm run build` — output lands in `out/`.
-2. Upload `out/` to the server (e.g. `/var/www/mustafadev`).
+2. Upload `out/` to the server (e.g. `/var/www/kamrandev`).
 3. nginx site config essentials:
 
 ```nginx
 server {
     listen 443 ssl http2;
-    server_name mustafadev.org www.mustafadev.org;
-    root /var/www/mustafadev;
+    server_name kamrandev.com www.kamrandev.com;
+    root /var/www/kamrandev;
     index index.html;
 
     # trailing-slash URLs resolve to directory index.html automatically
@@ -57,7 +57,7 @@ server {
 
 4. Redirect `www` → apex (or vice versa) and HTTP → HTTPS at the server level.
 5. After DNS cutover: verify the property in Google Search Console, submit
-   `https://mustafadev.org/sitemap.xml`, and map any old URLs to their new equivalents
+   `https://kamrandev.com/sitemap.xml`, and map any old URLs to their new equivalents
    with 301s in nginx (`rewrite ^/old-path$ /new-path/ permanent;`).
 
 ## Editing content

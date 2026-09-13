@@ -1,18 +1,18 @@
 /* monument — the 3D hero ("The Monument"). The scene owns the viewport;
    the interface stays a thin overlay out of its way. Prefix: mh-.
-   Palette is scene-local (the renderer clears to #050709 and lights in
-   #3fe0ff), so the ground and accents here match the 3D exactly. */
+   Palette is scene-local (the renderer clears to #080605 and lights in
+   #ff8a3d), so the ground and accents here match the 3D exactly. */
 
 .mh-hero {
   position: relative;
   height: 100svh;
   min-height: 620px;
   overflow: clip;
-  background: #050709;
-  --mh-accent: #3fe0ff;
-  --mh-accent-soft: #9ceeff;
-  --mh-dim: #93a6ad;
-  --mh-faint: #5b6d74;
+  background: #080605;
+  --mh-accent: #ff8a3d;
+  --mh-accent-soft: #ffab73;
+  --mh-dim: #b3aa9d;
+  --mh-faint: #7a7168;
 }
 
 .mh-stage {
@@ -72,26 +72,12 @@
   opacity: 0;
 }
 
-.mh-signal {
-  position: absolute;
-  top: clamp(5.4rem, 11svh, 6.6rem);
-  right: clamp(1.25rem, 4vw, 3rem);
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-jetbrains);
-  font-size: 0.68rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--mh-faint);
-}
-
 .mh-signal-dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
   background: var(--mh-accent);
-  box-shadow: 0 0 10px rgba(63, 224, 255, 0.9);
+  box-shadow: 0 0 10px rgba(255, 138, 61, 0.9);
   animation: mh-pulse 2.4s ease-in-out infinite;
 }
 
@@ -165,84 +151,54 @@
   align-items: flex-end;
 }
 
-/* vitals HUD */
-.mh-vitals {
+/* availability block — bottom right, mirrors the copy block on the left */
+.mh-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.85rem;
+  text-align: right;
+}
+
+.mh-status-line {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 0.8rem 1.1rem;
-  border: 1px solid rgba(63, 224, 255, 0.22);
-  border-radius: 12px;
-  background: rgba(7, 12, 15, 0.55);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-}
-
-.mh-vitals-score {
-  position: relative;
-  width: 52px;
-  height: 52px;
-}
-
-.mh-vitals-score svg {
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
-}
-
-.mh-vitals-track,
-.mh-vitals-arc {
-  fill: none;
-  stroke-width: 3.4;
-}
-
-.mh-vitals-track {
-  stroke: rgba(147, 166, 173, 0.18);
-}
-
-.mh-vitals-arc {
-  stroke: var(--mh-accent);
-  stroke-linecap: round;
-  stroke-dasharray: 119.4;
-  stroke-dashoffset: 119.4;
-  filter: drop-shadow(0 0 5px rgba(63, 224, 255, 0.6));
-}
-
-.mh-vitals-num {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
+  gap: 0.6rem;
   font-family: var(--font-jetbrains);
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--mh-accent);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ink);
 }
 
-.mh-vitals-rows {
-  display: grid;
-  gap: 0.28rem;
-  font-family: var(--font-jetbrains);
-}
-
-.mh-vitals-row {
+.mh-status-rows {
   display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  font-size: 0.64rem;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(243, 236, 226, 0.12);
+  min-width: 220px;
+}
+
+.mh-status-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  font-family: var(--font-jetbrains);
+  font-size: 0.68rem;
   letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
-.mh-vitals-row dt {
+.mh-status-row dt {
   color: var(--mh-faint);
-  width: 2.4rem;
 }
 
-.mh-vitals-row dd {
-  color: #edf3f4;
+.mh-status-row dd {
+  margin: 0;
+  color: var(--mh-dim);
 }
 
-/* scroll hint */
 .mh-scrollhint {
   position: absolute;
   left: 50%;
@@ -303,13 +259,9 @@
     width: 100%;
   }
 
-  .mh-vitals {
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .mh-signal {
-    display: none;
+  .mh-status {
+    align-items: flex-start;
+    text-align: left;
   }
 
   .mh-scrollhint {

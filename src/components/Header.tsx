@@ -40,7 +40,7 @@ function PlateHome() {
             <div className="menu-pv-nav">
               <span className="menu-pv-brand">
                 <LogoMark className="menu-pv-brandmark" />
-                Mustafa<u>dev</u>
+                Kamran<u>dev</u>
               </span>
               <span>Work · Services · Contact</span>
             </div>
@@ -259,7 +259,7 @@ function PlateAbout() {
         </dl>
 
         <div className="menu-pv-chips">
-          {["WordPress", "Elementor Pro", "Next.js", "GSC", "Ahrefs"].map((t) => (
+          {["Next.js", "React", "TypeScript", "Laravel", "Python"].map((t) => (
             <span key={t} className="menu-pv-chip">
               {t}
             </span>
@@ -454,7 +454,7 @@ export function Header() {
       <div className="header-x grid h-[72px] grid-cols-[1fr_auto] items-center gap-4 sm:grid-cols-[1fr_auto_1fr]">
         <Link
           href="/"
-          aria-label="MustafaDev — home"
+          aria-label="KamranDev — home"
           className="shrink-0 justify-self-start"
         >
           <Logo />

@@ -23,7 +23,7 @@
   padding: 0.6rem 1rem;
   border: 1px solid var(--color-line2);
   border-radius: 999px;
-  background: rgba(244, 243, 239, 0.05);
+  background: rgba(243, 236, 226, 0.05);
 }
 
 .serp-query-text {
@@ -59,8 +59,8 @@
   border-radius: 0 0.5rem 0.5rem 0;
   background: linear-gradient(
     90deg,
-    rgba(0, 230, 255, 0.075),
-    rgba(0, 230, 255, 0) 62%
+    rgba(255, 138, 61, 0.075),
+    rgba(255, 138, 61, 0) 62%
   );
 }
 
@@ -79,9 +79,9 @@
   display: inline-flex;
   align-items: center;
   padding: 0.2rem 0.55rem;
-  border: 1px solid rgba(0, 230, 255, 0.42);
+  border: 1px solid rgba(255, 138, 61, 0.42);
   border-radius: 3px;
-  background: rgba(0, 230, 255, 0.13);
+  background: rgba(255, 138, 61, 0.13);
   color: var(--color-accent2);
   font-family: var(--font-mono);
   font-size: 0.625rem;
@@ -99,7 +99,7 @@
 .serp-alt-url {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: rgba(244, 243, 239, 0.6);
+  color: rgba(243, 236, 226, 0.6);
   word-break: break-word;
 }
 
@@ -110,7 +110,7 @@
 .serp-alt-title {
   font-size: 1rem;
   line-height: 1.35;
-  color: rgba(244, 243, 239, 0.62);
+  color: rgba(243, 236, 226, 0.62);
 }
 
 .serp-alt-desc {
@@ -129,14 +129,14 @@
 }
 
 .serp-slash {
-  color: rgba(244, 243, 239, 0.38);
+  color: rgba(243, 236, 226, 0.38);
 }
 
 .serp-flag-name {
   font-family: var(--font-mono);
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: rgba(244, 243, 239, 0.78);
+  color: rgba(243, 236, 226, 0.78);
 }
 
 .serp-flag-note {
@@ -169,8 +169,8 @@
   height: 1px;
   background: linear-gradient(
     to left,
-    rgba(244, 243, 239, 0.42),
-    rgba(0, 230, 255, 0.75)
+    rgba(243, 236, 226, 0.42),
+    rgba(255, 138, 61, 0.75)
   );
   transform-origin: right center;
 }
@@ -186,7 +186,7 @@
   margin-top: -2.5px;
   border: 1px solid var(--color-accent);
   background: var(--color-bg2);
-  box-shadow: 0 0 0 3px rgba(0, 230, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(255, 138, 61, 0.12);
   transform: rotate(45deg);
 }
 
@@ -273,7 +273,7 @@
   height: 6px;
   flex: none;
   border: 1px solid var(--color-accent);
-  background: rgba(0, 230, 255, 0.28);
+  background: rgba(255, 138, 61, 0.28);
   transform: rotate(45deg);
 }
 
@@ -287,7 +287,7 @@
   height: 7px;
   border-radius: 999px;
   overflow: hidden;
-  background: rgba(244, 243, 239, 0.08);
+  background: rgba(243, 236, 226, 0.08);
 }
 
 .perf-zone {
@@ -296,15 +296,15 @@
 }
 
 .perf-zone--good {
-  background: rgba(0, 230, 255, 0.62);
+  background: rgba(255, 138, 61, 0.62);
 }
 
 .perf-zone--warn {
-  background: rgba(240, 180, 41, 0.4);
+  background: rgba(232, 200, 114, 0.4);
 }
 
 .perf-zone--poor {
-  background: rgba(244, 243, 239, 0.16);
+  background: rgba(243, 236, 226, 0.16);
 }
 
 /* The needle is a full-width sled: translateX(%) moves it by a share of the
@@ -405,20 +405,20 @@
 }
 
 .perf-wbar--font {
-  background: rgba(240, 180, 41, 0.6);
+  background: rgba(232, 200, 114, 0.6);
 }
 
 .perf-wbar--img {
-  background: rgba(244, 243, 239, 0.42);
+  background: rgba(243, 236, 226, 0.42);
 }
 
 /* Deferred JS reads as hatched rather than solid — it is real, just later. */
 .perf-wbar--js {
-  border: 1px solid rgba(0, 230, 255, 0.4);
+  border: 1px solid rgba(255, 138, 61, 0.4);
   background: repeating-linear-gradient(
     115deg,
-    rgba(0, 230, 255, 0.34) 0 4px,
-    rgba(0, 230, 255, 0.08) 4px 9px
+    rgba(255, 138, 61, 0.34) 0 4px,
+    rgba(255, 138, 61, 0.08) 4px 9px
   );
 }
 
@@ -464,8 +464,8 @@
   width: 1px;
   background: linear-gradient(
     to bottom,
-    rgba(0, 230, 255, 0.8),
-    rgba(0, 230, 255, 0.16)
+    rgba(255, 138, 61, 0.8),
+    rgba(255, 138, 61, 0.16)
   );
 }
 
@@ -475,9 +475,9 @@
   left: 0;
   transform: translateX(-50%);
   padding: 0.15rem 0.4rem;
-  border: 1px solid rgba(0, 230, 255, 0.45);
+  border: 1px solid rgba(255, 138, 61, 0.45);
   border-radius: 3px;
-  background: rgba(0, 230, 255, 0.14);
+  background: rgba(255, 138, 61, 0.14);
   white-space: nowrap;
   font-family: var(--font-mono);
   font-size: 0.625rem;
@@ -574,16 +574,16 @@
   padding: 0.7rem 0.85rem;
   border: 1px solid var(--color-line);
   border-radius: 0.6rem;
-  background: rgba(244, 243, 239, 0.035);
+  background: rgba(243, 236, 226, 0.035);
 }
 
 .ai-kind {
   display: inline-flex;
   align-items: center;
   padding: 0.1rem 0.4rem;
-  border: 1px solid rgba(0, 230, 255, 0.36);
+  border: 1px solid rgba(255, 138, 61, 0.36);
   border-radius: 3px;
-  background: rgba(0, 230, 255, 0.11);
+  background: rgba(255, 138, 61, 0.11);
   font-family: var(--font-mono);
   font-size: 0.625rem;
   letter-spacing: 0.1em;
@@ -645,7 +645,7 @@
   border-radius: 1.25rem;
   border: 1px solid var(--color-line);
   background:
-    radial-gradient(70% 50% at 50% 0%, rgba(0, 230, 255, 0.045) 0%, transparent 60%),
+    radial-gradient(70% 50% at 50% 0%, rgba(255, 138, 61, 0.045) 0%, transparent 60%),
     var(--color-surface);
   box-shadow: 0 40px 90px -48px rgba(0, 0, 0, 0.95);
 }
@@ -755,7 +755,7 @@
   flex: 1;
   padding: 1rem 0.9rem 0.9rem;
   background:
-    radial-gradient(80% 90% at 85% 0%, rgba(0, 230, 255, 0.07) 0%, transparent 55%),
+    radial-gradient(80% 90% at 85% 0%, rgba(255, 138, 61, 0.07) 0%, transparent 55%),
     transparent;
 }
 
@@ -803,7 +803,7 @@
   display: inline-block;
   padding: 0.28rem 0.7rem;
   border-radius: 999px;
-  border: 1px solid rgba(244, 243, 239, 0.28);
+  border: 1px solid rgba(243, 236, 226, 0.28);
   background: linear-gradient(
     180deg,
     color-mix(in srgb, var(--color-ink) 8%, var(--color-surface)) 0%,
@@ -871,7 +871,7 @@
   position: relative;
   height: 46px;
   border-top: 1px solid var(--color-line);
-  background: linear-gradient(180deg, rgba(0, 230, 255, 0.02), transparent);
+  background: linear-gradient(180deg, rgba(255, 138, 61, 0.02), transparent);
 }
 
 .ai-merge svg {
@@ -897,7 +897,7 @@
   margin-left: -4px;
   border-radius: 999px;
   background: var(--color-accent);
-  box-shadow: 0 0 12px 2px rgba(0, 230, 255, 0.5);
+  box-shadow: 0 0 12px 2px rgba(255, 138, 61, 0.5);
 }
 
 .ai-answer {
