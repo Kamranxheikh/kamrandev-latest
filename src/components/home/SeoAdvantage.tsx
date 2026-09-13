@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { Reveal } from "@/components/Reveal";
+import { SectionHead } from "@/components/SectionHead";
 import { TiltCard } from "@/components/TiltCard";
 
 const topics = [
@@ -73,22 +74,24 @@ export function SeoAdvantage() {
       <div className="container-x section-pad grid items-start gap-14 lg:grid-cols-[1fr_1.25fr] lg:gap-16">
         {/* ------------------------------ copy ------------------------------ */}
         <div>
-          <Reveal>
-            <p className="label-mono label-mono--accent">08 / The SEO Advantage</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <h2 id="seo-heading" className="display mt-5 text-[clamp(2rem,4.6vw,3.6rem)]">
-              Your website shouldn&apos;t just exist. People should be able to <em>find it</em>.
-            </h2>
-          </Reveal>
-          <Reveal delay={160}>
-            <p className="mt-6 text-lg leading-relaxed text-muted">
-              I&apos;ve spent the last two years doing SEO alongside development — audits, keyword
-              research, Search Console, schema, Core Web Vitals — alongside
-              development. So the fundamentals aren&apos;t a service you add later.
-              They&apos;re already in the build.
-            </p>
-          </Reveal>
+          <SectionHead
+            index="08"
+            label="The SEO Advantage"
+            id="seo-heading"
+            title={
+              <>
+                Your website shouldn&apos;t just exist. People should be able to <em>find it</em>.
+              </>
+            }
+            lede={
+              <>
+                I&apos;ve spent the last two years doing SEO alongside development — audits,
+                keyword research, Search Console, schema, Core Web Vitals. So the
+                fundamentals aren&apos;t a service you add later. They&apos;re already in the
+                build.
+              </>
+            }
+          />
 
           {/* Numbered ledger — what ships in every build */}
           <Reveal delay={220}>
@@ -126,10 +129,7 @@ export function SeoAdvantage() {
                 <span aria-hidden className="absolute -bottom-2.5 -left-2.5 h-3 w-3 border-b border-l border-line2 opacity-70" />
                 <span aria-hidden className="absolute -bottom-2.5 -right-2.5 h-3 w-3 border-b border-r border-line2 opacity-70" />
 
-                <div className="mb-4 flex items-baseline justify-between gap-3">
-                  <span className="label-mono label-mono--faint">A search result</span>
-
-                </div>
+                <span className="label-mono label-mono--faint mb-4 block">A search result</span>
 
                 {/* the query both results below are answering */}
                 <div className="serp-query">

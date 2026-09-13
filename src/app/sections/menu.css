@@ -1241,6 +1241,17 @@ a:hover > .logo-lockup .logo-tag {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 50;
+  transition: transform 0.55s var(--ease-out-expo);
+}
+
+/* Slid away while scrolling down. Keyboard focus inside the bar always
+   brings it back, so a hidden header never traps a tabbing visitor. */
+.site-hdr--hidden {
+  transform: translateY(-110%);
+}
+
+.site-hdr--hidden:focus-within {
+  transform: none;
 }
 
 /* Header glass: transparent over the top of the page; once content scrolls
@@ -1266,6 +1277,7 @@ a:hover > .logo-lockup .logo-tag {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .site-hdr,
   .site-hdr::before {
     transition: none;
   }

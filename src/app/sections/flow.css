@@ -195,22 +195,6 @@
   will-change: transform, opacity;
 }
 
-/* The instrument plate overlaps the window's lower-right corner; a touch of
-   extra lift near focus separates the two layers. */
-.flw-art .flw-art-plate {
-  position: absolute;
-  right: -44px;
-  bottom: -46px;
-  transform: translateY(calc(6px * (1 - var(--f, 0))));
-  filter: drop-shadow(0 26px 34px rgba(0, 0, 0, 0.55));
-}
-
-/* Over a light screenshot the plate must be opaque, or the page behind
-   washes through it. */
-.flw-art .flw-art-plate .flw-plate {
-  background: var(--color-surface);
-}
-
 .flw-art-bob {
   animation: flw-bob 7s ease-in-out infinite;
 }
@@ -223,35 +207,6 @@
   50% {
     transform: translateY(-7px);
   }
-}
-
-/* Shared plate chrome for artifacts */
-.flw-plate {
-  width: 250px;
-  border-radius: 12px;
-  border: 1px solid var(--color-line2);
-  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
-  box-shadow: 0 30px 70px -32px rgba(0, 0, 0, 0.9);
-  overflow: hidden;
-}
-
-.flw-plate-cap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.45rem 0.7rem;
-  border-bottom: 1px solid var(--color-line);
-  font-family: var(--font-mono);
-  font-size: 8.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-faint);
-}
-
-.flw-plate-cap b {
-  font-weight: 400;
-  color: var(--color-accent2);
 }
 
 /* ------------------------------ end card --------------------------------- */
@@ -355,13 +310,6 @@
   border: 2px solid var(--color-accent);
 }
 
-.flw-rail-st .flw-plate {
-  width: 100%;
-  max-width: 330px;
-  margin-top: 1.1rem;
-}
-
-
 /* Scope chips under a station's one-liner */
 .flw-chips {
   display: flex;
@@ -391,34 +339,6 @@
   background: var(--color-faint);
 }
 
-/* The satellite: a small status chip floating beside the window, on its
-   own bob phase so the station reads layered, not welded. */
-.flw-sat {
-  position: absolute;
-  left: 172px;
-  bottom: 318px;
-  transform: translateY(calc(-10px * var(--f)));
-  opacity: calc(0.12 + 0.88 * var(--f));
-  will-change: transform, opacity;
-}
-
-.flw-sat-bob {
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.3rem 0.7rem;
-  border: 1px solid var(--color-line2);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--color-bg) 82%, transparent);
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-muted);
-  animation: flw-bob 8.5s ease-in-out -2.4s infinite;
-}
-
 /* Waypoint tick: a small rotated square riding the line between stations */
 .flw-tick {
   position: absolute;
@@ -433,13 +353,39 @@
 
 /* --------------------- the docked screenshot window ----------------------- */
 
+/* Sized to the viewport: wide on big screens, but never so tall that the
+   window at focus runs under the header (the line sits at ~56vh). */
 .flw-shot {
-  width: 348px;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  width: clamp(320px, min(34vw, 95vh - 380px), 540px);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.35s var(--ease-out-expo);
   border-radius: 12px;
   border: 1px solid var(--color-line2);
   background: var(--color-surface);
   overflow: hidden;
   box-shadow: 0 34px 80px -34px rgba(0, 0, 0, 0.92);
+}
+
+.flw-shot:hover,
+.flw-shot:focus-visible {
+  border-color: color-mix(in srgb, var(--color-accent) 60%, var(--color-line2));
+  box-shadow: 0 34px 70px -30px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 138, 61, 0.25);
+  transform: translateY(-3px);
+}
+
+.flw-shot:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+.flw-shot-view {
+  display: block;
 }
 
 .flw-shot-bar {
@@ -497,10 +443,6 @@
   object-position: top;
 }
 
-.flw-shot-view--ui {
-  background: rgba(13, 11, 10, 0.75);
-}
-
 /* Real-work tie under the station's one-liner */
 .flw-from {
   margin-top: 0.55rem;
@@ -551,7 +493,7 @@
 /* Rail sizing for the shots (mobile / fallback) */
 .flw-rail-st .flw-shot {
   width: 100%;
-  max-width: 330px;
+  max-width: 560px;
 }
 
 .flw-rail-st .flw-shot-view {

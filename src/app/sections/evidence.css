@@ -379,113 +379,6 @@
 
 /* --------------------------- request waterfall --------------------------- */
 
-.perf-wbar {
-  position: absolute;
-  top: 0.8rem;
-  height: 0.6rem;
-  border-radius: 999px;
-  transform-origin: left center;
-  transition:
-    transform 0.9s var(--ease-out-expo) var(--d, 0ms),
-    opacity 0.4s ease var(--d, 0ms);
-}
-
-.js [data-reveal]:not(.is-visible) .perf-wbar {
-  transform: scaleX(0);
-  opacity: 0;
-  transition: none;
-}
-
-.perf-wbar--doc {
-  background: var(--color-accent);
-}
-
-.perf-wbar--css {
-  background: rgba(102, 238, 255, 0.62);
-}
-
-.perf-wbar--font {
-  background: rgba(232, 200, 114, 0.6);
-}
-
-.perf-wbar--img {
-  background: rgba(243, 236, 226, 0.42);
-}
-
-/* Deferred JS reads as hatched rather than solid — it is real, just later. */
-.perf-wbar--js {
-  border: 1px solid rgba(255, 138, 61, 0.4);
-  background: repeating-linear-gradient(
-    115deg,
-    rgba(255, 138, 61, 0.34) 0 4px,
-    rgba(255, 138, 61, 0.08) 4px 9px
-  );
-}
-
-.perf-wnote {
-  position: absolute;
-  top: 0.8rem;
-  display: none;
-  white-space: nowrap;
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.04em;
-  line-height: 0.6rem;
-  color: var(--color-muted);
-}
-
-@media (min-width: 900px) {
-  .perf-wnote {
-    display: block;
-  }
-}
-
-.perf-key {
-  display: block;
-  width: 26px;
-  height: 7px;
-  flex: none;
-  border-radius: 999px;
-}
-
-/* First-paint marker */
-.perf-fp {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 10;
-}
-
-.perf-fp-line {
-  position: absolute;
-  top: 1.55rem;
-  bottom: 0;
-  left: 0;
-  width: 1px;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 138, 61, 0.8),
-    rgba(255, 138, 61, 0.16)
-  );
-}
-
-.perf-fp-flag {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translateX(-50%);
-  padding: 0.15rem 0.4rem;
-  border: 1px solid rgba(255, 138, 61, 0.45);
-  border-radius: 3px;
-  background: rgba(255, 138, 61, 0.14);
-  white-space: nowrap;
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-accent2);
-}
-
 /* Late-arriving readouts (score number, notes, markers) */
 .perf-late {
   transition: opacity 0.7s ease var(--d, 0ms);
@@ -929,7 +822,6 @@
     transform: translateX(var(--x, 0%));
   }
 
-  .js [data-reveal]:not(.is-visible) .perf-wbar,
   .js [data-reveal]:not(.is-visible) .perf-late {
     opacity: 1;
     transform: none;

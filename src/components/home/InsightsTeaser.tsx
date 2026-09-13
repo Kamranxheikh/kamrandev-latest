@@ -2,6 +2,7 @@ import Link from "next/link";
 import { articles } from "@/lib/content/articles";
 import { services } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
+import { SectionHead } from "@/components/SectionHead";
 
 /** First related service, resolved to its display name — the row's topic tag. */
 function topicFor(slugs: readonly string[]): string | null {
@@ -17,32 +18,18 @@ export function InsightsTeaser() {
   return (
     <section className="border-t border-line" aria-labelledby="insights-heading">
       <div className="container-x section-pad">
-        <div className="flex flex-wrap items-end justify-between gap-8">
-          <div className="max-w-3xl">
-            <Reveal>
-              <p className="label-mono label-mono--accent">
-                <span aria-hidden>13 / </span>
-                Insights
-              </p>
-            </Reveal>
-            <Reveal delay={80}>
-              <h2 className="display mt-5 text-[clamp(2rem,4.6vw,3.6rem)]">
-                <span id="insights-heading">Thinking out loud</span>
-              </h2>
-            </Reveal>
-            <Reveal delay={160}>
-              <p className="mt-6 text-lg leading-relaxed text-muted">
-                Practical guides on website development, SEO, WordPress and
-                performance — written for people deciding what to build.
-              </p>
-            </Reveal>
-          </div>
-          <Reveal delay={200}>
+        <SectionHead
+          index="12"
+          label="Insights"
+          id="insights-heading"
+          title="Thinking out loud"
+          lede="Practical guides on website development, SEO, WordPress and performance — written for people deciding what to build."
+          aside={
             <Link href="/insights/" className="btn btn-ghost mb-2">
               All insights
             </Link>
-          </Reveal>
-        </div>
+          }
+        />
 
         <div className="mt-16 border-b border-line">
           {featured.map((a, i) => {

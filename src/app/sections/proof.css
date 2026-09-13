@@ -612,174 +612,6 @@
 
 /* --- bus rails + junction nodes ------------------------------------------ */
 
-.eco-rail,
-.eco-rail-lab {
-  display: none;
-}
-
-@media (min-width: 1024px) {
-  .eco-rail {
-    display: grid;
-    height: 52px;
-  }
-
-  .eco-rail-lab {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    font-family: var(--font-mono);
-    font-size: 0.625rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-muted);
-  }
-}
-
-.eco-rail-lab--bot {
-  padding-top: 0.7rem;
-}
-
-.eco-rail-lab--top {
-  padding-bottom: 0.7rem;
-}
-
-.eco-rail-tag {
-  padding: 0.1rem 0.42rem;
-  border-radius: 3px;
-  background: var(--color-accent);
-  color: var(--color-accent-ink);
-  font-size: 0.5625rem;
-  letter-spacing: 0.16em;
-}
-
-/* the return path is the section's amber moment */
-.eco-rail-lab--bot .eco-rail-tag {
-  background: var(--color-amber);
-  color: #1b1403;
-}
-
-.eco-rc {
-  position: relative;
-}
-
-.eco-rl {
-  position: absolute;
-  height: 1px;
-  background: rgba(255, 138, 61, 0.45);
-  transition: transform 0.8s var(--ease-out-expo) 0.1s;
-}
-
-.eco-rail--down .eco-rl {
-  top: 0;
-}
-
-.eco-rail--up .eco-rl {
-  bottom: 0;
-  background: rgba(232, 200, 114, 0.42);
-}
-
-.eco-rl--full {
-  left: 0;
-  right: 0;
-  transform-origin: left center;
-}
-
-.eco-rl--right {
-  left: 50%;
-  right: 0;
-  transform-origin: left center;
-}
-
-.eco-rl--left {
-  left: 0;
-  right: 50%;
-  transform-origin: right center;
-}
-
-.eco-rail--up .eco-rl--full,
-.eco-rail--up .eco-rl--right {
-  transform-origin: right center;
-}
-
-.eco-rail--up .eco-rl--left {
-  transform-origin: left center;
-}
-
-.js [data-reveal]:not(.is-visible) .eco-rl {
-  transform: scaleX(0);
-}
-
-/* drop line from the rail into the cluster column */
-.eco-rd {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 1px;
-  background: linear-gradient(rgba(255, 138, 61, 0.4), rgba(255, 138, 61, 0.08));
-  transition:
-    transform 0.65s var(--ease-out-expo) 0.45s,
-    opacity 0.25s ease;
-}
-
-.eco-rail--down .eco-rd {
-  transform-origin: top center;
-}
-
-.eco-rail--up .eco-rd {
-  transform-origin: bottom center;
-  background: linear-gradient(rgba(232, 200, 114, 0.08), rgba(232, 200, 114, 0.4));
-}
-
-.js [data-reveal]:not(.is-visible) .eco-rd {
-  transform: scaleY(0);
-}
-
-/* junction node — registration diamond punched through the rail */
-.eco-rn {
-  position: absolute;
-  left: 50%;
-  width: 9px;
-  height: 9px;
-  margin-left: -5px;
-  border: 1px solid var(--color-accent);
-  border-radius: 2px;
-  background: var(--color-bg);
-  box-shadow: inset 0 0 0 2px rgba(255, 138, 61, 0.35);
-  transform: rotate(45deg);
-  transition:
-    transform 0.5s var(--ease-out-expo) 0.75s,
-    box-shadow 0.25s ease,
-    opacity 0.25s ease;
-}
-
-.eco-rail--down .eco-rn {
-  top: -5px;
-}
-
-.eco-rail--up .eco-rn {
-  bottom: -5px;
-  border-color: var(--color-amber);
-  box-shadow: inset 0 0 0 2px rgba(232, 200, 114, 0.35);
-}
-
-.js [data-reveal]:not(.is-visible) .eco-rn {
-  transform: rotate(45deg) scale(0);
-}
-
-/* direction marker on the feedback rail */
-.eco-arw {
-  position: absolute;
-  bottom: -4.5px;
-  left: 50%;
-  transform: translateX(-50%);
-  fill: none;
-  stroke: var(--color-amber);
-  stroke-width: 1.4;
-}
-
-/* --- hover: light one path, recede the rest ------------------------------- */
-
 @media (hover: hover) {
   .eco-board:has(.eco-cluster:hover) .eco-cluster:not(:hover) .eco-in {
     opacity: 0.32;
@@ -787,9 +619,7 @@
 
   .eco-board:has(.eco-cluster:hover) .eco-trace,
   .eco-board:has(.eco-cluster:hover) .eco-head-a,
-  .eco-board:has(.eco-cluster:hover) .eco-link-lab,
-  .eco-board:has(.eco-cluster:hover) .eco-rd,
-  .eco-board:has(.eco-cluster:hover) .eco-rn {
+  .eco-board:has(.eco-cluster:hover) .eco-link-lab {
     opacity: 0.25;
   }
 
@@ -814,21 +644,6 @@
     stroke: var(--color-accent);
     color: var(--color-accent);
     opacity: 1;
-  }
-
-  /* and so do the junctions dropping into that column */
-  .eco-board:has(.eco-c1:hover) .eco-j1,
-  .eco-board:has(.eco-c2:hover) .eco-j2,
-  .eco-board:has(.eco-c3:hover) .eco-j3 {
-    opacity: 1;
-  }
-
-  .eco-board:has(.eco-c1:hover) .eco-rn.eco-j1,
-  .eco-board:has(.eco-c2:hover) .eco-rn.eco-j2,
-  .eco-board:has(.eco-c3:hover) .eco-rn.eco-j3 {
-    box-shadow:
-      inset 0 0 0 3px rgba(255, 138, 61, 0.8),
-      0 0 14px rgba(255, 138, 61, 0.5);
   }
 }
 

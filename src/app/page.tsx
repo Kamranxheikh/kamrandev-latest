@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { HeroMonument } from "@/components/home/HeroMonument";
-import { ValueTrio } from "@/components/home/ValueTrio";
 import { ServicesFlow } from "@/components/home/ServicesFlow";
 import { Differentiator } from "@/components/home/Differentiator";
 import { ProcessRail } from "@/components/home/ProcessRail";
@@ -58,7 +57,7 @@ export default function HomePage() {
     <>
       <JsonLd data={homeJsonLd} />
       <HeroMonument />
-      <ValueTrio />
+      <ClientTypes />
       <ServicesFlow />
       <Differentiator />
       <ProcessRail />
@@ -68,7 +67,6 @@ export default function HomePage() {
       <SeoAdvantage />
       <PerformancePillar />
       <AiSearch />
-      <ClientTypes />
       <ExperienceTeaser />
       <InsightsTeaser />
       <FinalCta />

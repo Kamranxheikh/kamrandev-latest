@@ -375,13 +375,27 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [peek, setPeek] = useState(0);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastY = useRef(0);
   const btnRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const wasOpen = useRef(false);
 
   // Glass backdrop once content scrolls under the bar; transparent at the top.
+  // The bar slides away while reading down the page and returns the moment
+  // the visitor scrolls back up — content gets the full viewport, the menu is
+  // never more than one flick away.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    lastY.current = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      const delta = y - lastY.current;
+      setScrolled(y > 24);
+      if (y < 120) setHidden(false);
+      else if (delta > 8) setHidden(true);
+      else if (delta < -8) setHidden(false);
+      lastY.current = y;
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -448,7 +462,11 @@ export function Header() {
   }, []);
 
   return (
-    <header className={scrolled ? "site-hdr site-hdr--glass" : "site-hdr"}>
+    <header
+      className={`site-hdr${scrolled ? " site-hdr--glass" : ""}${
+        hidden && !open ? " site-hdr--hidden" : ""
+      }`}
+    >
       {/* Phones: logo left, Menu right (the CTA is hidden). From sm up the
           three-column grid returns the Menu pill to dead centre. */}
       <div className="header-x grid h-[72px] grid-cols-[1fr_auto] items-center gap-4 sm:grid-cols-[1fr_auto_1fr]">

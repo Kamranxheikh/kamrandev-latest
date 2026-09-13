@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef } from "react";
 import { Reveal } from "@/components/Reveal";
 import { services } from "@/lib/site";
 
@@ -23,11 +23,11 @@ import { services } from "@/lib/site";
  * ------------------------------------------------------------------------ */
 
 /** Scrub distance in viewports. The track is (1 + SCRUB) * 100vh tall. */
-const SCRUB = 5.5;
+const SCRUB = 6.3;
 /** World-space x of each station anchor, in px. */
-const STATION_X = [1300, 2420, 3540, 4660, 5780, 6900];
+const STATION_X = [1300, 2420, 3540, 4660, 5780, 6900, 8020];
 /** World-space x of the closing card. */
-const END_X = 8080;
+const END_X = 9200;
 /** The focus point sits at this fraction of the viewport width. */
 const FOCUS = 0.42;
 /** A station is at full strength within this distance of focus. */
@@ -39,52 +39,53 @@ const clamp01 = (n: number) => (n < 0 ? 0 : n > 1 ? 1 : n);
 const lineY = (x: number, vh: number) =>
   0.56 * vh + Math.min(76, Math.max(44, 0.07 * vh)) * Math.sin((x - 400) / 560);
 
-/** The six stations. Primary services lead: development, then SEO.
-    One line each — no paragraphs; the scope chips carry the detail.
-    Each station also docks a real build from the portfolio (`shot`) that
-    demonstrates the service — the same screenshots the Work section uses. */
+/** The seven stations, in the site's service order: web applications and AI
+    lead, then website development and SEO. One line each — no paragraphs;
+    the scope chips carry the detail. Each station docks a real build from
+    the portfolio (`shot`) that demonstrates the service — the same
+    screenshots the Work section uses. */
 const STATIONS = [
   {
-    slug: "website-development",
-    name: "Website Development",
-    line: "Strategy, build and launch — end to end.",
-    sat: "Launch-ready",
-    shot: { src: "/work/prophero-real-estate-crm.webp", name: "Prophero CRM" },
-  },
-  {
-    slug: "seo",
-    name: "SEO & AI Search",
-    line: "Technical SEO, AEO and GEO engineered in.",
-    sat: "Schema valid",
-    shot: { src: "/work/ai-tool-camp.webp", name: "AI Tool Camp" },
-  },
-  {
-    slug: "wordpress-development",
-    name: "WordPress Development",
-    line: "My core specialty — Elementor Pro and custom code.",
-    sat: "Elementor Pro",
-    shot: { src: "/work/huckleberrys-restaurant.webp", name: "Huckleberry’s" },
-  },
-  {
-    slug: "website-design",
-    name: "Website Design",
-    line: "Conversion-first design shaped around your brand.",
-    sat: "8pt grid",
-    shot: { src: "/work/rose-wealth.webp", name: "Rose Wealth" },
-  },
-  {
-    slug: "website-performance",
-    name: "Website Performance",
-    line: "Core Web Vitals as a build requirement.",
-    sat: "CWV 100",
-    shot: { src: "/work/citygate-financial-planning.webp", name: "Citygate" },
+    slug: "web-application-development",
+    name: "Web Application Development",
+    line: "Custom apps and SaaS — Next.js, Laravel and Node.js.",
+    shot: { src: "/work/onlinetoolpot.webp", name: "OnlineToolPot", href: "/work/onlinetoolpot/" },
   },
   {
     slug: "ai-solutions",
     name: "AI Solutions",
     line: "AI SaaS builds, integrations and AI-search visibility.",
-    sat: "Cited by AI",
-    shot: null,
+    shot: { src: "/work/resumaic.webp", name: "Resumaic", href: "/work/resumaic/" },
+  },
+  {
+    slug: "website-development",
+    name: "Website Development",
+    line: "Strategy, build and launch — end to end.",
+    shot: { src: "/work/prophero-real-estate-crm.webp", name: "Prophero CRM", href: "/work/prophero-real-estate-crm/" },
+  },
+  {
+    slug: "seo",
+    name: "SEO & AI Search",
+    line: "Technical SEO, AEO and GEO engineered in.",
+    shot: { src: "/work/ai-tool-camp.webp", name: "AI Tool Camp", href: "/work/ai-tool-camp/" },
+  },
+  {
+    slug: "wordpress-development",
+    name: "WordPress Development",
+    line: "My core specialty — Elementor Pro and custom code.",
+    shot: { src: "/work/huckleberrys-restaurant.webp", name: "Huckleberry’s", href: "/work/huckleberrys-restaurant/" },
+  },
+  {
+    slug: "website-design",
+    name: "Website Design",
+    line: "Conversion-first design shaped around your brand.",
+    shot: { src: "/work/rose-wealth.webp", name: "Rose Wealth", href: "/work/rose-wealth/" },
+  },
+  {
+    slug: "website-performance",
+    name: "Website Performance",
+    line: "Core Web Vitals as a build requirement.",
+    shot: { src: "/work/citygate-financial-planning.webp", name: "Citygate", href: "/work/citygate-financial-planning/" },
   },
 ] as const;
 
@@ -380,23 +381,12 @@ export function ServicesFlow() {
                 <span className="flw-drop" aria-hidden />
 
                 {/* Docked above the line: a real build from the portfolio in a
-                    browser frame, with the service's instrument plate riding
-                    its lower corner. */}
-                <div className="flw-art" aria-hidden>
+                    browser frame — the window itself opens the case study. */}
+                <div className="flw-art">
                   <div className="flw-art-bob">
-                    {s.shot ? <Shot shot={s.shot} /> : <AiShot />}
-                    <div className="flw-art-plate">
-                      <Artifact i={i} />
-                    </div>
+                    <Shot shot={s.shot} onFocus={() => scrollToStation(i)} />
                   </div>
                 </div>
-
-                <span className="flw-sat" aria-hidden>
-                  <span className="flw-sat-bob">
-                    <span className="pulse-dot h-1 w-1 rounded-full bg-accent" />
-                    {s.sat}
-                  </span>
-                </span>
 
                 <div className="flw-cap">
                   <span className="label-mono label-mono--faint">
@@ -410,11 +400,9 @@ export function ServicesFlow() {
                     {s.name}
                   </Link>
                   <p className="flw-cap-line">{s.line}</p>
-                  {s.shot && (
-                    <p className="flw-from">
-                      From the work — <b>{s.shot.name}</b>
-                    </p>
-                  )}
+                  <p className="flw-from">
+                    From the work — <b>{s.shot.name}</b>
+                  </p>
                   <p className="flw-chips">
                     {chipsFor(s.slug).map((c) => (
                       <span key={c}>{c}</span>
@@ -487,22 +475,15 @@ export function ServicesFlow() {
                 </Link>
               </h3>
               <p className="flw-cap-line">{s.line}</p>
-              {s.shot && (
-                <p className="flw-from">
-                  From the work — <b>{s.shot.name}</b>
-                </p>
-              )}
+              <p className="flw-from">
+                From the work — <b>{s.shot.name}</b>
+              </p>
               <p className="flw-chips">
                 {chipsFor(s.slug).map((c) => (
                   <span key={c}>{c}</span>
                 ))}
               </p>
-              <div aria-hidden>
-                {s.shot ? <Shot shot={s.shot} className="mt-4" /> : <AiShot className="mt-4" />}
-                <div className="flw-plate mt-4">
-                  <Artifact i={i} bare />
-                </div>
-              </div>
+              <Shot shot={s.shot} className="mt-4" />
             </Reveal>
           ))}
         </div>
@@ -525,13 +506,20 @@ export function ServicesFlow() {
 function Shot({
   shot,
   className = "",
+  onFocus,
 }: {
-  shot: { src: string; name: string };
+  shot: { src: string; name: string; href: string };
   className?: string;
+  onFocus?: () => void;
 }) {
   return (
-    <div className={`flw-shot ${className}`}>
-      <div className="flw-shot-bar">
+    <Link
+      href={shot.href}
+      className={`flw-shot ${className}`}
+      aria-label={`${shot.name} — view the case study`}
+      onFocus={onFocus}
+    >
+      <span className="flw-shot-bar">
         <span className="flw-shot-dots" aria-hidden>
           <i />
           <i />
@@ -546,245 +534,10 @@ function Shot({
             strokeLinecap="round"
           />
         </svg>
-      </div>
-      <div className="flw-shot-view">
+      </span>
+      <span className="flw-shot-view">
         <img src={shot.src} alt="" loading="lazy" decoding="async" />
-      </div>
-    </div>
+      </span>
+    </Link>
   );
-}
-
-/* AI Solutions has no public screenshot to dock, so its window is a drawn
-   product console — the shape of an AI SaaS build, no invented client. */
-function AiShot({ className = "" }: { className?: string }) {
-  return (
-    <div className={`flw-shot ${className}`}>
-      <div className="flw-shot-bar">
-        <span className="flw-shot-dots" aria-hidden>
-          <i />
-          <i />
-          <i />
-        </span>
-        <span className="flw-shot-name">AI product console</span>
-        <span className="flex items-center gap-1 font-mono text-[7px] tracking-[0.12em] text-accent2">
-          <span className="pulse-dot h-1 w-1 rounded-full bg-accent" />
-          API
-        </span>
-      </div>
-      <div className="flw-shot-view flw-shot-view--ui">
-        <div className="grid h-full grid-cols-[64px_1fr]">
-          <div className="flex flex-col gap-1 border-r border-line p-1.5 font-mono text-[7px] leading-none text-muted">
-            {["Assistant", "Prompts", "API keys", "Usage"].map((t, j) => (
-              <span
-                key={t}
-                className={`rounded-[3px] px-1.5 py-[3px] ${
-                  j === 0 ? "bg-accent/15 text-accent2" : ""
-                }`}
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-          <div className="flex flex-col gap-1.5 p-2">
-            <span className="self-end rounded-[6px] rounded-br-[2px] border border-line2 bg-ink/8 px-2 py-1 text-[8px] leading-snug text-ink/85">
-              Draft a reply to this enquiry
-            </span>
-            <span className="max-w-[86%] rounded-[6px] rounded-bl-[2px] border border-accent/40 bg-accent/8 px-2 py-1.5 text-[8px] leading-relaxed text-ink/80">
-              Thanks for reaching out — here’s a summary of your request and
-              the next step…
-            </span>
-            <span className="mt-auto flex items-center gap-1.5 border-t border-line pt-1.5 font-mono text-[6.5px] tracking-[0.12em] text-faint">
-              <span className="text-accent2">MODEL CONNECTED</span>
-              STREAMING · LOGGED
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ------------------------------------------------------------------------ *
- *  Artifacts — one small drawn instrument per station. Real words, real
- *  numbers, one saturated moment each; no grey-bar skeletons.
- * ------------------------------------------------------------------------ */
-
-function Artifact({ i, bare = false }: { i: number; bare?: boolean }) {
-  // Index-aligned with STATIONS: dev, seo, wordpress, design, perf, ai.
-  const order = [2, 3, 1, 0, 4, 5];
-  const faces: ReactNode[] = [
-    /* 01 — Website Design: the drafting pad */
-    <Plate key="d" cap="Homepage" tag="8pt grid" bare={bare}>
-      <div className="relative grid gap-1.5 rounded-[4px] border border-dashed border-ink/30 p-2">
-        <span className="absolute -top-2 right-2 rounded-[2px] bg-amber/90 px-1 py-[1px] font-mono text-[7px] font-medium leading-none text-bg">
-          1440
-        </span>
-        <div className="flex items-center justify-between">
-          <span className="h-[5px] w-10 rounded-sm bg-ink/45" />
-          <span className="flex gap-1">
-            <span className="h-[4px] w-5 rounded-sm bg-ink/25" />
-            <span className="h-[4px] w-5 rounded-sm bg-ink/25" />
-          </span>
-        </div>
-        <span className="text-[9px] font-semibold leading-tight text-ink">
-          One page. One action.
-        </span>
-        <span className="flex gap-1.5">
-          <span className="rounded-full bg-accent px-2 py-[3px] text-[7px] font-semibold leading-none text-accent-ink">
-            Start
-          </span>
-          <span className="rounded-full border border-line2 px-2 py-[3px] text-[7px] leading-none text-muted">
-            Explore
-          </span>
-        </span>
-      </div>
-    </Plate>,
-
-    /* 02 — WordPress: the block editor */
-    <Plate key="w" cap="Editor" tag="Custom blocks" bare={bare}>
-      <div className="grid grid-cols-[56px_1fr] gap-1.5">
-        <div className="flex flex-col gap-1 rounded-[4px] border border-line p-1 font-mono text-[7px] leading-none text-muted">
-          {["Cover", "Heading", "Columns", "Query"].map((b, j) => (
-            <span
-              key={b}
-              className={`rounded-[2px] px-1 py-[2px] ${
-                j === 2 ? "bg-accent/20 text-accent2" : ""
-              }`}
-            >
-              {b}
-            </span>
-          ))}
-        </div>
-        <div className="flex flex-col gap-1.5">
-          <span className="text-[9px] font-semibold leading-tight text-ink">
-            Fast to edit. Hard to break.
-          </span>
-          <span className="relative rounded-[3px] border border-accent bg-accent/10 p-1.5">
-            <span className="absolute -top-[6px] left-1 rounded-[2px] bg-accent px-1 font-mono text-[6px] font-semibold leading-[10px] text-accent-ink">
-              COLUMNS
-            </span>
-            <span className="grid grid-cols-3 gap-1 pt-1">
-              {["Design", "Build", "Rank"].map((c) => (
-                <span
-                  key={c}
-                  className="rounded-[2px] border border-accent/50 py-[3px] text-center text-[7px] leading-none text-accent2"
-                >
-                  {c}
-                </span>
-              ))}
-            </span>
-          </span>
-        </div>
-      </div>
-    </Plate>,
-
-    /* 03 — Website Development: the terminal */
-    <Plate key="t" cap="Terminal" tag="Compiled" bare={bare}>
-      <div className="flex flex-col gap-[5px] font-mono text-[8px] leading-none">
-        <span className="text-muted">
-          <span className="text-accent2">$</span> npm run build
-        </span>
-        <span className="text-ink/70">Compiled successfully</span>
-        <span className="text-ink/70">34 pages · 0 errors</span>
-        <span className="mt-1 flex items-center gap-1.5 text-accent2">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-          Deployed — SSL active
-        </span>
-      </div>
-    </Plate>,
-
-    /* 04 — SEO & AI Search: the result */
-    <Plate key="s" cap="Search" tag="Rich result" bare={bare}>
-      <div className="flex flex-col gap-[4px] leading-none">
-        <span className="font-mono text-[7px] text-faint">
-          kamrandev.com › services
-        </span>
-        <span className="text-[10px] font-medium leading-tight text-accent2">
-          SEO &amp; AI Search Visibility
-        </span>
-        <span className="flex items-center gap-1">
-          {[0, 1, 2, 3, 4].map((k) => (
-            <span
-              key={k}
-              className="h-[6px] w-[6px] bg-amber/90"
-              style={{ clipPath: "polygon(50% 0,100% 100%,0 100%)" }}
-            />
-          ))}
-          <span className="ml-1 font-mono text-[6.5px] text-faint">
-            AI OVERVIEW · CITED
-          </span>
-        </span>
-        <span className="text-[7.5px] leading-[1.5] text-muted">
-          Schema, clean URLs and entities — readable by Google and by answer
-          engines.
-        </span>
-      </div>
-    </Plate>,
-
-    /* 05 — Performance: the vitals cluster */
-    <Plate key="p" cap="Vitals" tag="All green" bare={bare}>
-      <div className="flex flex-col gap-[6px] font-mono text-[8px] leading-none">
-        {[
-          ["LCP", "1.1s", "86%"],
-          ["INP", "42ms", "94%"],
-          ["CLS", "0.00", "100%"],
-        ].map(([k, v, w]) => (
-          <span key={k} className="flex items-center gap-1.5">
-            <span className="w-6 shrink-0 text-accent2">{k}</span>
-            <span className="relative h-[4px] flex-1 overflow-hidden rounded-full bg-ink/14">
-              <span
-                className="absolute inset-y-0 left-0 rounded-full bg-accent"
-                style={{ width: w }}
-              />
-            </span>
-            <span className="shrink-0 text-ink/80">{v}</span>
-          </span>
-        ))}
-      </div>
-    </Plate>,
-
-    /* 06 — AI Solutions: the answer */
-    <Plate key="a" cap="Answer engine" tag="Cited" bare={bare}>
-      <div className="flex flex-col gap-[5px] leading-none">
-        <span className="font-mono text-[7.5px] text-faint">
-          “Who builds AI-ready websites?”
-        </span>
-        <span className="text-[8px] leading-[1.55] text-ink/85">
-          Businesses working with structured, semantic sites get cited — like
-          this developer’s builds.
-        </span>
-        <span className="mt-[2px] flex items-center gap-1">
-          <span className="rounded-full border border-accent/50 bg-accent/10 px-1.5 py-[2px] font-mono text-[6.5px] leading-none text-accent2">
-            kamrandev.com
-          </span>
-          <span className="font-mono text-[6px] text-faint">SOURCE 1 OF 3</span>
-        </span>
-      </div>
-    </Plate>,
-  ];
-  return faces[order[i] ?? i] ?? null;
-}
-
-function Plate({
-  cap,
-  tag,
-  bare,
-  children,
-}: {
-  cap: string;
-  tag: string;
-  bare?: boolean;
-  children: ReactNode;
-}) {
-  const body = (
-    <>
-      <div className="flw-plate-cap">
-        <span>{cap}</span>
-        <b>{tag}</b>
-      </div>
-      <div className="p-2.5">{children}</div>
-    </>
-  );
-  // In the rail the wrapper already provides the plate chrome.
-  return bare ? body : <div className="flw-plate">{body}</div>;
 }

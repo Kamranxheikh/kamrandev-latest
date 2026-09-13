@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { projects, site } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
+import { SectionHead } from "@/components/SectionHead";
 
 function fmt(n: number, pad: number) {
   return String(n).padStart(pad, "0");
@@ -141,25 +142,17 @@ export function WhyMe() {
   return (
     <section className="border-t border-line bg-bg2" aria-labelledby="why-heading">
       <div className="container-x section-pad">
-        <div className="max-w-3xl">
-          <Reveal>
-            <p className="label-mono label-mono--accent">
-              <span aria-hidden>06 / </span>
-              Why Me
-            </p>
-          </Reveal>
-          <Reveal delay={80}>
-            <h2 id="why-heading" className="display mt-5 text-[clamp(2rem,4.6vw,3.6rem)]">
+        <SectionHead
+          index="06"
+          label="Why Me"
+          id="why-heading"
+          title={
+            <>
               I understand your website <em>before, during and after</em> launch
-            </h2>
-          </Reveal>
-          <Reveal delay={160}>
-            <p className="mt-6 text-lg leading-relaxed text-muted">
-              A website is not finished when it goes live. It has to be crawled, indexed,
-              ranked, secured and kept fast. That full lifecycle is the job.
-            </p>
-          </Reveal>
-        </div>
+            </>
+          }
+          lede="A website is not finished when it goes live. It has to be crawled, indexed, ranked, secured and kept fast. That full lifecycle is the job."
+        />
 
         {/* Stat band — an instrument strip. Every number here is from site.ts. */}
         <Reveal delay={100}>

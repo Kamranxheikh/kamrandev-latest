@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { Reveal } from "@/components/Reveal";
+import { SectionHead } from "@/components/SectionHead";
 
 /* Same readouts as the hero's vitals panel — one instrument, one standard.
    `good` / `warn` / `poor` are Google's published Core Web Vitals thresholds
@@ -57,25 +58,6 @@ const vitals = [
   },
 ];
 
-/* Schematic request waterfall — offsets/lengths are % of the track, and the
-   filenames are the ones this site actually ships. */
-const FIRST_PAINT = 33;
-const waterfall = [
-  { file: "index.html", kind: "doc", start: 0, len: 12, note: "document — streams first" },
-  { file: "site.css", kind: "css", start: 5, len: 13, note: "critical styles inlined" },
-  { file: "grotesk.woff2", kind: "font", start: 9, len: 15, note: "preloaded · display: swap" },
-  { file: "hero.webp", kind: "img", start: 14, len: 22, note: "responsive sizes · lazy below fold" },
-  { file: "app.js", kind: "js", start: 36, len: 20, note: "deferred — runs after first paint" },
-];
-
-const legend = [
-  { kind: "doc", label: "document" },
-  { kind: "css", label: "styles" },
-  { kind: "font", label: "font" },
-  { kind: "img", label: "image" },
-  { kind: "js", label: "deferred js" },
-];
-
 /* True of this website, and of every build I ship. */
 const buildNotes = [
   "static export · pre-rendered HTML",
@@ -108,33 +90,17 @@ export function PerformancePillar() {
   return (
     <section className="border-t border-line" aria-labelledby="perf-heading">
       <div className="container-x section-pad">
-        {/* Opener — headline left, the equation as a mono margin note right */}
-        <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-8">
-          <div className="max-w-3xl">
-            <Reveal>
-              <p className="label-mono label-mono--accent">09 / Performance</p>
-            </Reveal>
-            <Reveal delay={80}>
-              <h2 id="perf-heading" className="display mt-5 text-[clamp(2rem,4.6vw,3.6rem)]">
-                Fast websites <em>win</em>
-              </h2>
-            </Reveal>
-            <Reveal delay={160}>
-              <p className="mt-6 text-lg leading-relaxed text-muted">
-                Speed is a ranking factor, a conversion factor and a first
-                impression — all at once. I treat Google&apos;s Core Web Vitals as a
-                build requirement, not an afterthought.
-              </p>
-            </Reveal>
-          </div>
-          <Reveal delay={240}>
-            <p className="font-mono text-[11px] uppercase leading-loose tracking-[0.14em] text-faint md:text-right">
-              design + code + performance + seo
-              <br />
-              <span className="text-muted">= a website that actually works</span>
-            </p>
-          </Reveal>
-        </div>
+        <SectionHead
+          index="09"
+          label="Performance"
+          id="perf-heading"
+          title={
+            <>
+              Fast websites <em>win</em>
+            </>
+          }
+          lede="Speed is a ranking factor, a conversion factor and a first impression — all at once. I treat Google’s Core Web Vitals as a build requirement, not an afterthought."
+        />
 
         {/* ------------------- the instrument cluster ---------------------- */}
         <Reveal delay={140}>
@@ -259,74 +225,11 @@ export function PerformancePillar() {
               </div>
             </div>
 
-            {/* Request waterfall */}
-            <div className="border-t border-line px-6 py-7 sm:px-8">
-              <div className="flex flex-wrap items-baseline justify-between gap-3">
-                <span className="label-mono label-mono--faint">How the page loads</span>
-                <span className="label-mono">nothing blocks the first paint</span>
-              </div>
-
-              <div className="mt-6 flex gap-4" aria-hidden>
-                <div className="flex w-[5.5rem] shrink-0 flex-col pt-6 sm:w-[7.5rem]">
-                  {waterfall.map((w) => (
-                    <span
-                      key={w.file}
-                      className="flex h-9 items-center truncate font-mono text-[11px] tracking-[0.04em] text-ink"
-                    >
-                      {w.file}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="relative flex-1 pt-6">
-                  {/* First-paint marker */}
-                  <div className="perf-fp" style={{ left: `${FIRST_PAINT}%` }}>
-                    <span className="perf-fp-line" />
-                    <span className="perf-late perf-fp-flag" style={delayStyle(700)}>
-                      first paint
-                    </span>
-                  </div>
-
-                  {waterfall.map((w, i) => (
-                    <div key={w.file} className="relative h-9">
-                      <span
-                        className={`perf-wbar perf-wbar--${w.kind}`}
-                        style={{ left: `${w.start}%`, width: `${w.len}%`, "--d": `${400 + i * 140}ms` } as CSSProperties}
-                      />
-                      <span
-                        className="perf-late perf-wnote"
-                        style={{ left: `calc(${w.start + w.len}% + 14px)`, "--d": `${700 + i * 140}ms` } as CSSProperties}
-                      >
-                        {w.note}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Legend — every bar named, in its own colour */}
-              <ul className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-line pt-4" aria-hidden>
-                {legend.map((l) => (
-                  <li key={l.kind} className="flex items-center gap-2">
-                    <span className={`perf-key perf-wbar--${l.kind}`} />
-                    <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">{l.label}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <p className="sr-only">
-                How the page loads: index.html, site.css, the web font and the hero image load
-                early and nothing blocks the first paint; app.js is deferred until after it.
-              </p>
-            </div>
           </div>
         </Reveal>
 
         <Reveal delay={200}>
-          <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
-            <p className="text-base text-muted">
-              Image optimization · caching · efficient code · responsive images · lazy loading · server-level tuning
-            </p>
+          <div className="mt-8">
             <Link href="/website-performance/" className="btn btn-ghost">
               Performance optimization
             </Link>

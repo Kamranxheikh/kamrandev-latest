@@ -31,7 +31,10 @@ export function FinalCta() {
           <Reveal>
             <p className="cta-eyebrow">
               <LogoMark className="cta-mark" />
-              <span className="label-mono label-mono--accent">Next Step</span>
+              <span className="label-mono label-mono--accent">
+                <span aria-hidden>13 / </span>
+                Next Step
+              </span>
             </p>
           </Reveal>
 

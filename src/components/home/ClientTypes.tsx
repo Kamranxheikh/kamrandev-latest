@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
+import { SectionHead } from "@/components/SectionHead";
 
 /* `route` is the label of the page each cell links to — printed in the cell so
    the reader knows where the row goes before clicking. */
@@ -46,24 +47,13 @@ export function ClientTypes() {
   return (
     <section className="border-t border-line" aria-labelledby="types-heading">
       <div className="container-x section-pad">
-        <div className="max-w-3xl">
-          <Reveal>
-            <p className="label-mono label-mono--accent">
-              <span aria-hidden>11 / </span>
-              Start Here
-            </p>
-          </Reveal>
-          <Reveal delay={80}>
-            <h2 id="types-heading" className="display mt-5 text-[clamp(2rem,4.6vw,3.6rem)]">
-              What kind of website are you building?
-            </h2>
-          </Reveal>
-          <Reveal delay={160}>
-            <p className="mt-6 text-lg leading-relaxed text-muted">
-              Pick the closest match — each path explains exactly how I&apos;d approach it.
-            </p>
-          </Reveal>
-        </div>
+        <SectionHead
+          index="01"
+          label="Start Here"
+          id="types-heading"
+          title="What kind of website are you building?"
+          lede={<>Pick the closest match — each path explains exactly how I&apos;d approach it.</>}
+        />
 
         {/* Matrix — cells collapse onto a single-hairline lattice via gap-px */}
         <Reveal delay={120}>

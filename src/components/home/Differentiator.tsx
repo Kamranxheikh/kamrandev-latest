@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Reveal } from "@/components/Reveal";
+import { SectionHead } from "@/components/SectionHead";
 
 /* ------------------------------------------------------------------------ *
  *  THE CROSS-SECTION
@@ -363,21 +364,17 @@ export function Differentiator() {
     <section className="border-t border-line" aria-labelledby="diff-heading">
       <div className="container-x section-pad grid items-center gap-14 lg:grid-cols-[0.88fr_1.12fr] lg:gap-16">
         <div>
-          <Reveal>
-            <p className="label-mono label-mono--accent">03 / The Difference</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <h2 id="diff-heading" className="display mt-5 text-[clamp(2rem,4.6vw,3.6rem)]">
-              Most developers build websites. I build websites <em>that get found</em>.
-            </h2>
-          </Reveal>
-          <Reveal delay={160}>
-            <p className="mt-6 text-lg leading-relaxed text-muted">
-              Most websites are designed first — and SEO is bolted on later, if
-              at all. By then, the architecture, the markup and the performance
-              ceiling are already fixed.
-            </p>
-          </Reveal>
+          <SectionHead
+            index="03"
+            label="The Difference"
+            id="diff-heading"
+            title={
+              <>
+                Most developers build websites. I build websites <em>that get found</em>.
+              </>
+            }
+            lede="Most websites are designed first — and SEO is bolted on later, if at all. By then, the architecture, the markup and the performance ceiling are already fixed."
+          />
           <Reveal delay={220}>
             <p className="mt-4 text-lg leading-relaxed text-muted">
               My development and SEO background means search considerations are
@@ -468,9 +465,6 @@ export function Differentiator() {
 
             {/* The shared bench rail */}
             <div className="dif-rail mt-6" aria-hidden />
-            <p className="label-mono mt-4 !text-faint">
-              No retrofits. No &ldquo;we&rsquo;ll handle SEO later.&rdquo;
-            </p>
           </div>
         </Reveal>
       </div>

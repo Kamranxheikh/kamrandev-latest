@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
+import { SectionHead } from "@/components/SectionHead";
 
 /* ------------------------------------------------------------------------ *
  *  10 / AI Search — one page, two readers.
@@ -168,34 +169,23 @@ export function AiSearch() {
     <section className="border-t border-line bg-bg2" aria-labelledby="ai-heading">
       <div className="container-x section-pad">
         {/* ------------------------- section head ------------------------- */}
-        <div className="grid items-end gap-x-16 gap-y-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)]">
-          <div>
-            <Reveal>
-              <p className="label-mono label-mono--accent">10 / AI Search</p>
-            </Reveal>
-            <Reveal delay={80}>
-              <h2 id="ai-heading" className="display mt-5 text-[clamp(2rem,4.6vw,3.6rem)]">
-                Search is <em>changing</em>
-              </h2>
-            </Reveal>
-            <Reveal delay={160}>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-                People increasingly get answers from AI-powered search — AI
-                Overviews, answer engines, chat assistants. A website now has
-                two readers: the person looking at the page, and the machine
-                deciding whether to cite it.
-              </p>
-            </Reveal>
-          </div>
-          <div>
-            <Reveal delay={220}>
+        <SectionHead
+          index="10"
+          label="AI Search"
+          id="ai-heading"
+          title={
+            <>
+              Search is <em>changing</em>
+            </>
+          }
+          lede="People increasingly get answers from AI-powered search — AI Overviews, answer engines, chat assistants. A website now has two readers: the person looking at the page, and the machine deciding whether to cite it."
+          aside={
+            <>
               <p className="leading-relaxed text-muted">
                 I apply Answer Engine Optimization (AEO) and Generative Engine
                 Optimization (GEO) practices during development — no guaranteed
                 rankings, just a site built so AI answers can read it, and cite it.
               </p>
-            </Reveal>
-            <Reveal delay={280}>
               <div className="mt-5 flex flex-wrap gap-2">
                 {["AEO", "GEO", "AI Overviews", "Entities", "Semantic HTML"].map((t) => (
                   <span key={t} className="chip">
@@ -203,9 +193,9 @@ export function AiSearch() {
                   </span>
                 ))}
               </div>
-            </Reveal>
-          </div>
-        </div>
+            </>
+          }
+        />
 
         {/* --------------------------- the console ------------------------ */}
         <Reveal delay={120}>

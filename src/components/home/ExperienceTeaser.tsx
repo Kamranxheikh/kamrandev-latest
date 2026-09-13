@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { experience, site } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
+import { SectionHead } from "@/components/SectionHead";
 
 const MONTH: Record<string, number> = {
   Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
@@ -42,26 +43,35 @@ export function ExperienceTeaser() {
   const employmentRecent = jobs.filter((j) => String(j.company) !== "Freelance");
   const freelance = jobs.find((j) => String(j.company) === "Freelance");
 
+  /* Real start dates can sit only a few months apart, which on a rail a few
+     hundred pixels wide puts one label on top of the next. Each node keeps
+     its true position unless a neighbour is closer than MIN_GAP, in which
+     case it slides right just far enough to clear it. */
+  const MIN_GAP = 30;
+  const placed = employment.reduce<number[]>((acc, j) => {
+    const want = pct(j.start);
+    const floor = acc.length ? acc[acc.length - 1] + MIN_GAP : 0;
+    acc.push(Math.min(Math.max(want, floor), 100));
+    return acc;
+  }, []);
+
   const years: number[] = [];
   for (let y = Math.ceil(t0 / 12); y * 12 <= t1; y++) years.push(y);
 
   return (
     <section className="border-t border-line bg-bg2" aria-labelledby="exp-heading">
       <div className="container-x section-pad">
-        {/* Opener — asymmetric two-column head */}
-        <div className="grid gap-x-16 gap-y-8 lg:grid-cols-[1.15fr_1fr] lg:items-end">
-          <div>
-            <Reveal>
-              <p className="label-mono label-mono--accent">12 / About</p>
-            </Reveal>
-            <Reveal delay={80}>
-              <h2 id="exp-heading" className="display mt-5 text-[clamp(2rem,4.6vw,3.6rem)]">
-                {site.yearsExperience} years of building <em>and</em> ranking websites
-              </h2>
-            </Reveal>
-          </div>
-          <div>
-            <Reveal delay={160}>
+        <SectionHead
+          index="11"
+          label="About"
+          id="exp-heading"
+          title={
+            <>
+              {site.yearsExperience} years of building <em>and</em> ranking websites
+            </>
+          }
+          aside={
+            <>
               <p className="text-lg leading-relaxed text-muted">
                 I&apos;m {site.person} — {site.role} from Lahore, Pakistan, working
                 with businesses worldwide. {site.devSpecialty} is my core
@@ -69,14 +79,12 @@ export function ExperienceTeaser() {
                 infrastructure aren&apos;t three vendors on your invoice.
                 They&apos;re one person who owns the outcome.
               </p>
-            </Reveal>
-            <Reveal delay={240}>
               <Link href="/about/" className="btn btn-ghost mt-8">
                 More about me
               </Link>
-            </Reveal>
-          </div>
-        </div>
+            </>
+          }
+        />
 
         {/* Desktop: horizontal career rail, time-proportional */}
         <div className="xp-rail mt-20 hidden lg:block">
@@ -99,16 +107,15 @@ export function ExperienceTeaser() {
 
           <ol className="xp-nodes">
             {employment.map((job, i) => {
-              const isEnd = i === employment.length - 1;
+              const x = placed[i];
+              /* The last node hangs to the left of its dot only when it is
+                 far enough along the rail to have room for that. */
+              const isEnd = i === employment.length - 1 && x > 60;
               return (
                 <li
                   key={job.company}
                   className={`xp-node${isEnd ? " xp-node--end" : ""}`}
-                  style={
-                    isEnd
-                      ? { right: `${100 - pct(job.start)}%` }
-                      : { left: `${pct(job.start)}%` }
-                  }
+                  style={isEnd ? { right: `${100 - x}%` } : { left: `${x}%` }}
                 >
                   <Reveal delay={200 + i * 160}>
                     <div className="xp-node-top">

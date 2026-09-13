@@ -1,11 +1,11 @@
 import type { CSSProperties } from "react";
 import { techEcosystem } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
+import { SectionHead } from "@/components/SectionHead";
 
 /* Toolchain schematic, read left to right the way the lede reads:
    infrastructure feeds the build, the build feeds SEO & measurement.
-   A bus rail across the top ties the three into one stack; a feedback rail
-   underneath carries measurement data back into the build. */
+   Two signal traces link the three panels into one board. */
 const clusters = [
   {
     cls: "eco-c1",
@@ -97,75 +97,20 @@ function Trace({ cls, label, delay }: { cls: string; label: string; delay: strin
   );
 }
 
-type RailCell = {
-  line: "left" | "right" | "full";
-  drop?: string;
-};
-
-const RAIL_CELLS: RailCell[] = [
-  { line: "right", drop: "eco-j1" },
-  { line: "full" },
-  { line: "full", drop: "eco-j2" },
-  { line: "full" },
-  { line: "left", drop: "eco-j3" },
-];
-
-/** A bus rail with junction nodes dropping into each cluster column. */
-function Rail({ dir }: { dir: "down" | "up" }) {
-  return (
-    <div className={`eco-rail eco-grid eco-rail--${dir}`} aria-hidden>
-      {RAIL_CELLS.map((cell, i) => (
-        <div className="eco-rc" key={i}>
-          <span className={`eco-rl eco-rl--${cell.line}`} />
-          {cell.drop ? (
-            <>
-              <span className={`eco-rd ${cell.drop}`} />
-              <span className={`eco-rn ${cell.drop}`} />
-            </>
-          ) : null}
-          {dir === "up" && cell.line === "full" && !cell.drop ? (
-            <svg className="eco-arw" width="9" height="9" viewBox="0 0 9 9" fill="none">
-              <path d="M6.5 1 2 4.5 6.5 8" />
-            </svg>
-          ) : null}
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export function TechEcosystem() {
   return (
     <section className="border-t border-line" aria-labelledby="tech-heading">
       <div className="container-x section-pad">
-        <div className="mx-auto max-w-3xl text-center">
-          <Reveal>
-            <p className="label-mono label-mono--accent">
-              <span aria-hidden>07 / </span>
-              Tech Ecosystem
-            </p>
-          </Reveal>
-          <Reveal delay={80}>
-            <h2 id="tech-heading" className="display mt-5 text-[clamp(2rem,4.6vw,3.6rem)]">
-              One connected technical system
-            </h2>
-          </Reveal>
-          <Reveal delay={160}>
-            <p className="mt-6 text-lg leading-relaxed text-muted">
-              Not a logo wall — a toolchain. Infrastructure makes the code fast, code makes
-              the SEO possible, SEO makes the build discoverable.
-            </p>
-          </Reveal>
-        </div>
+        <SectionHead
+          index="07"
+          label="Tech Ecosystem"
+          id="tech-heading"
+          title="One connected technical system"
+          lede="Not a logo wall — a toolchain. Infrastructure makes the code fast, code makes the SEO possible, SEO makes the build discoverable."
+        />
 
         <Reveal delay={120}>
-          <div className="eco-board mt-16">
-            <p className="eco-rail-lab eco-rail-lab--top" aria-hidden>
-              <span className="eco-rail-tag">Bus</span>
-              One stack, one owner — end to end
-            </p>
-            <Rail dir="down" />
-
+          <div className="eco-board mt-14">
             <div className="eco-grid eco-row">
               <ClusterPanel c={clusters[0]} delay={0} />
               <Trace cls="eco-t1" label="powers" delay="0.28s" />
@@ -173,19 +118,7 @@ export function TechEcosystem() {
               <Trace cls="eco-t2" label="feeds" delay="0.52s" />
               <ClusterPanel c={clusters[2]} delay={260} />
             </div>
-
-            <Rail dir="up" />
-            <p className="eco-rail-lab eco-rail-lab--bot" aria-hidden>
-              <span className="eco-rail-tag">Feedback</span>
-              Search Console, GA4 &amp; PageSpeed data returns to the build
-            </p>
           </div>
-        </Reveal>
-
-        <Reveal delay={220}>
-          <p className="label-mono label-mono--faint mt-10 text-center">
-            Output — a website that is fast, secure and found
-          </p>
         </Reveal>
       </div>
     </section>
